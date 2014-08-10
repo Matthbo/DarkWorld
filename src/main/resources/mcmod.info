@@ -1,0 +1,16 @@
+[
+{
+  "modid": "DarkWorld",
+  "name": "Dark World",
+  "description": "Recreates the overworld in a new dimension, and makes it evil.",
+  "version": "0.1",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Matthbo"],
+  "credits": "The Forge and FML guys, for being awesome",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
