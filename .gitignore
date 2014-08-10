@@ -1,2 +1,19 @@
-.gradle
-build/
+## gradle
+/.gradle
+/build
+/gradlew
+/gradlew.bat
+/gradle-compile-mod.bat
+/gradle-install-update.bat
+
+## forge
+/forge-1.7.10-10.13.0.*
+/CREDITS-fml.txt
+
+## eclipse
+/eclipse
+/.settings
+/.metadata
+/.classpath
+/.project
+/bin
