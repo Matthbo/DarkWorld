@@ -5,6 +5,7 @@
 /gradlew.bat
 /gradle-compile-mod.bat
 /gradle-install-update.bat
+/gradle-reset.bat
 
 ## forge
 /forge-1.7.10-10.13.0.*

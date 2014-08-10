@@ -8,6 +8,10 @@ public class Refs {
 	
 	public static final String CLIENT_PROXY_CLASS = "";
 	public static final String SERVER_PROXY_CLASS = "";
-	public static final String GUI_FACTORY_CLASS = "";
+	public static final String GUI_FACTORY_CLASS = "matthbo.mods.darkworld.client.gui.GuiFactory";
+	
+	public static final String CONFIG_LANGKEY_DEV = "darkworld.configgui.ctgy.configDevelopment";
+	
+	public static final String CHAT_LANGKEY_DEVMODE = "darkworld.chat.command.devmode";
 
 }
