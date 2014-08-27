@@ -42,7 +42,7 @@ public class DarkWorld {
 	}
 	
 	@Mod.EventHandler
-	public static void postInit(FMLPostInitializationEvent event){
+public static void postInit(FMLPostInitializationEvent event){
 	
 		LogHelper.info("Post Initialization Complete");
 		
