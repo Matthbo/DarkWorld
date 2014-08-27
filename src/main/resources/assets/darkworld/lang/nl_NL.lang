@@ -1,3 +1,6 @@
+# Block
+tile.darkworld:darkdirt.name=Duistere Grond
+
 # Chat
 darkworld.chat.command.devmode=[DarkWorld] Dev mode is AAN!
 

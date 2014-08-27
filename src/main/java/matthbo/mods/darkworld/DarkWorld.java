@@ -2,6 +2,7 @@ package matthbo.mods.darkworld;
 
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
+import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.proxy.IProxy;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.utility.LogHelper;
@@ -28,6 +29,8 @@ public class DarkWorld {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
+		ModBlocks.init();
+		
 		LogHelper.info("Pre Initialization Complete");
 		
 	}
@@ -42,7 +45,7 @@ public class DarkWorld {
 	}
 	
 	@Mod.EventHandler
-public static void postInit(FMLPostInitializationEvent event){
+	public static void postInit(FMLPostInitializationEvent event){
 	
 		LogHelper.info("Post Initialization Complete");
 		

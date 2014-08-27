@@ -1,3 +1,8 @@
+# Block
+tile.darkworld:darkdirt.name=Dark Dirt
+tile.darkworld:darkstone.name=Dark Stone
+tile.darkworld:darkcobblestone.name=Dark Cobblestone
+
 # Chat
 darkworld.chat.command.devmode=[DarkWorld] Dev mode is ON!
 
