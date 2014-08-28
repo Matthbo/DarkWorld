@@ -6,7 +6,7 @@ public class BlockPecluliarDust extends BlockDarkWorld {
 	
 	public BlockPecluliarDust(){
 		super();
-		this.setBlockName("peculiardust");
+		this.setBlockName("peculiardustblock");
 	}
 
 }

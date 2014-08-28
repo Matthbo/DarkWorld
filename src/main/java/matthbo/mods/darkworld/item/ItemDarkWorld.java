@@ -2,6 +2,7 @@ package matthbo.mods.darkworld.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
@@ -11,7 +12,7 @@ public class ItemDarkWorld extends Item {
 	
 	public ItemDarkWorld(){
 		super();
-		//this.setCreativeTab(CreativeTabTestmod.TESTMOD_TAB);
+		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
 	
 	@Override

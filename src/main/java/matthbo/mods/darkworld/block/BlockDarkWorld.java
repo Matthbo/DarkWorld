@@ -2,6 +2,7 @@ package matthbo.mods.darkworld.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,12 +12,12 @@ public class BlockDarkWorld extends Block{
 	
 	public BlockDarkWorld(Material material){
 		super(material);
-		//this.setCreativeTab(CreativeTabTestmod.TESTMOD_TAB);
+		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
 	
 	public BlockDarkWorld(){
 		this(Material.rock);
-		//this.setCreativeTab(CreativeTabTestmod.TESTMOD_TAB)
+		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
 	
 	@Override
