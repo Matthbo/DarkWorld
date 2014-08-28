@@ -6,10 +6,11 @@ import matthbo.mods.darkworld.block.BlockDarkCobbleStone;
 import matthbo.mods.darkworld.block.BlockDarkDirt;
 import matthbo.mods.darkworld.block.BlockDarkStone;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
+import matthbo.mods.darkworld.block.BlockFallingMod;
+import matthbo.mods.darkworld.block.BlockPecluliarDust;
 import matthbo.mods.darkworld.block.BlockPeculiarCobbleStone;
 import matthbo.mods.darkworld.block.BlockPeculiarStone;
 import matthbo.mods.darkworld.block.BlockTest;
-import matthbo.mods.darkworld.item.BlockPecluliarDust;
 import matthbo.mods.darkworld.reference.Refs;
 
 @ObjectHolder(Refs.MOD_ID)
@@ -20,7 +21,7 @@ public class ModBlocks {
 	//in the overworld
 	public static final BlockDarkWorld peculiarStone = new BlockPeculiarStone();
 	public static final BlockDarkWorld peculiarCobbleStone = new BlockPeculiarCobbleStone();
-	public static final BlockDarkWorld peculiarDustBlock = new BlockPecluliarDust();
+	public static final BlockFallingMod peculiarDustBlock = new BlockPecluliarDust();
 
 	//in the darkworld
 	public static final BlockDarkWorld darkDirt = new BlockDarkDirt();
