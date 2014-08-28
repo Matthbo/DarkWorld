@@ -4,6 +4,7 @@ import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModItems;
+import matthbo.mods.darkworld.init.Recipes;
 import matthbo.mods.darkworld.proxy.IProxy;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.utility.LogHelper;
@@ -26,6 +27,8 @@ public class DarkWorld {
 	@SidedProxy(clientSide = Refs.CLIENT_PROXY_CLASS, serverSide = Refs.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
+	//TODO make stuff added to the oreDictionary
+	
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event){
 		
@@ -41,6 +44,8 @@ public class DarkWorld {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent event){
+		Recipes.initCrafting();
+		Recipes.initSmelting();
 		
 		FMLCommonHandler.instance().bus().register(new EventHandler());
 		
