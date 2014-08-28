@@ -8,6 +8,7 @@ public class BlockDarkDirt extends BlockDarkWorld {
 		super(Material.ground);
 		this.setBlockName("darkdirt");
 		this.setStepSound(soundTypeGravel);
+		this.setHardness(0.5F);
 	}
 
 }
