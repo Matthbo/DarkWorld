@@ -9,6 +9,7 @@ public class BlockPecluliarDust extends BlockFallingMod {
 		super(Material.sand);
 		this.setBlockName("peculiardustblock");
 		this.setStepSound(soundTypeSand);
+		this.setHardness(0.5F);
 	}
 
 }

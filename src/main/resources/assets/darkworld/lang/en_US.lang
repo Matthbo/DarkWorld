@@ -8,6 +8,9 @@ tile.darkworld:darkcobblestone.name=Dark CobbleStone
 
 # Item
 item.darkworld:peculiardust.name=Peculiar Dust
+item.darkworld:peculiardustbar.name=Peculiar Dust Bar
+item.darkworld:hardpeculiardust.name=Hardened Peculiar Dust
+item.darkworld:peculiardustnsteel.name=Flint And Hardened Peculiar Dust
 
 # Tabs
 itemGroup.darkworld=Dark World
