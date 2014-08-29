@@ -8,14 +8,14 @@ import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class BlockFallingMod extends BlockFalling {
+public class BlockFallingDarkWorld extends BlockFalling {
 	
-	public BlockFallingMod(Material material){
+	public BlockFallingDarkWorld(Material material){
 		super(material);
 		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
 	
-	public BlockFallingMod(){
+	public BlockFallingDarkWorld(){
 		this(Material.rock);
 		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
