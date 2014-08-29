@@ -2,9 +2,10 @@ package matthbo.mods.darkworld;
 
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
+import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModItems;
-import matthbo.mods.darkworld.init.Recipes;
+import matthbo.mods.darkworld.init.ModRecipes;
 import matthbo.mods.darkworld.proxy.IProxy;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.utility.LogHelper;
@@ -44,8 +45,9 @@ public class DarkWorld {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent event){
-		Recipes.initCrafting();
-		Recipes.initSmelting();
+		ModRecipes.initCrafting();
+		ModRecipes.initSmelting();
+		ModAchievements.init();
 		
 		FMLCommonHandler.instance().bus().register(new EventHandler());
 		
@@ -59,7 +61,6 @@ public class DarkWorld {
 	public static void postInit(FMLPostInitializationEvent event){
 	
 		LogHelper.info("Post Initialization Complete");
-		
 	}
 
 }

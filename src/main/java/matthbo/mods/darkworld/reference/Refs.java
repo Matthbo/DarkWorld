@@ -16,5 +16,11 @@ public class Refs {
 	
 	//chat
 	public static final String CHAT_LANGKEY_DEVMODE = "darkworld.chat.command.devmode";
+	
+	//achievement
+	public static final String ACH_PICKUPPCOBBLESTONE = "darkworld.achievement.pickuppcobblestone";
+	public static final String ACH_PICKUPPCOBBLESTONE_DESC = "darkworld.achievement.pickuppcobblestone.desc";
+	public static final String ACH_SMELTPCOBBLESTONE = "darkworld.achievement.smeltpcobblestone";
+	public static final String ACH_SMELTPCOBBLESTONE_DESC = "darkworld.achievement.smeltpcobblestone.desc";
 
 }

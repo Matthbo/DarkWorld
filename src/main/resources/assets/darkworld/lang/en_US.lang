@@ -11,6 +11,7 @@ item.darkworld:peculiardust.name=Peculiar Dust
 item.darkworld:peculiardustbar.name=Peculiar Dust Bar
 item.darkworld:hardpeculiardust.name=Hardened Peculiar Dust
 item.darkworld:peculiardustnsteel.name=Flint And Hardened Peculiar Dust
+item.darkworld:peculiarpickaxe.name=Peculiar Pickaxe
 
 # Tabs
 itemGroup.darkworld=Dark World
@@ -21,3 +22,9 @@ darkworld.chat.command.devmode=[DarkWorld] Dev mode is ON!
 # Config
 darkworld.configgui.ctgy.configDevelopment=Development Configuration
 darkworld.configgui.ctgy.configDevelopment.tooltip=You can edit the development configuration options here.
+
+#Achievements
+achievement.pickuppcobblestone=Out Of This World!
+achievement.pickuppcobblestone.desc=Mine a weird stone...
+achievement.smeltpcobblestone=Did It Crumble?
+achievement.smeltpcobblestone.desc=Try to make Smooth Stone with it

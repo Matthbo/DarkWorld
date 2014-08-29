@@ -18,7 +18,7 @@ public class ItemPeculiarDust extends ItemDarkWorld {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack is, EntityPlayer player, List info, boolean useExtraInformation){
 		
-		info.add("Did it crumble?");
+		info.add("Crumbled Peculiar Stone");
 		
 	}
 
