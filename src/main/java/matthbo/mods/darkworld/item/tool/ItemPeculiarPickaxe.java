@@ -4,9 +4,9 @@ import net.minecraft.item.Item;
 import matthbo.mods.darkworld.item.ItemDarkWorld;
 import matthbo.mods.darkworld.item.ItemToolDarkWorld;
 
-public class PeculiarPickaxe extends ItemToolDarkWorld {
+public class ItemPeculiarPickaxe extends ItemToolDarkWorld {
 	
-	public PeculiarPickaxe(){
+	public ItemPeculiarPickaxe(){
 		super(); //cause Item.ToolMaterial.IRON is OP
 		this.setUnlocalizedName("peculiarpickaxe");
 	}

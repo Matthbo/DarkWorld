@@ -6,7 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class Recipes {
+public class ModRecipes {
 	
 	private static GameRegistry GR;
 	private static Random rand;
@@ -16,6 +16,7 @@ public class Recipes {
 		GR.addRecipe(new ItemStack(ModBlocks.peculiarDustBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(ModItems.peculiarDust));
 		GR.addRecipe(new ItemStack(ModItems.peculiarDustBar), "dd", 'd', new ItemStack(ModItems.peculiarDust));
 		GR.addRecipe(new ItemStack(ModItems.peculiarDustNSteel), "dn", 'd', new ItemStack(ModItems.hardPeculiarDust), 'n', new ItemStack(Items.flint));
+		GR.addRecipe(new ItemStack(ModItems.peculiarPickaxe), "ddd", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
 		
 	}
 	

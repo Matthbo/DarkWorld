@@ -8,7 +8,7 @@ import matthbo.mods.darkworld.item.ItemPeculiarDust;
 import matthbo.mods.darkworld.item.ItemPeculiarDustBar;
 import matthbo.mods.darkworld.item.ItemPeculiarDustNSteel;
 import matthbo.mods.darkworld.item.ItemToolDarkWorld;
-import matthbo.mods.darkworld.item.tool.PeculiarPickaxe;
+import matthbo.mods.darkworld.item.tool.ItemPeculiarPickaxe;
 import matthbo.mods.darkworld.reference.Refs;
 
 @ObjectHolder(Refs.MOD_ID)
@@ -20,7 +20,7 @@ public class ModItems {
 	public static final ItemDarkWorld peculiarDustNSteel = new ItemPeculiarDustNSteel();
 	
 	//tools
-	public static final ItemToolDarkWorld peculiarPickaxe = new PeculiarPickaxe();
+	public static final ItemToolDarkWorld peculiarPickaxe = new ItemPeculiarPickaxe();
 	
 	//armor
 	
