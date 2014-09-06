@@ -1,5 +1,6 @@
 package matthbo.mods.darkworld;
 
+import net.minecraftforge.common.DimensionManager;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
 import matthbo.mods.darkworld.init.ModAchievements;
@@ -10,6 +11,7 @@ import matthbo.mods.darkworld.proxy.IProxy;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.utility.LogHelper;
 import matthbo.mods.darkworld.world.OverworldGenerator;
+import matthbo.mods.darkworld.world.WorldProviderDarkWorld;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -30,6 +32,9 @@ public class DarkWorld {
 	
 	//TODO make stuff added to the oreDictionary
 	
+	//TODO TODO TODO Make this BETTER NOW!
+	public static final int dimensionDarkWordID = -2;
+	
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event){
 		
@@ -38,6 +43,9 @@ public class DarkWorld {
 		
 		ModBlocks.init();
 		ModItems.init();
+		
+		DimensionManager.registerProviderType(dimensionDarkWordID, WorldProviderDarkWorld.class, false);
+		DimensionManager.registerDimension(dimensionDarkWordID, dimensionDarkWordID);
 		
 		LogHelper.info("Pre Initialization Complete");
 		
