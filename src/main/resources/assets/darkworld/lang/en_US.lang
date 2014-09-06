@@ -12,6 +12,10 @@ item.darkworld:peculiardustbar.name=Peculiar Dust Bar
 item.darkworld:hardpeculiardust.name=Hardened Peculiar Dust
 item.darkworld:peculiardustnsteel.name=Flint And Hardened Peculiar Dust
 item.darkworld:peculiarpickaxe.name=Peculiar Pickaxe
+item.darkworld:peculiarsword.name=Peculiar Sword
+item.darkworld:peculiaraxe.name=Peculair Axe
+item.darkworld:peculiarshovel.name=Peculiar Shovel
+item.darkworld:peculiarhoe.name=Peculiar Hoe
 
 # Tabs
 itemGroup.darkworld=Dark World
@@ -28,3 +32,5 @@ achievement.pickuppcobblestone=Out Of This World!
 achievement.pickuppcobblestone.desc=Mine a weird stone...
 achievement.smeltpcobblestone=Did It Crumble?
 achievement.smeltpcobblestone.desc=Try to make Smooth Stone with it
+achievement.craftptools=MultiDimensional Tools
+achievement.craftptools.desc=Make tools with hardened dust

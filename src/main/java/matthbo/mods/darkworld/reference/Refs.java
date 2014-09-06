@@ -22,5 +22,7 @@ public class Refs {
 	public static final String ACH_PICKUPPCOBBLESTONE_DESC = "darkworld.achievement.pickuppcobblestone.desc";
 	public static final String ACH_SMELTPCOBBLESTONE = "darkworld.achievement.smeltpcobblestone";
 	public static final String ACH_SMELTPCOBBLESTONE_DESC = "darkworld.achievement.smeltpcobblestone.desc";
+	public static final String ACH_CRAFTPTOOLS = "darkworld.achievement.craftptools";
+	public static final String ACH_CRAFTPTOOLS_DESC = "darkworld.achievement.craftptools.desc";
 
 }

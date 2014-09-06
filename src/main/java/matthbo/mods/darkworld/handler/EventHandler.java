@@ -11,6 +11,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -21,26 +22,29 @@ public class EventHandler {
 	public void onPlayerLogin(PlayerLoggedInEvent event){
 		if(ConfigHandler.dev == true){
 			event.player.addChatMessage(new ChatComponentTranslation(Refs.CHAT_LANGKEY_DEVMODE));
-			event.player.addChatMessage(new ChatComponentTranslation("TODO: more achievements? | make peculiar armor | add more peculiar tools"));
+			event.player.addChatMessage(new ChatComponentTranslation("TODO: make peculiar armor classes | **dimension**"));
 		}
 	}
 	
 	@SubscribeEvent
 	public void onItemPickup(ItemPickupEvent event){
-		LogHelper.info(Block.getBlockFromItem(event.pickedUp.getEntityItem().getItem()));
 		if(Block.getBlockFromItem(event.pickedUp.getEntityItem().getItem()).equals(ModBlocks.peculiarCobbleStone)){
-			
 			event.player.addStat(ModAchievements.achPickupPCobbleStone, 1);
-			
 		}
 	}
 	
 	@SubscribeEvent
 	public void onSmelted(ItemSmeltedEvent event){
 		if(event.smelting.getItem().equals(ModItems.peculiarDust)){
-			
 			event.player.addStat(ModAchievements.achSmeltPCobbleStone, 1);
-			
+		}
+	}
+	
+	@SubscribeEvent
+	public void onCrafted(ItemCraftedEvent event){
+		Item ei = event.crafting.getItem();
+		if(ei.equals(ModItems.peculiarPickaxe) || ei.equals(ModItems.peculiarSword) || ei.equals(ModItems.peculiarAxe) || ei.equals(ModItems.peculiarShovel) || ei.equals(ModItems.peculiarHoe)){
+			event.player.addStat(ModAchievements.achCraftPTools, 1);
 		}
 	}
 

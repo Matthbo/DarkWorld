@@ -10,11 +10,14 @@ import matthbo.mods.darkworld.block.BlockFallingDarkWorld;
 import matthbo.mods.darkworld.block.BlockPecluliarDust;
 import matthbo.mods.darkworld.block.BlockPeculiarCobbleStone;
 import matthbo.mods.darkworld.block.BlockPeculiarStone;
+import matthbo.mods.darkworld.block.BlockPortalDarkWord;
 import matthbo.mods.darkworld.block.BlockTest;
 import matthbo.mods.darkworld.reference.Refs;
 
 @ObjectHolder(Refs.MOD_ID)
 public class ModBlocks {
+	
+	private static GameRegistry GR;
 	
 	//public static final BlockDarkWorld test = new BlockTest();
 	
@@ -22,6 +25,7 @@ public class ModBlocks {
 	public static final BlockDarkWorld peculiarStone = new BlockPeculiarStone();
 	public static final BlockDarkWorld peculiarCobbleStone = new BlockPeculiarCobbleStone();
 	public static final BlockFallingDarkWorld peculiarDustBlock = new BlockPecluliarDust();
+	public static final BlockPortalDarkWord darkworldPortal = new BlockPortalDarkWord();
 
 	//in the darkworld
 	public static final BlockDarkWorld darkDirt = new BlockDarkDirt();
@@ -31,13 +35,14 @@ public class ModBlocks {
 	public static void init(){
 		//GameRegistry.registerBlock(test, "test");
 		
-		GameRegistry.registerBlock(peculiarStone, "peculiarStone");
-		GameRegistry.registerBlock(peculiarCobbleStone, "peculiarCobbleStone");
-		GameRegistry.registerBlock(peculiarDustBlock, "peculiarDustBlock");
+		GR.registerBlock(peculiarStone, "peculiarStone");
+		GR.registerBlock(peculiarCobbleStone, "peculiarCobbleStone");
+		GR.registerBlock(peculiarDustBlock, "peculiarDustBlock");
+		GR.registerBlock(darkworldPortal, "darkworldPortal");
 		
-		GameRegistry.registerBlock(darkDirt, "darkDirt");
-		GameRegistry.registerBlock(darkStone, "darkStone");
-		GameRegistry.registerBlock(darkCobbleStone, "darkCobbleStone");
+		GR.registerBlock(darkDirt, "darkDirt");
+		GR.registerBlock(darkStone, "darkStone");
+		GR.registerBlock(darkCobbleStone, "darkCobbleStone");
 	}
 
 }

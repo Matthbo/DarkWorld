@@ -16,14 +16,21 @@ public class ModRecipes {
 		GR.addRecipe(new ItemStack(ModBlocks.peculiarDustBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(ModItems.peculiarDust));
 		GR.addRecipe(new ItemStack(ModItems.peculiarDustBar), "dd", 'd', new ItemStack(ModItems.peculiarDust));
 		GR.addRecipe(new ItemStack(ModItems.peculiarDustNSteel), "dn", 'd', new ItemStack(ModItems.hardPeculiarDust), 'n', new ItemStack(Items.flint));
+		
 		GR.addRecipe(new ItemStack(ModItems.peculiarPickaxe), "ddd", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
+		GR.addRecipe(new ItemStack(ModItems.peculiarSword), " d ", " d ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
+		GR.addRecipe(new ItemStack(ModItems.peculiarAxe), "dd ", "ds ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
+		GR.addRecipe(new ItemStack(ModItems.peculiarShovel), " d ", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
+		GR.addRecipe(new ItemStack(ModItems.peculiarHoe), "dd ", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
+		
+		
 		
 	}
 	
 	public static void initSmelting(){
 		
 		GR.addSmelting(new ItemStack(ModBlocks.peculiarCobbleStone), new ItemStack(ModItems.peculiarDust, 2), 0.1F);
-		GR.addSmelting(new ItemStack(ModItems.peculiarDustBar), new ItemStack(ModItems.hardPeculiarDust), 0.1F);
+		GR.addSmelting(new ItemStack(ModItems.peculiarDustBar), new ItemStack(ModItems.hardPeculiarDust), 0.2F);
 		
 	}
 
