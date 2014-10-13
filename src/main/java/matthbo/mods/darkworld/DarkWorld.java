@@ -44,8 +44,8 @@ public class DarkWorld {
 		ModBlocks.init();
 		ModItems.init();
 		
-		DimensionManager.registerProviderType(dimensionDarkWordID, WorldProviderDarkWorld.class, false);
-		DimensionManager.registerDimension(dimensionDarkWordID, dimensionDarkWordID);
+		//DimensionManager.registerProviderType(dimensionDarkWordID, WorldProviderDarkWorld.class, false);
+		//DimensionManager.registerDimension(dimensionDarkWordID, dimensionDarkWordID);
 		
 		LogHelper.info("Pre Initialization Complete");
 		

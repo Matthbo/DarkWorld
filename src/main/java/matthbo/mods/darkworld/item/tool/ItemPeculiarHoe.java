@@ -1,11 +1,11 @@
 package matthbo.mods.darkworld.item.tool;
 
-import matthbo.mods.darkworld.item.ItemToolDarkWorld;
+import matthbo.mods.darkworld.item.ItemDarkWorld;
 
-public class ItemPeculiarHoe extends ItemToolDarkWorld {
+public class ItemPeculiarHoe extends ItemHoeDarkWorld {
 	
 	public ItemPeculiarHoe(){
-		super();
+		super(ToolMaterial.STONE);
 		this.setUnlocalizedName("peculiarhoe");
 	}
 
