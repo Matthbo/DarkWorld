@@ -38,7 +38,7 @@ public class ModItems {
 	public static final ItemSwordDarkWorld peculiarSword = new ItemPeculiarSword();
 	public static final ItemToolDarkWorld peculiarAxe = new ItemPeculiarAxe();
 	public static final ItemToolDarkWorld peculiarShovel = new ItemPeculiarShovel();
-	public static final ItemHoeDarkWorld peculiarHoe = new ItemPeculiarHoe();//not a tool??
+	public static final ItemHoeDarkWorld peculiarHoe = new ItemPeculiarHoe();
 	
 	//armor
 	public static final ItemArmorDarkWorld peculiarHelmet = new ItemPeculiarHelmet();

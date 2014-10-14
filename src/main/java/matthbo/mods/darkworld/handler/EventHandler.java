@@ -22,7 +22,7 @@ public class EventHandler {
 	public void onPlayerLogin(PlayerLoggedInEvent event){
 		if(ConfigHandler.dev == true){
 			event.player.addChatMessage(new ChatComponentTranslation(Refs.CHAT_LANGKEY_DEVMODE));
-			event.player.addChatMessage(new ChatComponentTranslation("TODO: make peculiar armor classes | **dimension**"));
+			event.player.addChatMessage(new ChatComponentTranslation("TODO: **dimension**"));
 		}
 	}
 	
@@ -45,6 +45,8 @@ public class EventHandler {
 		Item ei = event.crafting.getItem();
 		if(ei.equals(ModItems.peculiarPickaxe) || ei.equals(ModItems.peculiarSword) || ei.equals(ModItems.peculiarAxe) || ei.equals(ModItems.peculiarShovel) || ei.equals(ModItems.peculiarHoe)){
 			event.player.addStat(ModAchievements.achCraftPTools, 1);
+		}else if(ei.equals(ModItems.peculiarHelmet) || ei.equals(ModItems.peculiarChestplate) || ei.equals(ModItems.peculiarLeggings) || ei.equals(ModItems.peculiarBoots)){
+			event.player.addStat(ModAchievements.achCraftPArmor, 1);
 		}
 	}
 

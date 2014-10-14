@@ -23,7 +23,10 @@ public class ModRecipes {
 		GR.addRecipe(new ItemStack(ModItems.peculiarShovel), " d ", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
 		GR.addRecipe(new ItemStack(ModItems.peculiarHoe), "dd ", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
 		
-		
+		GR.addRecipe(new ItemStack(ModItems.peculiarHelmet), "ddd", "d d", 'd', new ItemStack(ModItems.hardPeculiarDust));
+		GR.addRecipe(new ItemStack(ModItems.peculiarChestplate), "d d", "ddd", "ddd", 'd', new ItemStack(ModItems.hardPeculiarDust));
+		GR.addRecipe(new ItemStack(ModItems.peculiarLeggings), "ddd", "d d", "d d", 'd', new ItemStack(ModItems.hardPeculiarDust));
+		GR.addRecipe(new ItemStack(ModItems.peculiarBoots), "d d", "d d", 'd', new ItemStack(ModItems.hardPeculiarDust));
 		
 	}
 	
