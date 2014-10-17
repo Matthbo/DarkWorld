@@ -10,7 +10,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
-import matthbo.mods.darkworld.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

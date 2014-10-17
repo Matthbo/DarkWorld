@@ -31,6 +31,7 @@ public class DarkWorld {
 	public static IProxy proxy;
 	
 	//TODO make stuff added to the oreDictionary
+	//TODO change dark world portal & dimension to be 100% 1.7! (or 1.8 if its posible)
 	
 	//TODO TODO TODO Make this BETTER NOW!
 	public static final int dimensionDarkWordID = -2;
@@ -44,8 +45,8 @@ public class DarkWorld {
 		ModBlocks.init();
 		ModItems.init();
 		
-		//DimensionManager.registerProviderType(dimensionDarkWordID, WorldProviderDarkWorld.class, false);
-		//DimensionManager.registerDimension(dimensionDarkWordID, dimensionDarkWordID);
+		DimensionManager.registerProviderType(dimensionDarkWordID, WorldProviderDarkWorld.class, false);
+		DimensionManager.registerDimension(dimensionDarkWordID, dimensionDarkWordID);
 		
 		LogHelper.info("Pre Initialization Complete");
 		

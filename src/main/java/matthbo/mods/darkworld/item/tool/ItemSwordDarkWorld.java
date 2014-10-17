@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.item.ItemDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
-import matthbo.mods.darkworld.utility.LogHelper;
 
 public class ItemSwordDarkWorld extends Item{
 	
@@ -51,7 +50,6 @@ public class ItemSwordDarkWorld extends Item{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister){
-		LogHelper.info(this.getIconName());
 		itemIcon = iconRegister.registerIcon(this.getIconName().substring(this.getIconName().indexOf(".") + 1));
 	}
 	

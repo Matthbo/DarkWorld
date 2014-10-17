@@ -8,11 +8,11 @@ import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class BlockPortalMod extends BlockPortal{
+public class BlockPortalBaseDarkWorld extends BlockPortal{
 	
-	public BlockPortalMod(){
+	public BlockPortalBaseDarkWorld(){
 		super();
-		//this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
+		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
 	
 	@Override

@@ -45,7 +45,6 @@ public class ItemHoeDarkWorld extends Item{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister){
-		LogHelper.info(this.getIconName());
 		itemIcon = iconRegister.registerIcon(this.getIconName().substring(this.getIconName().indexOf(".") + 1));
 	}
 	

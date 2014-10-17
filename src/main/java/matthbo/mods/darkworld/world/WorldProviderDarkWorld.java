@@ -4,13 +4,14 @@ import matthbo.mods.darkworld.DarkWorld;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenEnd;
+import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 
 public class WorldProviderDarkWorld extends WorldProvider {
 
 	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.sky, 0.6F);
+		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.forest, 0.6F);
 		this.dimensionId = DarkWorld.dimensionDarkWordID;
 	};
 	

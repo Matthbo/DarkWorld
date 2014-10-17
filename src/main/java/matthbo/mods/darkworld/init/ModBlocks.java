@@ -1,15 +1,18 @@
 package matthbo.mods.darkworld.init;
 
+import net.minecraft.block.BlockFire;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.block.BlockDarkCobbleStone;
 import matthbo.mods.darkworld.block.BlockDarkDirt;
+import matthbo.mods.darkworld.block.BlockDarkFire;
 import matthbo.mods.darkworld.block.BlockDarkStone;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
 import matthbo.mods.darkworld.block.BlockFallingDarkWorld;
 import matthbo.mods.darkworld.block.BlockPecluliarDust;
 import matthbo.mods.darkworld.block.BlockPeculiarCobbleStone;
 import matthbo.mods.darkworld.block.BlockPeculiarStone;
+import matthbo.mods.darkworld.block.BlockPortalBaseDarkWorld;
 import matthbo.mods.darkworld.block.BlockPortalDarkWord;
 import matthbo.mods.darkworld.block.BlockTest;
 import matthbo.mods.darkworld.reference.Refs;
@@ -25,12 +28,13 @@ public class ModBlocks {
 	public static final BlockDarkWorld peculiarStone = new BlockPeculiarStone();
 	public static final BlockDarkWorld peculiarCobbleStone = new BlockPeculiarCobbleStone();
 	public static final BlockFallingDarkWorld peculiarDustBlock = new BlockPecluliarDust();
-	public static final BlockPortalDarkWord darkworldPortal = new BlockPortalDarkWord();
+	public static final BlockPortalBaseDarkWorld darkworldPortal = new BlockPortalDarkWord();
 
 	//in the darkworld
 	public static final BlockDarkWorld darkDirt = new BlockDarkDirt();
 	public static final BlockDarkWorld darkStone = new BlockDarkStone();
 	public static final BlockDarkWorld darkCobbleStone = new BlockDarkCobbleStone();
+	public static final BlockDarkFire darkFire = new BlockDarkFire();//fuck it, not making a firedarkworld class
 	
 	public static void init(){
 		//GameRegistry.registerBlock(test, "test");
@@ -43,6 +47,7 @@ public class ModBlocks {
 		GR.registerBlock(darkDirt, "darkDirt");
 		GR.registerBlock(darkStone, "darkStone");
 		GR.registerBlock(darkCobbleStone, "darkCobbleStone");
+		GR.registerBlock(darkFire, "darkFire");
 	}
 
 }
