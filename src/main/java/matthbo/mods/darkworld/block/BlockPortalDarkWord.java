@@ -119,7 +119,7 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 					world.setBlockToAir(x, y, z);
 				}else{
 					if((world.getBlock(x+b0, y, z+b1) != ModBlocks.peculiarStone || world.getBlock(x-b0, y, z-b1) != this) && (world.getBlock(x-b0, y, z-b1) != ModBlocks.peculiarStone || world.getBlock(x+b0, y, z+b1) != this)){
-						
+						world.setBlockToAir(x, y, z);
 					}
 				}
 			}else{
