@@ -1,12 +1,18 @@
 package matthbo.mods.darkworld.block;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.DarkWorld;
+import matthbo.mods.darkworld.client.particles.EntityDWPortalFX;
 import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -130,5 +136,42 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 			}
 		}
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+    {
+        if (rand.nextInt(100) == 0)
+        {
+            world.playSound((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "portal.portal", 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+        }
+
+        for (int l = 0; l < 4; ++l)
+        {
+            double d0 = (double)((float)x + rand.nextFloat());
+            double d1 = (double)((float)y + rand.nextFloat());
+            double d2 = (double)((float)z + rand.nextFloat());
+            double d3 = 0.0D;
+            double d4 = 0.0D;
+            double d5 = 0.0D;
+            int i1 = rand.nextInt(2) * 2 - 1;
+            d3 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+            d4 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+            d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+
+            if (world.getBlock(x - 1, y, z) != this && world.getBlock(x + 1, y, z) != this)
+            {
+                d0 = (double)x + 0.5D + 0.25D * (double)i1;
+                d3 = (double)(rand.nextFloat() * 2.0F * (float)i1);
+            }
+            else
+            {
+                d2 = (double)z + 0.5D + 0.25D * (double)i1;
+                d5 = (double)(rand.nextFloat() * 2.0F * (float)i1);
+            }
+
+            //world.spawnParticle("portal", d0, d1, d2, d3, d4, d5);
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityDWPortalFX(world, d0, d1, d2, d3, d4, d5));
+        }
+    }
 	
 }
