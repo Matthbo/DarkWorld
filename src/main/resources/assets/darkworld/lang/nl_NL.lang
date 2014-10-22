@@ -5,4 +5,13 @@ tile.darkworld:darkdirt.name=Duistere Grond
 darkworld.chat.command.devmode=[DarkWorld] Dev mode is AAN!
 
 # Config
+darkworld.configgui.ctgy.config=DarkWorld Configuratie Bestand
+darkworld.configgui.ctgy.configGeneral.tooltip=Je kan hier de algemene instellingen veranderen.
 darkworld.configgui.ctgy.configDevelopment.tooltip=Je kan hier de development instellingen veranderen.
+
+#Achievements (** = edit)
+achievement.pickuppcobblestone.desc=Mine een vage steen
+achievement.smeltpcobblestone.desc=Probeer **SmoothStone ermee te maken
+achievement.craftptools.desc=Maak een gereedschap met **hardeneddust
+achievement.craftparmor.desc=Maak een harnas met hardened dust
+achievement.enterdarkworld.desc=Betreed de Dark World

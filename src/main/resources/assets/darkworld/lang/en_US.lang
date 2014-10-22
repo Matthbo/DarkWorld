@@ -5,6 +5,8 @@ tile.darkworld:peculiardustblock.name=Peculiar Dust
 tile.darkworld:darkdirt.name=Dark Dirt
 tile.darkworld:darkstone.name=Dark Stone
 tile.darkworld:darkcobblestone.name=Dark CobbleStone
+tile.darkworld:darkfire.name=Dark Fire
+tile.darkworld:darkworldportal.name=Dark World Portal
 
 # Item
 item.darkworld:peculiardust.name=Peculiar Dust
@@ -16,6 +18,10 @@ item.darkworld:peculiarsword.name=Peculiar Sword
 item.darkworld:peculiaraxe.name=Peculair Axe
 item.darkworld:peculiarshovel.name=Peculiar Shovel
 item.darkworld:peculiarhoe.name=Peculiar Hoe
+item.darkworld:peculiarhelmet.name=Peculiar Helmet
+item.darkworld:peculiarchestplate.name=Peculiar Chestplate
+item.darkworld:peculiarleggings.name=Peculiar Leggings
+item.darkworld:peculiarboots.name=Peculiar Boots
 
 # Tabs
 itemGroup.darkworld=Dark World
@@ -24,6 +30,9 @@ itemGroup.darkworld=Dark World
 darkworld.chat.command.devmode=[DarkWorld] Dev mode is ON!
 
 # Config
+darkworld.configgui.ctgy.config=DarkWorld Configuration File
+darkworld.configgui.ctgy.configGeneral=General Configuration
+darkworld.configgui.ctgy.configGeneral.tooltip=You can edit the general configuration options here.
 darkworld.configgui.ctgy.configDevelopment=Development Configuration
 darkworld.configgui.ctgy.configDevelopment.tooltip=You can edit the development configuration options here.
 
@@ -34,3 +43,7 @@ achievement.smeltpcobblestone=Did It Crumble?
 achievement.smeltpcobblestone.desc=Try to make Smooth Stone with it
 achievement.craftptools=MultiDimensional Tools
 achievement.craftptools.desc=Make tools with hardened dust
+achievement.craftparmor=MultiDimensional Armor
+achievement.craftparmor.desc=Make armor with hardened dust
+achievement.enterdarkworld=What Is This Place?
+achievement.enterdarkworld.desc=Enter the Dark World
