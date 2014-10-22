@@ -22,7 +22,7 @@ group= "matthbo.mods.darkworld" // http://maven.apache.org/guides/mini/guide-nam
 archivesBaseName = "DarkWorld"
 
 minecraft {
-    version = "1.7.10-10.13.2.1230"
+    version = "1.7.10-10.13.2.1231"
     runDir = "eclipse"
 }
 
