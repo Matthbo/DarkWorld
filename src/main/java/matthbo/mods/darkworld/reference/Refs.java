@@ -12,6 +12,8 @@ public class Refs {
 	public static final String GUI_FACTORY_CLASS = "matthbo.mods.darkworld.client.gui.GuiFactory";
 	
 	//config
+	public static final String CONFIG_LANGKEY = "darkworld.configgui.ctgy.config";
+	public static final String CONFIG_LANGKEY_GENERAL = "darkworld.configgui.ctgy.configGeneral";
 	public static final String CONFIG_LANGKEY_DEV = "darkworld.configgui.ctgy.configDevelopment";
 	
 	//chat

@@ -8,6 +8,7 @@ import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
@@ -24,33 +25,17 @@ public class ModGuiConfig extends GuiConfig {
 				Refs.MOD_ID, 
 				false, 
 				false, 
-				GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString()));
+				/*GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString())*/
+				I18n.format(Refs.CONFIG_LANGKEY));;
 	}
 	
 	private static List<IConfigElement> getConfigElement(){
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
-		list.add(new DummyCategoryElement("Dev", Refs.CONFIG_LANGKEY_DEV, ModDevelopmentEntry.class));
+		//list.add(new DummyCategoryElement("General", Refs.CONFIG_LANGKEY_GENERAL, ModGeneralEntry.class));
+		list.add(new DummyCategoryElement("General", Refs.CONFIG_LANGKEY_GENERAL, new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements()));
+		list.add(new DummyCategoryElement("Dev", Refs.CONFIG_LANGKEY_DEV, new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements()));
 		
 		return list;
-	}
-	
-	public static class ModDevelopmentEntry extends CategoryEntry{
-
-		public ModDevelopmentEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement) {
-			super(owningScreen, owningEntryList, configElement);
-		}
-		
-		@Override
-		protected GuiScreen buildChildScreen(){
-			return new GuiConfig(this.owningScreen,
-					(new ConfigElement(ConfigHandler.config.getCategory(ConfigHandler.CATEGORY_DEVELOPMENT)).getChildElements()),
-					this.owningScreen.modID,
-					false,
-					false,
-					I18n.format(Refs.CONFIG_LANGKEY_DEV));
-			
-		}
-		
 	}
 	
 }
