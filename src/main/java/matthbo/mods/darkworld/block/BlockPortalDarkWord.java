@@ -2,7 +2,9 @@ package matthbo.mods.darkworld.block;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import matthbo.mods.darkworld.DarkWorld;
+import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.init.ModDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -29,12 +31,13 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 			MinecraftServer server = MinecraftServer.getServer();
 			
 			if(player.timeUntilPortal > 0){
-				player.timeUntilPortal = 10;
-			}else if(player.dimension != DarkWorld.dimensionDarkWordID){
-				player.timeUntilPortal = 10;
-				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, DarkWorld.dimensionDarkWordID, new TeleporterDarkWord(server.worldServerForDimension(DarkWorld.dimensionDarkWordID)));
+				player.timeUntilPortal = 300;
+			}else if(player.dimension != ModDimensions.dimensionIDDarkWorld){
+				player.timeUntilPortal = 300;
+				player.addStat(ModAchievements.achEnterDarkWorld, 1);
+				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, ModDimensions.dimensionIDDarkWorld, new TeleporterDarkWord(server.worldServerForDimension(ModDimensions.dimensionIDDarkWorld)));
 			}else{
-				player.timeUntilPortal = 10;
+				player.timeUntilPortal = 300;
 				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterDarkWord(server.worldServerForDimension(0)));
 			}
 			
@@ -49,9 +52,9 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 		byte b = 0;
 		byte b1 = 0;
 		
-		if(world.getBlock(x-1, y, z) == ModBlocks.peculiarStone || world.getBlock(x+1, y, z) == ModBlocks.peculiarStone) b = 1;
+		if(world.getBlock(x-1, y, z) == ModBlocks.compressedPeculiarDust || world.getBlock(x+1, y, z) == ModBlocks.compressedPeculiarDust) b = 1;
 		
-		if(world.getBlock(x, y, z-1) == ModBlocks.peculiarStone || world.getBlock(x, y, z+1) == ModBlocks.peculiarStone) b1 = 1;
+		if(world.getBlock(x, y, z-1) == ModBlocks.compressedPeculiarDust || world.getBlock(x, y, z+1) == ModBlocks.compressedPeculiarDust) b1 = 1;
 		
 		if(b == b1) return false;
 		else{
@@ -69,7 +72,7 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 						boolean isAirBlock = world.isAirBlock(x + b * i, y + j, z + b1 * i);
 						
 						if(flag){
-							if(k != ModBlocks.peculiarStone) return false;
+							if(k != ModBlocks.compressedPeculiarDust) return false;
 						}else if(!isAirBlock && k != ModBlocks.darkFire){
 							return false;
 						}
@@ -102,7 +105,7 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 			
 		}
 		
-		if(world.getBlock(x, i1-1, z) != ModBlocks.peculiarStone){
+		if(world.getBlock(x, i1-1, z) != ModBlocks.compressedPeculiarDust){
 			world.setBlockToAir(x, y, z);
 		}else{
 			int j1;
@@ -111,14 +114,14 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 				
 			}
 			
-			if(j1 == 3 && world.getBlock(x, i1+j1, z) == ModBlocks.peculiarStone){
+			if(j1 == 3 && world.getBlock(x, i1+j1, z) == ModBlocks.compressedPeculiarDust){
 				boolean flag = world.getBlock(x-1, y, z) == this || world.getBlock(x+1, y, z) == this;
 				boolean flag1 = world.getBlock(x, y, z-1) == this || world.getBlock(x, y, z+1) == this;
 				
 				if(flag && flag1){
 					world.setBlockToAir(x, y, z);
 				}else{
-					if((world.getBlock(x+b0, y, z+b1) != ModBlocks.peculiarStone || world.getBlock(x-b0, y, z-b1) != this) && (world.getBlock(x-b0, y, z-b1) != ModBlocks.peculiarStone || world.getBlock(x+b0, y, z+b1) != this)){
+					if((world.getBlock(x+b0, y, z+b1) != ModBlocks.compressedPeculiarDust || world.getBlock(x-b0, y, z-b1) != this) && (world.getBlock(x-b0, y, z-b1) != ModBlocks.compressedPeculiarDust || world.getBlock(x+b0, y, z+b1) != this)){
 						world.setBlockToAir(x, y, z);
 					}
 				}

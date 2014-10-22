@@ -46,11 +46,7 @@ public class ModItems {
 	public static final ItemArmorDarkWorld peculiarLeggings = new ItemPeculiarLeggings();
 	public static final ItemArmorDarkWorld peculiarBoots = new ItemPeculiarBoots();
 	
-	/*TODO: MAKE ARMOR WORK pls man, watch a tutorial or 
-	somthing & delete ItemArmorDarkWorld.java first ;)*/
-	
 	public static void init(){
-		
 		GR.registerItem(peculiarDust, "peculiarDust");
 		GR.registerItem(peculiarDustBar, "peculiarDustBar");
 		GR.registerItem(hardPeculiarDust, "hardPeculiarDust");

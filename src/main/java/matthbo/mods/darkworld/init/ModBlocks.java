@@ -3,6 +3,7 @@ package matthbo.mods.darkworld.init;
 import net.minecraft.block.BlockFire;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
+import matthbo.mods.darkworld.block.BlockCompressedPeculiarDust;
 import matthbo.mods.darkworld.block.BlockDarkCobbleStone;
 import matthbo.mods.darkworld.block.BlockDarkDirt;
 import matthbo.mods.darkworld.block.BlockDarkFire;
@@ -28,6 +29,7 @@ public class ModBlocks {
 	public static final BlockDarkWorld peculiarStone = new BlockPeculiarStone();
 	public static final BlockDarkWorld peculiarCobbleStone = new BlockPeculiarCobbleStone();
 	public static final BlockFallingDarkWorld peculiarDustBlock = new BlockPecluliarDust();
+	public static final BlockDarkWorld compressedPeculiarDust = new BlockCompressedPeculiarDust();
 	public static final BlockPortalBaseDarkWorld darkworldPortal = new BlockPortalDarkWord();
 
 	//in the darkworld
@@ -42,6 +44,7 @@ public class ModBlocks {
 		GR.registerBlock(peculiarStone, "peculiarStone");
 		GR.registerBlock(peculiarCobbleStone, "peculiarCobbleStone");
 		GR.registerBlock(peculiarDustBlock, "peculiarDustBlock");
+		GR.registerBlock(compressedPeculiarDust, "compressedPeculiarDust");
 		GR.registerBlock(darkworldPortal, "darkworldPortal");
 		
 		GR.registerBlock(darkDirt, "darkDirt");

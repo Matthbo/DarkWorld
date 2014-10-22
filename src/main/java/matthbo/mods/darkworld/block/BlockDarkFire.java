@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.init.ModDimensions;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.BlockFire;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +19,6 @@ public class BlockDarkFire extends BlockFire {
 	
 	public BlockDarkFire() {
 		super();
-		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);//TODO: remove ASAP!
 		this.setBlockName("darkfire");
 	}
 	
@@ -51,7 +51,7 @@ public class BlockDarkFire extends BlockFire {
     }
     
     public void onBlockAdded(World world, int x, int y, int z){
-    	if(!(world.provider.dimensionId == 0 || world.provider.dimensionId == DarkWorld.dimensionDarkWordID) || world.getBlock(x, y-1, z) != ModBlocks.peculiarStone || !ModBlocks.darkworldPortal.func_150000_e(world, x, y, z)){
+    	if(!(world.provider.dimensionId == 0 || world.provider.dimensionId == ModDimensions.dimensionIDDarkWorld) || !ModBlocks.darkworldPortal.func_150000_e(world, x, y, z)){
     		if(!world.doesBlockHaveSolidTopSurface(world, x, y-1, z)){
     			world.setBlockToAir(x, y, z);
     		}else{

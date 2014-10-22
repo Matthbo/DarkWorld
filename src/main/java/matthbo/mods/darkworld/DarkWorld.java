@@ -5,6 +5,7 @@ import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
 import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.init.ModDimensions;
 import matthbo.mods.darkworld.init.ModItems;
 import matthbo.mods.darkworld.init.ModRecipes;
 import matthbo.mods.darkworld.proxy.IProxy;
@@ -31,10 +32,7 @@ public class DarkWorld {
 	public static IProxy proxy;
 	
 	//TODO make stuff added to the oreDictionary
-	//TODO change dark world portal & dimension to be 100% 1.7! (or 1.8 if its posible)
-	
-	//TODO TODO TODO Make this BETTER NOW!
-	public static final int dimensionDarkWordID = -2;
+	//TODO change dimension to be 100% 1.7! (or 1.8 if its posible)
 	
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event){
@@ -45,9 +43,6 @@ public class DarkWorld {
 		ModBlocks.init();
 		ModItems.init();
 		
-		DimensionManager.registerProviderType(dimensionDarkWordID, WorldProviderDarkWorld.class, false);
-		DimensionManager.registerDimension(dimensionDarkWordID, dimensionDarkWordID);
-		
 		LogHelper.info("Pre Initialization Complete");
 		
 	}
@@ -56,14 +51,12 @@ public class DarkWorld {
 	public static void init(FMLInitializationEvent event){
 		ModRecipes.initCrafting();
 		ModRecipes.initSmelting();
+		ModDimensions.init();
 		ModAchievements.init();
 		
 		FMLCommonHandler.instance().bus().register(new EventHandler());
 		
-		GameRegistry.registerWorldGenerator(new OverworldGenerator(), 0);
-		
 		LogHelper.info("Initialization Complete");
-		
 	}
 	
 	@Mod.EventHandler
