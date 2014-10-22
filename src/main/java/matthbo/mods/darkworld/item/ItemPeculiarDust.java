@@ -12,7 +12,7 @@ public class ItemPeculiarDust extends ItemDarkWorld {
 	
 	public ItemPeculiarDust(){
 		super();
-		this.setUnlocalizedName("peculiardust_anim");
+		this.setUnlocalizedName("peculiardust");
 	}
 	
 	@Override
