@@ -12,7 +12,6 @@ public class BlockPortalBaseDarkWorld extends BlockPortal{
 	
 	public BlockPortalBaseDarkWorld(){
 		super();
-		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 	}
 	
 	@Override

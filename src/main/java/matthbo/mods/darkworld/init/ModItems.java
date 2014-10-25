@@ -1,8 +1,10 @@
 package matthbo.mods.darkworld.init;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
+import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
 import matthbo.mods.darkworld.item.ItemDarkWorld;
 import matthbo.mods.darkworld.item.ItemHardPeculiarDust;
 import matthbo.mods.darkworld.item.ItemPeculiarDust;
@@ -28,6 +30,7 @@ public class ModItems {
 	
 	private static GameRegistry GR;
 	
+	
 	public static final ItemDarkWorld peculiarDust = new ItemPeculiarDust();
 	public static final ItemDarkWorld peculiarDustBar = new ItemPeculiarDustBar();
 	public static final ItemDarkWorld hardPeculiarDust = new ItemHardPeculiarDust();
@@ -47,6 +50,7 @@ public class ModItems {
 	public static final ItemArmorDarkWorld peculiarBoots = new ItemPeculiarBoots();
 	
 	public static void init(){
+		
 		GR.registerItem(peculiarDust, "peculiarDust");
 		GR.registerItem(peculiarDustBar, "peculiarDustBar");
 		GR.registerItem(hardPeculiarDust, "hardPeculiarDust");

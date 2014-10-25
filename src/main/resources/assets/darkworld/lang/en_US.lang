@@ -2,9 +2,22 @@
 tile.darkworld:peculiarstone.name=Peculiar Stone
 tile.darkworld:peculiarcobblestone.name=Peculiar CobbleStone
 tile.darkworld:peculiardustblock.name=Peculiar Dust
+tile.darkworld:compressedpeculiardust.name=Compressed Peculiar Dust
 tile.darkworld:darkdirt.name=Dark Dirt
 tile.darkworld:darkstone.name=Dark Stone
 tile.darkworld:darkcobblestone.name=Dark CobbleStone
+tile.darkworld:darksand.sand.name=Dark Sand
+tile.darkworld:darksand.red_sand=Dark Red Sand
+tile.darkworld:darkplanks.oak.name=Dark Oak Wood Planks
+tile.darkworld:darkplanks.spruce.name=Dark Spruce Wood Planks
+tile.darkworld:darkplanks.birch.name=Dark Birch Wood Planks
+tile.darkworld:darkplanks.jungle.name=Dark Jungle Wood Planks
+tile.darkworld:darkplanks.acacia.name=Dark Acacia Wood Planks
+tile.darkworld:darkplanks.big_oak.name=Darkest Oak Wood Planks
+tile.darkworld:darklog.oak.name=Dark Oak Wood
+tile.darkworld:darklog.spruce.name=Dark Spruce Wood
+tile.darkworld:darklog.birch.name=Dark Birch Wood
+tile.darkworld:darklog.jungle.name=Dark Jungle Wood
 tile.darkworld:darkfire.name=Dark Fire
 tile.darkworld:darkworldportal.name=Dark World Portal
 

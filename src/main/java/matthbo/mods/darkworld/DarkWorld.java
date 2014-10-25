@@ -40,6 +40,7 @@ public class DarkWorld {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
+		
 		ModBlocks.init();
 		ModItems.init();
 		
