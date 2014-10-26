@@ -1,11 +1,14 @@
 package matthbo.mods.darkworld;
 
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import matthbo.mods.darkworld.handler.BucketHandler;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
 import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModDimensions;
+import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.init.ModItems;
 import matthbo.mods.darkworld.init.ModRecipes;
 import matthbo.mods.darkworld.proxy.IProxy;
@@ -40,9 +43,11 @@ public class DarkWorld {
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
-		
 		ModBlocks.init();
 		ModItems.init();
+		ModFluids.init();
+		
+		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		
 		LogHelper.info("Pre Initialization Complete");
 		
@@ -56,6 +61,8 @@ public class DarkWorld {
 		ModAchievements.init();
 		
 		FMLCommonHandler.instance().bus().register(new EventHandler());
+		
+		
 		
 		LogHelper.info("Initialization Complete");
 	}

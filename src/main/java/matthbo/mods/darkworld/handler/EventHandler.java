@@ -1,16 +1,25 @@
 package matthbo.mods.darkworld.handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModItems;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.utility.LogHelper;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
@@ -19,6 +28,10 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 
 public class EventHandler {
+	
+	public static EventHandler INSTANCE = new EventHandler();
+	
+	public EventHandler(){}
 	
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerLoggedInEvent event){

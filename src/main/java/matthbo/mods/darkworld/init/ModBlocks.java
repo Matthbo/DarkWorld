@@ -25,6 +25,9 @@ import matthbo.mods.darkworld.block.BlockPeculiarStone;
 import matthbo.mods.darkworld.block.BlockPortalBaseDarkWorld;
 import matthbo.mods.darkworld.block.BlockPortalDarkWord;
 import matthbo.mods.darkworld.block.BlockTest;
+import matthbo.mods.darkworld.block.fluid.FluidDarkLava;
+import matthbo.mods.darkworld.block.fluid.FluidDarkWater;
+import matthbo.mods.darkworld.block.fluid.FluidDarkWorld;
 import matthbo.mods.darkworld.item.ItemBlockDarkLog;
 import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
 import matthbo.mods.darkworld.item.ItemBlockDarkSand;
@@ -59,6 +62,7 @@ public class ModBlocks {
 	//public static final BlockDarkLeaves darkLeaves = new BlockDarkLeaves();
 	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
 	public static final BlockDarkFire darkFire = new BlockDarkFire();//fuck it, not making a firedarkworld class
+	
 	
 	public static void init(){
 		GR.registerBlock(peculiarStone, "peculiarStone");
