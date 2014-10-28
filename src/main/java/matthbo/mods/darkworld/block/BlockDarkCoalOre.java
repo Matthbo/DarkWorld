@@ -15,6 +15,7 @@ public class BlockDarkCoalOre extends BlockDarkWorld {
 		super();
 		this.setBlockName("darkcoalore");
 		this.setHardness(3.0F).setResistance(5.0F);
+		this.setStepSound(soundTypePiston);
 	}
 	
 	public Item getItemDropped(int par1, Random rand, int par3)

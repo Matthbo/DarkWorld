@@ -1,10 +1,10 @@
 package matthbo.mods.darkworld.block;
 
-public class BlockDarkIronOre extends BlockDarkWorld {
+public class BlockDarkDiamondOre extends BlockDarkWorld {
 	
-	public BlockDarkIronOre(){
+	public BlockDarkDiamondOre(){
 		super();
-		this.setBlockName("darkironore");
+		this.setBlockName("darkdiamondore");
 		this.setHardness(3.0F).setResistance(5.0F);
 		this.setStepSound(soundTypePiston);
 	}

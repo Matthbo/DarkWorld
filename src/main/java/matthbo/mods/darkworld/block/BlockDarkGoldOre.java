@@ -8,6 +8,7 @@ public class BlockDarkGoldOre extends BlockDarkWorld {
 		super();
 		this.setBlockName("darkgoldore");
 		this.setHardness(3.0F).setResistance(5.0F);
+		this.setStepSound(soundTypePiston);
 	}
 
 }

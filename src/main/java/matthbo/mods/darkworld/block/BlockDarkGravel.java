@@ -12,6 +12,7 @@ public class BlockDarkGravel extends BlockFallingDarkWorld {
 		super(Material.sand);
 		this.setBlockName("darkgravel");
 		this.setHardness(0.6F);
+		this.setStepSound(soundTypeGravel);
 	}
 	
 	public Item getItemDropped(int par1, Random rand, int par3)

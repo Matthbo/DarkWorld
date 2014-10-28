@@ -7,13 +7,17 @@ import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.block.BlockCompressedPeculiarDust;
 import matthbo.mods.darkworld.block.BlockDarkCoalOre;
 import matthbo.mods.darkworld.block.BlockDarkCobbleStone;
+import matthbo.mods.darkworld.block.BlockDarkDiamondOre;
 import matthbo.mods.darkworld.block.BlockDarkDirt;
+import matthbo.mods.darkworld.block.BlockDarkEmeraldOre;
 import matthbo.mods.darkworld.block.BlockDarkFire;
 import matthbo.mods.darkworld.block.BlockDarkGoldOre;
 import matthbo.mods.darkworld.block.BlockDarkGravel;
 import matthbo.mods.darkworld.block.BlockDarkIronOre;
+import matthbo.mods.darkworld.block.BlockDarkLapisOre;
 import matthbo.mods.darkworld.block.BlockDarkLog;
 import matthbo.mods.darkworld.block.BlockDarkPlanks;
+import matthbo.mods.darkworld.block.BlockDarkRedstoneOre;
 import matthbo.mods.darkworld.block.BlockDarkSand;
 import matthbo.mods.darkworld.block.BlockDarkStone;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
@@ -61,6 +65,10 @@ public class ModBlocks {
 	//public static final BlockDarkWorld darkLog2 = new BlockDarkLog2();
 	//public static final BlockDarkLeaves darkLeaves = new BlockDarkLeaves();
 	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
+	public static final BlockDarkWorld darkLapisOre = new BlockDarkLapisOre();
+	public static final BlockDarkWorld darkDiamondOre = new BlockDarkDiamondOre();
+	public static final BlockDarkWorld darkRedstoneOre = new BlockDarkRedstoneOre();
+	public static final BlockDarkWorld darkEmeraldOre = new BlockDarkEmeraldOre();
 	public static final BlockDarkFire darkFire = new BlockDarkFire();//fuck it, not making a firedarkworld class
 	
 	
@@ -81,6 +89,10 @@ public class ModBlocks {
 		GR.registerBlock(darkIronOre, "darkIronOre");
 		GR.registerBlock(darkCoalOre, "darkCoalOre");
 		GR.registerBlock(darkLog, ItemBlockDarkLog.class,"darkLog");
+		GR.registerBlock(darkLapisOre, "darkLapisOre");
+		GR.registerBlock(darkDiamondOre, "darkDiamondOre");
+		GR.registerBlock(darkRedstoneOre, "darkRedstoneOre");
+		GR.registerBlock(darkEmeraldOre, "darkEmeraldOre");
 		GR.registerBlock(darkFire, "darkFire");
 	}
 

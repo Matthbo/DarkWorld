@@ -2,6 +2,8 @@ package matthbo.mods.darkworld.init;
 
 import java.util.Random;
 
+import matthbo.mods.darkworld.reference.MetaNames;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -31,6 +33,7 @@ public class ModRecipes {
 	}
 	
 	public static void initSmelting(){
+		for(int meta = 0; meta < MetaNames.blockDarkSand.length; meta++){GR.addSmelting(new ItemStack(ModBlocks.darkSand, 1, meta), new ItemStack(Blocks.glass), 0.1F);}
 		
 		GR.addSmelting(new ItemStack(ModBlocks.peculiarCobbleStone), new ItemStack(ModItems.peculiarDust, 2), 0.1F);
 		GR.addSmelting(new ItemStack(ModItems.peculiarDustBar), new ItemStack(ModItems.hardPeculiarDust), 0.2F);

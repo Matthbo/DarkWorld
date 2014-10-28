@@ -24,10 +24,7 @@ public class BlockDarkSand extends BlockFallingDarkWorld {
 		super(Material.sand);
 		this.setBlockName("darksand");
 		this.setHardness(0.5F);
-	}
-	
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_){
-		return Item.getItemFromBlock(Blocks.glass);
+		this.setStepSound(soundTypeSand);
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -23,6 +23,7 @@ public class BlockDarkPlanks extends BlockDarkWorld {
 		super(Material.wood);
 		this.setBlockName("darkplanks");
 		this.setHardness(2.0F).setResistance(5.0F);
+		this.setStepSound(soundTypeWood);
 	}
 	
 	@Override
