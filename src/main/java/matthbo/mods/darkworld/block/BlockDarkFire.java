@@ -9,6 +9,7 @@ import matthbo.mods.darkworld.init.ModDimensions;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.BlockFire;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -20,6 +21,10 @@ public class BlockDarkFire extends BlockFire {
 	public BlockDarkFire() {
 		super();
 		this.setBlockName("darkfire");
+	}
+	
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+		entity.setFire(10);
 	}
 	
 	@Override
