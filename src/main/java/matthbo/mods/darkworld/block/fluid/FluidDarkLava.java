@@ -21,8 +21,10 @@ public class FluidDarkLava extends FluidDarkWorld {
 		if(entity instanceof EntityLivingBase){
 			EntityLivingBase living = (EntityLivingBase)entity;
 			
+			living.addPotionEffect(new PotionEffect(Potion.weakness.id, 200));
 			living.addPotionEffect(new PotionEffect(Potion.blindness.id, 80));
 			living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 3));
+			living.addPotionEffect(new PotionEffect(Potion.poison.id, 600));
 			living.addPotionEffect(new PotionEffect(Potion.wither.id, 20, 3));
 		}
 		entity.setFire(10);

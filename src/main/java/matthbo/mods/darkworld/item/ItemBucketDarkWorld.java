@@ -27,9 +27,9 @@ public class ItemBucketDarkWorld extends ItemBucket {
 
 	public ItemBucketDarkWorld(Block block) {
 		super(block);
-		this.isFull = block;
 		this.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 		this.setContainerItem(Items.bucket);
+		
 	}
 	
 	@Override
@@ -62,6 +62,8 @@ public class ItemBucketDarkWorld extends ItemBucket {
 	     */
 	    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entity)
 	    {
+	    	if(this instanceof ItemDarkWaterBucket) this.isFull = ModFluids.darkWaterBlock;
+			if(this instanceof ItemDarkLavaBucket) this.isFull = ModFluids.darkLavaBlock;
 	        boolean flag = this.isFull == Blocks.air;
 	        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, entity, flag);
 

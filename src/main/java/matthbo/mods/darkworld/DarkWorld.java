@@ -44,8 +44,9 @@ public class DarkWorld {
 		FMLCommonHandler.instance().bus().register(new ConfigHandler());
 		
 		ModBlocks.init();
-		ModItems.init();
 		ModFluids.init();
+		ModItems.init();
+		
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		

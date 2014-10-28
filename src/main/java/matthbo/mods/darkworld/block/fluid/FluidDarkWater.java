@@ -19,6 +19,8 @@ public class FluidDarkWater extends FluidDarkWorld {
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity){
 		if(entity instanceof EntityLivingBase){
 			EntityLivingBase living = (EntityLivingBase)entity;
+			
+			living.addPotionEffect(new PotionEffect(Potion.weakness.id, 200));
 			living.addPotionEffect(new PotionEffect(Potion.blindness.id, 80));
 			living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 3));
 		}
