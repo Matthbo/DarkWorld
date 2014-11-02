@@ -6,5 +6,7 @@ public class MetaNames {
 	public static final String[] blockDarkPlanks = new String[] {"oak", "spruce", "birch", "jungle", "acacia", "big_oak"};
 	public static final String[] blockDarkLog = new String[] {"oak", "spruce", "birch", "jungle"};
 	public static final String[] blockDarkLog2 = new String[] {"acacia", "big_oak"};
+	public static final String[] blockDarkSandStone_a = new String[] {"default", "chiseled", "smooth"};
+    public static final String[] blockDarkSandStone_b = new String[] {"normal", "carved", "smooth"};
 
 }

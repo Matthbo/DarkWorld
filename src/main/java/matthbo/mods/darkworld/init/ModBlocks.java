@@ -5,6 +5,7 @@ import net.minecraft.block.BlockFire;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.block.BlockCompressedPeculiarDust;
+import matthbo.mods.darkworld.block.BlockDarkBrick;
 import matthbo.mods.darkworld.block.BlockDarkCoalOre;
 import matthbo.mods.darkworld.block.BlockDarkCobbleStone;
 import matthbo.mods.darkworld.block.BlockDarkDiamondOre;
@@ -16,9 +17,13 @@ import matthbo.mods.darkworld.block.BlockDarkGravel;
 import matthbo.mods.darkworld.block.BlockDarkIronOre;
 import matthbo.mods.darkworld.block.BlockDarkLapisOre;
 import matthbo.mods.darkworld.block.BlockDarkLog;
+import matthbo.mods.darkworld.block.BlockDarkMossyCobbleStone;
+import matthbo.mods.darkworld.block.BlockDarkObsidian;
 import matthbo.mods.darkworld.block.BlockDarkPlanks;
 import matthbo.mods.darkworld.block.BlockDarkRedstoneOre;
 import matthbo.mods.darkworld.block.BlockDarkSand;
+import matthbo.mods.darkworld.block.BlockDarkSandStone;
+import matthbo.mods.darkworld.block.BlockDarkSponge;
 import matthbo.mods.darkworld.block.BlockDarkStone;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
 import matthbo.mods.darkworld.block.BlockFallingDarkWorld;
@@ -35,6 +40,7 @@ import matthbo.mods.darkworld.block.fluid.FluidDarkWorld;
 import matthbo.mods.darkworld.item.ItemBlockDarkLog;
 import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
 import matthbo.mods.darkworld.item.ItemBlockDarkSand;
+import matthbo.mods.darkworld.item.ItemBlockDarkSandStone;
 import matthbo.mods.darkworld.reference.Refs;
 
 @ObjectHolder(Refs.MOD_ID)
@@ -65,11 +71,16 @@ public class ModBlocks {
 	//public static final BlockDarkWorld darkLog2 = new BlockDarkLog2();
 	//public static final BlockDarkLeaves darkLeaves = new BlockDarkLeaves();
 	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
+	public static final BlockDarkWorld darkSponge = new BlockDarkSponge();
+	public static final BlockDarkWorld darkSandStone = new BlockDarkSandStone();
 	public static final BlockDarkWorld darkLapisOre = new BlockDarkLapisOre();
+	public static final BlockDarkWorld darkBrick = new BlockDarkBrick();
+	public static final BlockDarkWorld darkMossyCobble = new BlockDarkMossyCobbleStone();
+	public static final BlockDarkWorld darkObsidian = new BlockDarkObsidian();
 	public static final BlockDarkWorld darkDiamondOre = new BlockDarkDiamondOre();
 	public static final BlockDarkWorld darkRedstoneOre = new BlockDarkRedstoneOre();
 	public static final BlockDarkWorld darkEmeraldOre = new BlockDarkEmeraldOre();
-	public static final BlockDarkFire darkFire = new BlockDarkFire();//fuck it, not making a firedarkworld class
+	public static final BlockDarkFire darkFire = new BlockDarkFire();
 	
 	
 	public static void init(){
@@ -89,7 +100,12 @@ public class ModBlocks {
 		GR.registerBlock(darkIronOre, "darkIronOre");
 		GR.registerBlock(darkCoalOre, "darkCoalOre");
 		GR.registerBlock(darkLog, ItemBlockDarkLog.class,"darkLog");
+		GR.registerBlock(darkSponge, "darkSponge");
+		GR.registerBlock(darkSandStone, ItemBlockDarkSandStone.class, "darkSandStone");
 		GR.registerBlock(darkLapisOre, "darkLapisOre");
+		GR.registerBlock(darkBrick, "darkBrick");
+		GR.registerBlock(darkMossyCobble, "darkMossyCobble");
+		GR.registerBlock(darkObsidian, "darkObsidian");
 		GR.registerBlock(darkDiamondOre, "darkDiamondOre");
 		GR.registerBlock(darkRedstoneOre, "darkRedstoneOre");
 		GR.registerBlock(darkEmeraldOre, "darkEmeraldOre");

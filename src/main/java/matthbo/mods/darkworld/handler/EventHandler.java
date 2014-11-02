@@ -37,7 +37,7 @@ public class EventHandler {
 	public void onPlayerLogin(PlayerLoggedInEvent event){
 		if(ConfigHandler.dev == true){
 			event.player.addChatMessage(new ChatComponentTranslation(Refs.CHAT_LANGKEY_DEVMODE));
-			event.player.addChatMessage(new ChatComponentTranslation("TODO: biomes, blocks, darkWater"));
+			event.player.addChatMessage(new ChatComponentTranslation("TODO: biomes, blocks"));
 		}
 	}
 	

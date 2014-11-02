@@ -34,6 +34,7 @@ public class DarkWorld {
 	@SidedProxy(clientSide = Refs.CLIENT_PROXY_CLASS, serverSide = Refs.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
+	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
 	//TODO change dimension to be 100% 1.7! (or 1.8 if its posible)
 	
