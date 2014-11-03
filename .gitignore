@@ -1,7 +1,6 @@
 ## gradle
 /.gradle
 /build
-/gradlew
 /gradlew.bat
 /gradle-compile-mod.bat
 /gradle-install-update.bat
