@@ -13,6 +13,7 @@ import matthbo.mods.darkworld.block.BlockDarkDirt;
 import matthbo.mods.darkworld.block.BlockDarkEmeraldOre;
 import matthbo.mods.darkworld.block.BlockDarkFire;
 import matthbo.mods.darkworld.block.BlockDarkGoldOre;
+import matthbo.mods.darkworld.block.BlockDarkGrass;
 import matthbo.mods.darkworld.block.BlockDarkGravel;
 import matthbo.mods.darkworld.block.BlockDarkIronOre;
 import matthbo.mods.darkworld.block.BlockDarkLapisOre;
@@ -57,6 +58,7 @@ public class ModBlocks {
 	public static final BlockPortalBaseDarkWorld darkworldPortal = new BlockPortalDarkWord();
 
 	//in the darkworld
+	public static final BlockDarkGrass darkGrass = new BlockDarkGrass();
 	public static final BlockDarkWorld darkDirt = new BlockDarkDirt();
 	public static final BlockDarkWorld darkStone = new BlockDarkStone();
 	public static final BlockDarkWorld darkCobbleStone = new BlockDarkCobbleStone();
@@ -90,6 +92,7 @@ public class ModBlocks {
 		GR.registerBlock(compressedPeculiarDust, "compressedPeculiarDust");
 		GR.registerBlock(darkworldPortal, "darkworldPortal");
 		
+		GR.registerBlock(darkGrass, "darkGrass");
 		GR.registerBlock(darkDirt, "darkDirt");
 		GR.registerBlock(darkStone, "darkStone");
 		GR.registerBlock(darkCobbleStone, "darkCobbleStone");
