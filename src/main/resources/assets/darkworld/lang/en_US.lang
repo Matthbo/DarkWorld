@@ -26,6 +26,15 @@ tile.darkworld:darklog.oak.name=Dark Oak Wood
 tile.darkworld:darklog.spruce.name=Dark Spruce Wood
 tile.darkworld:darklog.birch.name=Dark Birch Wood
 tile.darkworld:darklog.jungle.name=Dark Jungle Wood
+tile.darkworld:darksponge.name=Dark Sponge
+tile.darkworld:darksandstone.normal.name=Dark SandStone
+tile.darkworld:darksandstone.carved.name=Dark Chiseled SandStone
+tile.darkworld:darksandstone.smooth.name=Dark Smooth SandStone
+tile.darkworld:darkbrick.name=Dark Brick
+tile.darkworld:darkmossycobblestone.name=Dark Moss Stone
+tile.darkworld:darkobsidian.name=Dark Obsidian
+tile.darkworld:darklog.acacia.name=Dark Acacia Wood
+tile.darkworld:darklog.big_oak.name=Darkest Oak Wood
 tile.darkworld:darkfire.name=Dark Fire
 tile.darkworld:darkworldportal.name=Dark World Portal
 

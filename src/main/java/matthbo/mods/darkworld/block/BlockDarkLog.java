@@ -36,8 +36,8 @@ public class BlockDarkLog extends BlockLogDarkWorld {
     	this.TopIcons = new IIcon[MetaNames.blockDarkLog.length];
     	
     	for(int i = 0; i < MetaNames.blockDarkLog.length; ++i){
-    		SideIcons[i] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_" + MetaNames.blockDarkPlanks[i]);
-    		TopIcons[i] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_" + MetaNames.blockDarkPlanks[i]+ "_top");
+    		SideIcons[i] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_" + MetaNames.blockDarkLog[i]);
+    		TopIcons[i] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_" + MetaNames.blockDarkLog[i]+ "_top");
     	}
     }
 
