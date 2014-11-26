@@ -171,11 +171,11 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 					Block b3 = byteArray[n];
 					
 					if(b3 == Blocks.air)l = -1;
-					else if(b3 == Blocks.stone){
+					else if(b3 == ModBlocks.darkStone){
 						if(l == -1){
 							if(k <= 0){
 								b1 = Blocks.air;
-								b2 = Blocks.stone;
+								b2 = ModBlocks.darkStone;
 							}else if (m >= b-4 && m <= b+1){
 								b1 = biome.topBlock;
 								b2 = biome.fillerBlock;
@@ -195,9 +195,9 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 							j--;
 							byteArray[n] = b2;
 							
-							if(j == 0 && b2 == Blocks.sand){
+							if(j == 0 && b2 == ModBlocks.darkSand){
 								j = this.rand.nextInt(4);
-								b2 = Blocks.sandstone;
+								b2 = ModBlocks.darkSandStone;
 							}
 						}
 					}
@@ -248,7 +248,7 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 							
 							for(int k2 = 0; k2 < b1; k2++){
 								if((d16 += d15) > 0.0D){
-									byteArray[j3 += short1] = Blocks.stone;
+									byteArray[j3 += short1] = ModBlocks.darkStone;
 								}else if(k1 * 8 + i2 < b2){
 									byteArray[j3 += short1] = ModFluids.darkWaterBlock;
 								}else{
