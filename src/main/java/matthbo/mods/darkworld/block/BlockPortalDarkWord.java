@@ -11,12 +11,14 @@ import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModDimensions;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,7 +53,7 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 		}
 		
 	}
-	//using old way ;(
+	/*//using old way ;(
 	@Override
 	public boolean func_150000_e(World world, int x, int y, int z){
 		
@@ -94,7 +96,7 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 			return true;
 			
 		}
-	}
+	}*/
 	
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock){
 		byte b0 = 0;
@@ -173,5 +175,198 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
             Minecraft.getMinecraft().effectRenderer.addEffect(new EntityDWPortalFX(world, d0, d1, d2, d3, d4, d5));
         }
     }
+	
+	//doesn't work because mojang hates making shit easy
+	/*public boolean func_150000_e(World world, int x, int y, int z)
+    {
+        Size size = new Size(world, x, y, z, 1);
+        Size size1 = new Size(world, x, y, z, 2);
+
+        if (size.func_150860_b() && size.field_150864_e == 0)
+        {
+            size.func_150859_c();
+            return true;
+        }
+        else if (size1.func_150860_b() && size1.field_150864_e == 0)
+        {
+            size1.func_150859_c();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }*/
+	
+	public static class Size{
+		private final World world;
+        private final int field_150865_b;
+        private final int field_150866_c;
+        private final int field_150863_d;
+        private int field_150864_e = 0;
+        private ChunkCoordinates chunkCoords;
+        private int field_150862_g;
+        private int field_150868_h;
+
+        public Size(World world, int x, int y, int z, int par5)
+        {
+            this.world = world;
+            this.field_150865_b = par5;
+            this.field_150863_d = BlockPortalBaseDarkWorld.field_150001_a[par5][0];
+            this.field_150866_c = BlockPortalBaseDarkWorld.field_150001_a[par5][1];
+
+            for (int i1 = y; y > i1 - 21 && y > 0 && this.func_150857_a(world.getBlock(x, y - 1, z)); --y)
+            {
+                ;
+            }
+
+            int j1 = this.func_150853_a(x, y, z, this.field_150863_d) - 1;
+
+            if (j1 >= 0)
+            {
+                this.chunkCoords = new ChunkCoordinates(x + j1 * Direction.offsetX[this.field_150863_d], y, z + j1 * Direction.offsetZ[this.field_150863_d]);
+                this.field_150868_h = this.func_150853_a(this.chunkCoords.posX, this.chunkCoords.posY, this.chunkCoords.posZ, this.field_150866_c);
+
+                if (this.field_150868_h < 2 || this.field_150868_h > 21)
+                {
+                    this.chunkCoords = null;
+                    this.field_150868_h = 0;
+                }
+            }
+
+            if (this.chunkCoords != null)
+            {
+                this.field_150862_g = this.func_150858_a();
+            }
+        }
+
+        protected int func_150853_a(int x, int y, int z, int par4)
+        {
+            int j1 = Direction.offsetX[par4];
+            int k1 = Direction.offsetZ[par4];
+            int i1;
+            Block block;
+
+            for (i1 = 0; i1 < 22; ++i1)
+            {
+                block = this.world.getBlock(x + j1 * i1, y, z + k1 * i1);
+
+                if (!this.func_150857_a(block))
+                {
+                    break;
+                }
+
+                Block block1 = this.world.getBlock(x + j1 * i1, y - 1, z + k1 * i1);
+
+                if (block1 != ModBlocks.compressedPeculiarDust)
+                {
+                    break;
+                }
+            }
+
+            block = this.world.getBlock(x + j1 * i1, y, z + k1 * i1);
+            return block == ModBlocks.compressedPeculiarDust ? i1 : 0;
+        }
+
+        protected int func_150858_a()
+        {
+            int i;
+            int j;
+            int k;
+            int l;
+            label56:
+
+            for (this.field_150862_g = 0; this.field_150862_g < 21; ++this.field_150862_g)
+            {
+                i = this.chunkCoords.posY + this.field_150862_g;
+
+                for (j = 0; j < this.field_150868_h; ++j)
+                {
+                    k = this.chunkCoords.posX + j * Direction.offsetX[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][1]];
+                    l = this.chunkCoords.posZ + j * Direction.offsetZ[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][1]];
+                    Block block = this.world.getBlock(k, i, l);
+
+                    if (!this.func_150857_a(block))
+                    {
+                        break label56;
+                    }
+
+                    if (block == ModBlocks.compressedPeculiarDust)
+                    {
+                        ++this.field_150864_e;
+                    }
+
+                    if (j == 0)
+                    {
+                        block = this.world.getBlock(k + Direction.offsetX[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][0]], i, l + Direction.offsetZ[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][0]]);
+
+                        if (block != ModBlocks.compressedPeculiarDust)
+                        {
+                            break label56;
+                        }
+                    }
+                    else if (j == this.field_150868_h - 1)
+                    {
+                        block = this.world.getBlock(k + Direction.offsetX[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][1]], i, l + Direction.offsetZ[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][1]]);
+
+                        if (block != ModBlocks.compressedPeculiarDust)
+                        {
+                            break label56;
+                        }
+                    }
+                }
+            }
+
+            for (i = 0; i < this.field_150868_h; ++i)
+            {
+                j = this.chunkCoords.posX + i * Direction.offsetX[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][1]];
+                k = this.chunkCoords.posY + this.field_150862_g;
+                l = this.chunkCoords.posZ + i * Direction.offsetZ[BlockPortalBaseDarkWorld.field_150001_a[this.field_150865_b][1]];
+
+                if (this.world.getBlock(j, k, l) != ModBlocks.compressedPeculiarDust)
+                {
+                    this.field_150862_g = 0;
+                    break;
+                }
+            }
+
+            if (this.field_150862_g <= 21 && this.field_150862_g >= 3)
+            {
+                return this.field_150862_g;
+            }
+            else
+            {
+                this.chunkCoords = null;
+                this.field_150868_h = 0;
+                this.field_150862_g = 0;
+                return 0;
+            }
+        }
+
+        protected boolean func_150857_a(Block p_150857_1_)
+        {
+            return p_150857_1_.getMaterial() == Material.air || p_150857_1_ == ModBlocks.darkFire || p_150857_1_ == ModBlocks.compressedPeculiarDust;
+        }
+
+        public boolean func_150860_b()
+        {
+            return this.chunkCoords != null && this.field_150868_h >= 2 && this.field_150868_h <= 21 && this.field_150862_g >= 3 && this.field_150862_g <= 21;
+        }
+
+        public void func_150859_c()
+        {
+            for (int i = 0; i < this.field_150868_h; ++i)
+            {
+                int j = this.chunkCoords.posX + Direction.offsetX[this.field_150866_c] * i;
+                int k = this.chunkCoords.posZ + Direction.offsetZ[this.field_150866_c] * i;
+
+                for (int l = 0; l < this.field_150862_g; ++l)
+                {
+                    int i1 = this.chunkCoords.posY + l;
+                    this.world.setBlock(j, i1, k, ModBlocks.darkworldPortal, this.field_150865_b, 2);
+                }
+            }
+        }
+	}
 	
 }

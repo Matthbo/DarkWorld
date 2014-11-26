@@ -42,7 +42,7 @@ public class DarkWorld {
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
 	//TODO make a better chunkprovider
-	//TODO make a better portal frame thingy (update to 1.7 man!)
+	//TODO make a better portal frame thingy (update to 1.7 man!) **how to fucking do this, I copied the needed methods and changed obsidian>darkpeculiarcompresseddust, portal>portalDW, fire>darkfire
 	//TODO check for more broken shit
 	//I like trains and how the DW portal spits out particles in overworld but sucks them in in the DW
 	
