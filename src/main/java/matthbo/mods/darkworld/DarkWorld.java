@@ -1,7 +1,10 @@
 package matthbo.mods.darkworld;
 
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import matthbo.mods.darkworld.biome.BiomeDarkDesert;
+import matthbo.mods.darkworld.biome.DarkBiomeGenBase;
 import matthbo.mods.darkworld.handler.BucketHandler;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
@@ -34,9 +37,10 @@ public class DarkWorld {
 	@SidedProxy(clientSide = Refs.CLIENT_PROXY_CLASS, serverSide = Refs.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
+	public static DarkBiomeGenBase darkDesert; //TODO move this soon!
+	
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
-	//TODO change dimension to be 100% 1.7! (or 1.8 if its posible)
 	
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event){
@@ -48,8 +52,10 @@ public class DarkWorld {
 		ModFluids.init();
 		ModItems.init();
 		
-		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
+		
+		darkDesert = new BiomeDarkDesert(); //TODO move this soon!
+		
 		
 		LogHelper.info("Pre Initialization Complete");
 		

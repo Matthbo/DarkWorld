@@ -5,6 +5,7 @@ import java.util.Random;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
@@ -181,7 +182,7 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 							}
 							
 							if(m < b && b1 == Blocks.air){
-								b1 = Blocks.water;
+								b1 = ModFluids.darkWaterBlock;
 							}
 							j = i;
 							
@@ -249,7 +250,7 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 								if((d16 += d15) > 0.0D){
 									byteArray[j3 += short1] = Blocks.stone;
 								}else if(k1 * 8 + i2 < b2){
-									byteArray[j3 += short1] = Blocks.water;
+									byteArray[j3 += short1] = ModFluids.darkWaterBlock;
 								}else{
 									byteArray[j3 += short1] = Blocks.air;
 								}
@@ -441,7 +442,7 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 			l1 = this.rand.nextInt(128);
 			i2 = l + this.rand.nextInt(16) + 8;
 			
-			(new WorldGenLakes(Blocks.water)).generate(worldObj, rand, k1, l1, i2);
+			(new WorldGenLakes(ModFluids.darkWaterBlock)).generate(worldObj, rand, k1, l1, i2);
 		}
 		
 		if(TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, popEvent.LAVA) && !flag && this.rand.nextInt(8) == 0){
@@ -450,7 +451,7 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 			i2 = l + this.rand.nextInt(16) + 8;
 			
 			if(l1 < 63 || this.rand.nextInt(10) == 0){
-				(new WorldGenLakes(Blocks.lava)).generate(worldObj, rand, k1, l1, i2);
+				(new WorldGenLakes(ModFluids.darkLavaBlock)).generate(worldObj, rand, k1, l1, i2);
 			}
 		}
 		

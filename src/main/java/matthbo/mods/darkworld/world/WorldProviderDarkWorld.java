@@ -11,7 +11,8 @@ import net.minecraft.world.chunk.IChunkProvider;
 public class WorldProviderDarkWorld extends WorldProvider {
 
 	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.frozenOcean, 0.6F);
+		//this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.frozenOcean, 0.6F);
+		this.worldChunkMgr = new WorldChunkManagerHell(DarkWorld.darkDesert, 0.6F);
 		//this.dimensionId = DarkWorld.dimensionDarkWordID;
 	};
 	

@@ -29,6 +29,7 @@ import matthbo.mods.darkworld.block.BlockDarkSponge;
 import matthbo.mods.darkworld.block.BlockDarkStone;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
 import matthbo.mods.darkworld.block.BlockFallingDarkWorld;
+import matthbo.mods.darkworld.block.BlockLeavesDarkWorld;
 import matthbo.mods.darkworld.block.BlockLogDarkWorld;
 import matthbo.mods.darkworld.block.BlockPecluliarDust;
 import matthbo.mods.darkworld.block.BlockPeculiarCobbleStone;
@@ -73,7 +74,7 @@ public class ModBlocks {
 	public static final BlockDarkWorld darkCoalOre = new BlockDarkCoalOre();
 	public static final BlockLogDarkWorld darkLog = new BlockDarkLog();
 	public static final BlockLogDarkWorld darkLog2 = new BlockDarkLog2();
-	//public static final BlockDarkLeaves darkLeaves = new BlockDarkLeaves();
+	//public static final BlockLeavesDarkWorld darkLeaves = new BlockDarkLeaves();
 	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
 	public static final BlockDarkWorld darkSponge = new BlockDarkSponge();
 	public static final BlockDarkWorld darkSandStone = new BlockDarkSandStone();
