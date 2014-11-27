@@ -10,8 +10,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockPortalBaseDarkWorld extends BlockPortal{
 	
-	public static final int[][] field_150001_a = new int[][] {new int[0], {3, 1}, {2, 0}};
-	
 	public BlockPortalBaseDarkWorld(){
 		super();
 	}
