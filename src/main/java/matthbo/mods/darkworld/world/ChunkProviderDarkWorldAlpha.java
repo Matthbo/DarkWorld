@@ -35,7 +35,7 @@ import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class ChunkProviderDarkWord implements IChunkProvider {
+public class ChunkProviderDarkWorldAlpha implements IChunkProvider {
 	
 	private Random rand;
 	
@@ -83,7 +83,7 @@ public class ChunkProviderDarkWord implements IChunkProvider {
 		ravineGen = TerrainGen.getModdedMapGen(ravineGen, mapGenEvent.RAVINE);
 	}
 
-	public ChunkProviderDarkWord(World worldObj, long seed, boolean features) {
+	public ChunkProviderDarkWorldAlpha(World worldObj, long seed, boolean features) {
 		this.worldObj = worldObj;
 		this.mapFeaturesEnabled = features;
 		this.rand = new Random(seed);
