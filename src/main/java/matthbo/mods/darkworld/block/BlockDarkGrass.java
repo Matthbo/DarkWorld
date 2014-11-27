@@ -111,7 +111,7 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
         this.icons = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side");
         this.icons_b = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_top");
         this.icons_M = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_snowed");
-        this.icons_N = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_overlay");
+        //this.icons_N = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_overlay");
     }
 
     /*@SideOnly(Side.CLIENT)
