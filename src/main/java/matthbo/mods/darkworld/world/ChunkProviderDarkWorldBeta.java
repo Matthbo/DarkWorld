@@ -183,21 +183,17 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
 
                             for (int k3 = 0; k3 < 4; ++k3)
                             {
-                            	LogHelper.info("UPDATE!");
                                 if ((d15 += d16) > 0.0D)
                                 {
                                     p_147424_3_[j3 += short1] = ModBlocks.darkStone;
-                                   LogHelper.info("yay i do something with darkstone!");
                                 }
                                 else if (k2 * 8 + l2 < b0)
                                 {
                                     p_147424_3_[j3 += short1] = ModFluids.darkWaterBlock;
-                                    LogHelper.info("yay i do something with darkwater!");
                                 }
                                 else
                                 {
                                     p_147424_3_[j3 += short1] = null;
-                                    LogHelper.info("DENIED!");
                                 }
                             }
 
@@ -252,7 +248,7 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
         Block[] ablock = new Block[65536];
         byte[] abyte = new byte[65536];
         this.func_147424_a(p_73154_1_, p_73154_2_, ablock);
-        //this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, p_73154_1_ * 16, p_73154_2_ * 16, 16, 16);
+        this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, p_73154_1_ * 16, p_73154_2_ * 16, 16, 16);
         this.replaceBlocksForBiome(p_73154_1_, p_73154_2_, ablock, abyte, this.biomesForGeneration);
         //this.caveGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
         //this.ravineGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);

@@ -11,6 +11,8 @@ import net.minecraft.world.biome.BiomeGenEnd;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderHell;
+import net.minecraftforge.common.DimensionManager;
 
 public class WorldProviderDarkWorld extends WorldProvider {
 
@@ -20,8 +22,14 @@ public class WorldProviderDarkWorld extends WorldProvider {
 		this.dimensionId = ModDimensions.dimensionIDDarkWorld;
 	};
 	
-	public IChunkProvider createChunkProvider(){
+	public IChunkProvider createChunkGenerator(){
 		return new ChunkProviderDarkWorldBeta(this.worldObj, this.worldObj.getSeed(), true);
+		//return new ChunkProviderHell(worldObj, this.worldObj.getSeed());
+	}
+	
+	public static WorldProvider getProviderForDimension(int id)
+	{
+		return DimensionManager.createProviderFor(ModDimensions.dimensionIDDarkWorld);
 	}
 	
 	public boolean isSurfaceWorld()
