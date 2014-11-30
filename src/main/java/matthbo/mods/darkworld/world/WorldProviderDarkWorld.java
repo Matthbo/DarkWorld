@@ -1,10 +1,14 @@
 package matthbo.mods.darkworld.world;
 
+import java.awt.Color;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.init.ModBiomes;
 import matthbo.mods.darkworld.init.ModDimensions;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenEnd;
@@ -38,6 +42,23 @@ public class WorldProviderDarkWorld extends WorldProvider {
     {
         return false;
     }
+	
+	@Override
+    public float calculateCelestialAngle(long var1, float var3) {
+		return 0.5F;
+    }
+	
+	protected void generateLightBrightnessTable()
+    {
+        float f = 0.1F;
+
+        for (int i = 0; i <= 15; ++i)
+        {
+            float f1 = 1.0F - (float)i / 15.0F;
+            this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f;
+        }
+    }
+	
 	
 	/**
 	 * Doesn't really work, mojang needs to fix this

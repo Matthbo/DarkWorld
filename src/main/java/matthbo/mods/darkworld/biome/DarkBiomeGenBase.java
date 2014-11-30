@@ -1,5 +1,6 @@
 package matthbo.mods.darkworld.biome;
 
+import java.awt.Color;
 import java.util.Random;
 
 import matthbo.mods.darkworld.init.ModBlocks;
@@ -19,6 +20,11 @@ public class DarkBiomeGenBase extends BiomeGenBase{
 		
 		this.topBlock = ModBlocks.darkGrass;
 		this.fillerBlock = ModBlocks.darkDirt;
+	}
+	
+	@Override
+	public int getSkyColorByTemp(float p_76731_1_) {
+		return Color.BLACK.getRGB();
 	}
 	
 	public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
