@@ -42,6 +42,7 @@ public class DarkWorld {
 	//TODO make stuff added to the oreDictionary
 	//TODO make a better chunkprovider
 	//TODO check for more broken shit
+	//TODO find out what's wrong with the WorldChunkManagerDarkWorld
 	//I like trains and how the DW portal spits out particles in overworld but sucks them in in the DW
 	
 	@Mod.EventHandler

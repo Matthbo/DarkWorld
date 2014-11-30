@@ -17,14 +17,15 @@ import net.minecraftforge.common.DimensionManager;
 public class WorldProviderDarkWorld extends WorldProvider {
 
 	public void registerWorldChunkManager() {
-		//this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.frozenOcean, 0.6F);
-		this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.darkDesert, 0.6F);
+		this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.darkPlains, 0.6F);
+		//this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.desert, 0.6F);
+		//this.worldChunkMgr = new WorldChunkManagerDarkWorld(worldObj.getSeed(), terrainType);
 		this.dimensionId = ModDimensions.dimensionIDDarkWorld;
 	};
 	
 	public IChunkProvider createChunkGenerator(){
 		return new ChunkProviderDarkWorldBeta(this.worldObj, this.worldObj.getSeed(), true);
-		//return new ChunkProviderHell(worldObj, this.worldObj.getSeed());
+		//return new ChunkProviderHell(ModDimensions.dimensionIDDarkWorld, 0.6);
 	}
 	
 	public static WorldProvider getProviderForDimension(int id)
@@ -37,6 +38,9 @@ public class WorldProviderDarkWorld extends WorldProvider {
         return false;
     }
 	
+	/**
+	 * Doesn't really work, mojang needs to fix this
+	 */
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getWelcomeMessage()
@@ -44,11 +48,27 @@ public class WorldProviderDarkWorld extends WorldProvider {
 		return "Entering the Dark World";
 	}
 
+	/**
+	 * Doesn't really work, mojang needs to fix this
+	 */
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getDepartMessage()
 	{
 		return "Leaving the Dark World";
+	}
+	
+	public boolean canRespawnHere()
+    {
+        return false;
+    }
+	
+	/**
+	 * doesn't work either
+	 */
+	@SideOnly(Side.CLIENT)
+	public boolean renderStars() {
+		return true;
 	}
 	
 	@Override
