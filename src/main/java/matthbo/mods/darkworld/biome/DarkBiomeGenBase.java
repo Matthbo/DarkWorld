@@ -17,6 +17,8 @@ public class DarkBiomeGenBase extends BiomeGenBase{
 	public DarkBiomeGenBase(int id) {
 		super(id);
 		
+		this.topBlock = ModBlocks.darkGrass;
+		this.fillerBlock = ModBlocks.darkDirt;
 	}
 	
 	public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)

@@ -5,9 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.biome.DarkBiomeGenBase;
 import matthbo.mods.darkworld.init.ModBiomes;
+import matthbo.mods.darkworld.world.gen.layer.GenLayerDarkWorld;
 import static matthbo.mods.darkworld.init.ModBiomes.*;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -20,44 +23,60 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
 
 public class WorldChunkManagerDarkWorld extends WorldChunkManager {
 	
-	public static ArrayList<DarkBiomeGenBase> allowedDarkWorldBiomes = new ArrayList<DarkBiomeGenBase>(Arrays.asList(darkDesert));
+	//public static ArrayList<DarkBiomeGenBase> allowedDarkWorldBiomes = new ArrayList<DarkBiomeGenBase>(Arrays.asList(darkDesert, darkPlains));
 	//might need to change GenLayer to DarkWorldGenLayer
 	private GenLayer genDarkWorldBiomes;
 	private GenLayer biomeDarkWorldIndexLayer;
 	private BiomeCache darkWorldBiomeCache; //might need to change this too
 	private List darkWorldBiomesToSpawnIn;
 	
-	public WorldChunkManagerDarkWorld(){
-		this.darkWorldBiomeCache = new BiomeCache(this);
+	protected WorldChunkManagerDarkWorld()
+    {
+        this.darkWorldBiomeCache = new BiomeCache(this);
         this.darkWorldBiomesToSpawnIn = new ArrayList();
-        this.darkWorldBiomesToSpawnIn.addAll(allowedDarkWorldBiomes);
-	}
-	public WorldChunkManagerDarkWorld(long seed, WorldType terrainType){
-		this();
-		GenLayer[] agenlayer = GenLayer.initializeAllBiomeGenerators(seed, terrainType);
-		agenlayer = getModdedBiomeGenerators(terrainType, seed, agenlayer);
-		this.genDarkWorldBiomes = agenlayer[0];
-		this.biomeDarkWorldIndexLayer = agenlayer[1];
-	}
-	
-	public WorldChunkManagerDarkWorld(World world){
-		this(world.getSeed(), world.getWorldInfo().getTerrainType());
-	}
-	
-	public List getBiomesToSpawnIn()
+        this.darkWorldBiomesToSpawnIn.addAll(allowedBiomes);
+    }
+
+    public WorldChunkManagerDarkWorld(long p_i1975_1_, WorldType p_i1975_3_)
+    {
+        this();
+        //GenLayer[] agenlayer = GenLayer.initializeAllBiomeGenerators(p_i1975_1_, p_i1975_3_);
+        GenLayer[] agenlayer = GenLayerDarkWorld.makeTheWorld(p_i1975_1_, p_i1975_3_);
+        agenlayer = getModdedBiomeGenerators(p_i1975_3_, p_i1975_1_, agenlayer);
+        this.genDarkWorldBiomes = agenlayer[0];
+        this.biomeDarkWorldIndexLayer = agenlayer[1];
+    }
+
+    public WorldChunkManagerDarkWorld(World p_i1976_1_)
+    {
+        this(p_i1976_1_.getSeed(), p_i1976_1_.getWorldInfo().getTerrainType());
+    }
+
+    /**
+     * Gets the list of valid biomes for the player to spawn in.
+     */
+    public List getBiomesToSpawnIn()
     {
         return this.darkWorldBiomesToSpawnIn;
     }
-	
-	public BiomeGenBase getBiomeGenAt(int p_76935_1_, int p_76935_2_)
+
+    /**
+     * Returns the BiomeGenBase related to the x, z position on the world.
+     */
+    public BiomeGenBase getBiomeGenAt(int p_76935_1_, int p_76935_2_)
     {
         return this.darkWorldBiomeCache.getBiomeGenAt(p_76935_1_, p_76935_2_);
     }
-	
-	public float[] getRainfall(float[] p_76936_1_, int p_76936_2_, int p_76936_3_, int p_76936_4_, int p_76936_5_)
+
+    /**
+     * Returns a list of rainfall values for the specified blocks. Args: listToReuse, x, z, width, length.
+     */
+    public float[] getRainfall(float[] p_76936_1_, int p_76936_2_, int p_76936_3_, int p_76936_4_, int p_76936_5_)
     {
         IntCache.resetIntCache();
 
@@ -97,8 +116,20 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
 
         return p_76936_1_;
     }
-	
-	public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] p_76937_1_, int p_76937_2_, int p_76937_3_, int p_76937_4_, int p_76937_5_)
+
+    /**
+     * Return an adjusted version of a given temperature based on the y height
+     */
+    @SideOnly(Side.CLIENT)
+    public float getTemperatureAtHeight(float p_76939_1_, int p_76939_2_)
+    {
+        return p_76939_1_;
+    }
+
+    /**
+     * Returns an array of biomes for the location input.
+     */
+    public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] p_76937_1_, int p_76937_2_, int p_76937_3_, int p_76937_4_, int p_76937_5_)
     {
         IntCache.resetIntCache();
 
@@ -130,13 +161,21 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
             throw new ReportedException(crashreport);
         }
     }
-	
-	public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] p_76933_1_, int p_76933_2_, int p_76933_3_, int p_76933_4_, int p_76933_5_)
+
+    /**
+     * Returns biomes to use for the blocks and loads the other data like temperature and humidity onto the
+     * WorldChunkManager Args: oldBiomeList, x, z, width, depth
+     */
+    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] p_76933_1_, int p_76933_2_, int p_76933_3_, int p_76933_4_, int p_76933_5_)
     {
         return this.getBiomeGenAt(p_76933_1_, p_76933_2_, p_76933_3_, p_76933_4_, p_76933_5_, true);
     }
-	
-	public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] p_76931_1_, int p_76931_2_, int p_76931_3_, int p_76931_4_, int p_76931_5_, boolean p_76931_6_)
+
+    /**
+     * Return a list of biomes for the specified blocks. Args: listToReuse, x, y, width, length, cacheFlag (if false,
+     * don't check biomeCache to avoid infinite loop in BiomeCacheBlock)
+     */
+    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] p_76931_1_, int p_76931_2_, int p_76931_3_, int p_76931_4_, int p_76931_5_, boolean p_76931_6_)
     {
         IntCache.resetIntCache();
 
@@ -163,8 +202,11 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
             return p_76931_1_;
         }
     }
-	
-	public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List p_76940_4_)
+
+    /**
+     * checks given Chunk's Biomes against List of allowed ones
+     */
+    public boolean areBiomesViable(int p_76940_1_, int p_76940_2_, int p_76940_3_, List p_76940_4_)
     {
         IntCache.resetIntCache();
         int l = p_76940_1_ - p_76940_3_ >> 2;
@@ -201,8 +243,8 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
             throw new ReportedException(crashreport);
         }
     }
-	
-	public ChunkPosition findBiomePosition(int p_150795_1_, int p_150795_2_, int p_150795_3_, List p_150795_4_, Random p_150795_5_)
+
+    public ChunkPosition findBiomePosition(int p_150795_1_, int p_150795_2_, int p_150795_3_, List p_150795_4_, Random p_150795_5_)
     {
         IntCache.resetIntCache();
         int l = p_150795_1_ - p_150795_3_ >> 2;
@@ -230,11 +272,20 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
 
         return chunkposition;
     }
-	
-	public void cleanupCache()
+
+    /**
+     * Calls the WorldChunkManager's biomeCache.cleanupCache()
+     */
+    public void cleanupCache()
     {
         this.darkWorldBiomeCache.cleanupCache();
     }
-	
+
+    public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original)
+    {
+        WorldTypeEvent.InitBiomeGens event = new WorldTypeEvent.InitBiomeGens(worldType, seed, original);
+        MinecraftForge.TERRAIN_GEN_BUS.post(event);
+        return event.newBiomeGens;
+    }
 	
 }

@@ -17,10 +17,11 @@ import net.minecraftforge.common.DimensionManager;
 public class WorldProviderDarkWorld extends WorldProvider {
 
 	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.darkPlains, 0.6F);
+		//this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.darkPlains, 0.6F);
 		//this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.desert, 0.6F);
-		//this.worldChunkMgr = new WorldChunkManagerDarkWorld(worldObj.getSeed(), terrainType);
+		this.worldChunkMgr = new WorldChunkManagerDarkWorld(worldObj.getSeed(), terrainType);
 		this.dimensionId = ModDimensions.dimensionIDDarkWorld;
+		
 	};
 	
 	public IChunkProvider createChunkGenerator(){

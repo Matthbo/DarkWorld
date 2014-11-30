@@ -2,6 +2,7 @@ package matthbo.mods.darkworld.biome;
 
 import java.util.Random;
 
+import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Blocks;
@@ -12,14 +13,16 @@ import net.minecraft.world.biome.BiomeGenPlains;
 public class BiomeDarkPlains extends DarkBiomeGenBase{
 
 	protected boolean field_150628_aC;
-    private static final String __OBFID = "CL_00000180";
 
     public BiomeDarkPlains(int id)
     {
         super(id);
+        this.setBiomeName("Dark Plains");
         this.setTemperatureRainfall(0.8F, 0.4F);
         this.setHeight(height_LowPlains);
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 5, 2, 6));
+        //this.topBlock = ModBlocks.darkGrass;
+        //this.fillerBlock = ModBlocks.darkDirt;
         this.theBiomeDecorator.treesPerChunk = -999;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.theBiomeDecorator.grassPerChunk = 10;
@@ -34,7 +37,7 @@ public class BiomeDarkPlains extends DarkBiomeGenBase{
         this.addFlower(Blocks.yellow_flower, 0, 30);
     }
 
-    public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
+    /*public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
     {
         double d0 = plantNoise.func_151601_a((double)p_150572_2_ / 200.0D, (double)p_150572_4_ / 200.0D);
         int l;
@@ -97,7 +100,7 @@ public class BiomeDarkPlains extends DarkBiomeGenBase{
         }
 
         super.decorate(p_76728_1_, p_76728_2_, p_76728_3_, p_76728_4_);
-    }
+    }*/
 
     /**
      * Creates a mutated version of the biome and places it into the biomeList with an index equal to the original plus
@@ -106,7 +109,7 @@ public class BiomeDarkPlains extends DarkBiomeGenBase{
     public BiomeGenBase createMutation()
     {
         BiomeDarkPlains biomedarkplains = new BiomeDarkPlains(this.biomeID + 128);
-        biomedarkplains.setBiomeName("Sunflower Plains");
+        biomedarkplains.setBiomeName("Dark Sunflower Plains");
         biomedarkplains.field_150628_aC = true;
         biomedarkplains.setColor(9286496);
         biomedarkplains.field_150609_ah = 14273354;
