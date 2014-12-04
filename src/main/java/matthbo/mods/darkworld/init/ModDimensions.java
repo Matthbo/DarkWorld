@@ -3,6 +3,7 @@ package matthbo.mods.darkworld.init;
 import net.minecraftforge.common.DimensionManager;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.reference.Refs;
+import matthbo.mods.darkworld.world.DarkWorldGenerator;
 import matthbo.mods.darkworld.world.OverworldGenerator;
 import matthbo.mods.darkworld.world.WorldProviderDarkWorld;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -22,6 +23,7 @@ public class ModDimensions {
 		DM.registerDimension(dimensionIDDarkWorld, dimensionIDDarkWorld);
 		
 		GM.registerWorldGenerator(new OverworldGenerator(), 0);
+		GM.registerWorldGenerator(new DarkWorldGenerator(), 0);
 		
 	}
 
