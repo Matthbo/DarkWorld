@@ -2,6 +2,7 @@ package matthbo.mods.darkworld.block;
 
 import java.util.Random;
 
+import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModItems;
 import net.minecraft.block.Block;

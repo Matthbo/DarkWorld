@@ -19,13 +19,16 @@ public class DarkWorldGenerator implements IWorldGenerator {
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		
+		chunkX *= 16;
+		chunkZ *= 16;
+		
 		if(world.provider.dimensionId == DWID){
-			genStandardOre1(world, ModBlocks.darkCoalOre, 20, 16, chunkX * 16, 0, 128, chunkZ * 16, rand);
-			genStandardOre1(world, ModBlocks.darkIronOre, 20, 8, chunkX * 16, 0, 64, chunkZ * 16, rand);
-			genStandardOre1(world, ModBlocks.darkGoldOre, 2, 8, chunkX * 16, 0, 32, chunkZ * 16, rand);
-			genStandardOre1(world, ModBlocks.darkRedstoneOre, 8, 7, chunkX * 16, 0, 16, chunkZ * 16, rand);
-			genStandardOre1(world, ModBlocks.darkDiamondOre, 1, 7, chunkX * 16, 0, 16, chunkZ * 16, rand);
-			genStandardOre2(world, ModBlocks.darkLapisOre, 1, 6, chunkX * 16, 16, 16, chunkZ * 16, rand);
+			genStandardOre1(world, ModBlocks.darkCoalOre, 20, 16, chunkX, 0, 128, chunkZ, rand);
+			genStandardOre1(world, ModBlocks.darkIronOre, 20, 8, chunkX, 0, 64, chunkZ, rand);
+			genStandardOre1(world, ModBlocks.darkGoldOre, 2, 8, chunkX, 0, 32, chunkZ, rand);
+			genStandardOre1(world, ModBlocks.darkRedstoneOre, 8, 7, chunkX, 0, 16, chunkZ, rand);
+			genStandardOre1(world, ModBlocks.darkDiamondOre, 1, 7, chunkX, 0, 16, chunkZ, rand);
+			genStandardOre2(world, ModBlocks.darkLapisOre, 1, 6, chunkX, 16, 16, chunkZ, rand);
 		}
 			
 		

@@ -26,14 +26,14 @@ public class ModGuiConfig extends GuiConfig {
 				false, 
 				false, 
 				/*GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString())*/
-				I18n.format(Refs.CONFIG_LANGKEY));;
+				I18n.format(Refs.CONFIG_LANGKEY));
 	}
 	
 	private static List<IConfigElement> getConfigElement(){
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
 		//list.add(new DummyCategoryElement("General", Refs.CONFIG_LANGKEY_GENERAL, ModGeneralEntry.class));
 		list.add(new DummyCategoryElement("General", Refs.CONFIG_LANGKEY_GENERAL, new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements()));
-		list.add(new DummyCategoryElement("Dev", Refs.CONFIG_LANGKEY_DEV, new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements()));
+		list.add(new DummyCategoryElement("Dev", Refs.CONFIG_LANGKEY_DEV, new ConfigElement(ConfigHandler.config.getCategory(ConfigHandler.CATEGORY_DEVELOPMENT)).getChildElements()));
 		
 		return list;
 	}

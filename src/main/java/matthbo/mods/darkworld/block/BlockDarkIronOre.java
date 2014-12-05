@@ -1,5 +1,7 @@
 package matthbo.mods.darkworld.block;
 
+import matthbo.mods.darkworld.handler.ConfigHandler;
+
 public class BlockDarkIronOre extends BlockDarkWorld {
 	
 	public BlockDarkIronOre(){

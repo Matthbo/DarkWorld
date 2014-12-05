@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
+import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.block.BlockCompressedPeculiarDust;
 import matthbo.mods.darkworld.block.BlockDarkBrick;
 import matthbo.mods.darkworld.block.BlockDarkCoalOre;
@@ -46,6 +47,7 @@ import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
 import matthbo.mods.darkworld.item.ItemBlockDarkSand;
 import matthbo.mods.darkworld.item.ItemBlockDarkSandStone;
 import matthbo.mods.darkworld.reference.Refs;
+import matthbo.mods.darkworld.utility.LogHelper;
 
 @ObjectHolder(Refs.MOD_ID)
 public class ModBlocks {

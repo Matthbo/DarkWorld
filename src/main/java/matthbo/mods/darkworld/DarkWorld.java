@@ -38,19 +38,18 @@ public class DarkWorld {
 	@SidedProxy(clientSide = Refs.CLIENT_PROXY_CLASS, serverSide = Refs.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
+	public static ConfigHandler Config = new ConfigHandler();
+	
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
 	//TODO make a better chunkprovider
 	//TODO check for more broken shit
-	//TODO find out what's wrong with the WorldChunkManagerDarkWorld
 	//I like trains and how the DW portal spits out particles in overworld but sucks them in in the DW
 	
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event){
-		
-		ConfigHandler.init(event.getSuggestedConfigurationFile());
+		Config.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigHandler());
-		
 		ModBlocks.init();
 		ModFluids.init();
 		ModItems.init();
@@ -71,14 +70,11 @@ public class DarkWorld {
 		
 		FMLCommonHandler.instance().bus().register(new EventHandler());
 		
-		
-		
 		LogHelper.info("Initialization Complete");
 	}
 	
 	@Mod.EventHandler
 	public static void postInit(FMLPostInitializationEvent event){
-	
 		LogHelper.info("Post Initialization Complete");
 	}
 
