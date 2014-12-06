@@ -6,6 +6,7 @@ import matthbo.mods.darkworld.block.BlockDarkWorld;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModDimensions;
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -23,6 +24,9 @@ public class DarkWorldGenerator implements IWorldGenerator {
 		chunkZ *= 16;
 		
 		if(world.provider.dimensionId == DWID){
+			genStandardOre1(world, ModBlocks.darkDirt, 20, 32, chunkX, 0, 256, chunkZ, rand);
+			genStandardOre1(world, ModBlocks.darkGravel, 10, 32, chunkX, 0, 256, chunkZ, rand);
+			
 			genStandardOre1(world, ModBlocks.darkCoalOre, 20, 16, chunkX, 0, 128, chunkZ, rand);
 			genStandardOre1(world, ModBlocks.darkIronOre, 20, 8, chunkX, 0, 64, chunkZ, rand);
 			genStandardOre1(world, ModBlocks.darkGoldOre, 2, 8, chunkX, 0, 32, chunkZ, rand);
@@ -34,7 +38,7 @@ public class DarkWorldGenerator implements IWorldGenerator {
 		
 	}
 	
-	protected void genStandardOre1(World world, BlockDarkWorld block,int veins, int BPV, int chunkX, int chunkYSpecial, int chunkY, int chunkZ, Random rand)
+	protected void genStandardOre1(World world, Block block,int veins, int BPV, int chunkX, int chunkYSpecial, int chunkY, int chunkZ, Random rand)
     {
         for (int l = 0; l < veins; ++l)
         {
@@ -46,7 +50,7 @@ public class DarkWorldGenerator implements IWorldGenerator {
         }
     }
 	
-	protected void genStandardOre2(World world, BlockDarkWorld block,int veins, int BPV, int chunkX, int chunkYSpecial, int chunkY, int chunkZ, Random rand)
+	protected void genStandardOre2(World world, Block block,int veins, int BPV, int chunkX, int chunkYSpecial, int chunkY, int chunkZ, Random rand)
     {
         for (int l = 0; l < veins; ++l)
         {

@@ -41,6 +41,7 @@ import matthbo.mods.darkworld.block.BlockTest;
 import matthbo.mods.darkworld.block.fluid.FluidDarkLava;
 import matthbo.mods.darkworld.block.fluid.FluidDarkWater;
 import matthbo.mods.darkworld.block.fluid.FluidDarkWorld;
+import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.item.ItemBlockDarkLog;
 import matthbo.mods.darkworld.item.ItemBlockDarkLog2;
 import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
@@ -56,41 +57,46 @@ public class ModBlocks {
 	
 	
 	//in the overworld
-	public static final BlockDarkWorld peculiarStone = new BlockPeculiarStone();
-	public static final BlockDarkWorld peculiarCobbleStone = new BlockPeculiarCobbleStone();
-	public static final BlockFallingDarkWorld peculiarDustBlock = new BlockPecluliarDust();
-	public static final BlockDarkWorld compressedPeculiarDust = new BlockCompressedPeculiarDust();
+	public static final Block peculiarStone = new BlockPeculiarStone();
+	public static final Block peculiarCobbleStone = new BlockPeculiarCobbleStone();
+	public static final Block peculiarDustBlock = new BlockPecluliarDust();
+	public static final Block compressedPeculiarDust = new BlockCompressedPeculiarDust();
 	public static final BlockPortalBaseDarkWorld darkworldPortal = new BlockPortalDarkWord();
 
 	//in the darkworld
-	public static final BlockDarkGrass darkGrass = new BlockDarkGrass();
-	public static final BlockDarkWorld darkDirt = new BlockDarkDirt();
-	public static final BlockDarkWorld darkStone = new BlockDarkStone();
-	public static final BlockDarkWorld darkCobbleStone = new BlockDarkCobbleStone();
-	public static final BlockDarkWorld darkPlanks = new BlockDarkPlanks();
+	public static final Block darkGrass = new BlockDarkGrass();
+	public static final Block darkDirt = new BlockDarkDirt();
+	public static final Block darkStone = new BlockDarkStone();
+	public static final Block darkCobbleStone = new BlockDarkCobbleStone();
+	public static final Block darkPlanks = new BlockDarkPlanks();
 	//public static final BlockDarkWorld darkSapling = new BlockDarkSapling();
-	public static final BlockFallingDarkWorld darkSand = new BlockDarkSand();
-	public static final BlockFallingDarkWorld darkGravel = new BlockDarkGravel();
-	public static final BlockDarkWorld darkGoldOre = new BlockDarkGoldOre();
-	public static final BlockDarkWorld darkIronOre = new BlockDarkIronOre();
-	public static final BlockDarkWorld darkCoalOre = new BlockDarkCoalOre();
-	public static final BlockLogDarkWorld darkLog = new BlockDarkLog();
-	public static final BlockLogDarkWorld darkLog2 = new BlockDarkLog2();
+	public static final Block darkSand = new BlockDarkSand();
+	public static final Block darkGravel = new BlockDarkGravel();
+	public static final Block darkGoldOre = new BlockDarkGoldOre();
+	public static final Block darkIronOre = new BlockDarkIronOre();
+	public static final Block darkCoalOre = new BlockDarkCoalOre();
+	public static final Block darkLog = new BlockDarkLog();
+	public static final Block darkLog2 = new BlockDarkLog2();
 	//public static final BlockLeavesDarkWorld darkLeaves = new BlockDarkLeaves();
 	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
-	public static final BlockDarkWorld darkSponge = new BlockDarkSponge();
-	public static final BlockDarkWorld darkSandStone = new BlockDarkSandStone();
-	public static final BlockDarkWorld darkLapisOre = new BlockDarkLapisOre();
-	public static final BlockDarkWorld darkBrick = new BlockDarkBrick();
-	public static final BlockDarkWorld darkMossyCobble = new BlockDarkMossyCobbleStone();
-	public static final BlockDarkWorld darkObsidian = new BlockDarkObsidian();
-	public static final BlockDarkWorld darkDiamondOre = new BlockDarkDiamondOre();
-	public static final BlockDarkWorld darkRedstoneOre = new BlockDarkRedstoneOre();
-	public static final BlockDarkWorld darkEmeraldOre = new BlockDarkEmeraldOre();
-	public static final BlockDarkFire darkFire = new BlockDarkFire();
+	public static final Block darkSponge = new BlockDarkSponge();
+	public static final Block darkSandStone = new BlockDarkSandStone();
+	public static final Block darkLapisOre = new BlockDarkLapisOre();
+	public static final Block darkBrick = new BlockDarkBrick();
+	public static final Block darkMossyCobble = new BlockDarkMossyCobbleStone();
+	public static final Block darkObsidian = new BlockDarkObsidian();
+	public static final Block darkDiamondOre = new BlockDarkDiamondOre();
+	public static final Block darkRedstoneOre = new BlockDarkRedstoneOre(false);
+	public static final Block darkLitRedstoneOre = new BlockDarkRedstoneOre(true);
+	public static final Block darkCactus = new BlockDarkCactus();
+	public static final Block darkEmeraldOre = new BlockDarkEmeraldOre();
+	public static final Block darkFire = new BlockDarkFire();
 	
 	
 	public static void init(){
+		darkRedstoneOre.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
+		darkLitRedstoneOre.setLightLevel(0.625F);
+		
 		GR.registerBlock(peculiarStone, "peculiarStone");
 		GR.registerBlock(peculiarCobbleStone, "peculiarCobbleStone");
 		GR.registerBlock(peculiarDustBlock, "peculiarDustBlock");
@@ -117,6 +123,8 @@ public class ModBlocks {
 		GR.registerBlock(darkObsidian, "darkObsidian");
 		GR.registerBlock(darkDiamondOre, "darkDiamondOre");
 		GR.registerBlock(darkRedstoneOre, "darkRedstoneOre");
+		GR.registerBlock(darkLitRedstoneOre, "darkLitRedstoneOre");
+		GR.registerBlock(darkCactus, "darkCactus");
 		GR.registerBlock(darkEmeraldOre, "darkEmeraldOre");
 		GR.registerBlock(darkFire, "darkFire");
 	}

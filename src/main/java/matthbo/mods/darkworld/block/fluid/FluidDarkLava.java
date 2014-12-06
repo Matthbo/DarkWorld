@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
@@ -28,6 +29,7 @@ public class FluidDarkLava extends FluidDarkWorld {
 			living.addPotionEffect(new PotionEffect(Potion.wither.id, 20, 3));
 		}
 		entity.setFire(10);
+		entity.attackEntityFrom(DamageSource.lava, 4.0F);
 	}
 
 }

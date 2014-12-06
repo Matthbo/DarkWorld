@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockDarkSand extends BlockFallingDarkWorld {
 	
@@ -56,5 +57,6 @@ public class BlockDarkSand extends BlockFallingDarkWorld {
 	public IIcon getIcon(int side, int meta){
 		return icons[meta];
 	}
+	
 
 }
