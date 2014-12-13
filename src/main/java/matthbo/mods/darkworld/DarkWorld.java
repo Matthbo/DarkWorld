@@ -1,5 +1,6 @@
 package matthbo.mods.darkworld;
 
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,6 +41,7 @@ public class DarkWorld {
 	
 	public static ConfigHandler Config = new ConfigHandler();
 	
+	//TODO make a config that let's you choose if you want to spawn in the DW or not (default false)
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
 	//TODO make a better chunkprovider

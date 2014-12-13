@@ -17,8 +17,6 @@ public class ConfigHandler {
 	
 	public static boolean dev = false;
 	
-	public static int darkWordID = -2;
-	
 	public static void init(File configFile){
 		
 		if(config == null){
@@ -30,8 +28,6 @@ public class ConfigHandler {
 	
 	private static void loadConfig(){
 		dev = config.getBoolean("DevMode", CATEGORY_DEVELOPMENT, false, "For devs ONLY!");
-		
-		darkWordID = config.getInt("DimensionID", config.CATEGORY_GENERAL, -2, -256, 256, "ID for the DarkWorld Dimension");
 		
 		if(dev == true) LogHelper.warn("Devmode is ON! if you are NOT a developer, turn devmode off in the config!");
 		

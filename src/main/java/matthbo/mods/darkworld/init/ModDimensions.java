@@ -1,6 +1,7 @@
 package matthbo.mods.darkworld.init;
 
 import net.minecraftforge.common.DimensionManager;
+import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.world.DarkWorldGenerator;
@@ -15,7 +16,7 @@ public class ModDimensions {
 	private static DimensionManager DM;
 	private static GameRegistry GM;
 	
-	public static int dimensionIDDarkWorld = ConfigHandler.darkWordID;
+	public static int dimensionIDDarkWorld = -2;
 	
 	public static void init(){
 		

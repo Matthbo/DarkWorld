@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -37,7 +38,6 @@ public class EventHandler {
 	public void onPlayerLogin(PlayerLoggedInEvent event){
 		if(ConfigHandler.dev == true){
 			event.player.addChatMessage(new ChatComponentTranslation(Refs.CHAT_LANGKEY_DEVMODE));
-			event.player.addChatMessage(new ChatComponentTranslation("TODO: biomes, blocks"));
 		}
 	}
 	

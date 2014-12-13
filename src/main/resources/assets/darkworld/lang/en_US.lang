@@ -59,7 +59,7 @@ item.darkworld:darklavabucket.name=Dark Lava Bucket
 itemGroup.darkworld=Dark World
 
 # Chat
-darkworld.chat.command.devmode=[DarkWorld] Dev mode is ON!
+darkworld.chat.command.devmode=[DarkWorld] \u00a78Dev mode is ON!
 
 # Config
 darkworld.configgui.ctgy.config=DarkWorld Configuration File
