@@ -1,4 +1,4 @@
-package matthbo.mods.darkworld.world;
+package matthbo.mods.darkworld.world.gen.feature;
 
 import java.util.Random;
 

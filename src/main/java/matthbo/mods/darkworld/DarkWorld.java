@@ -19,6 +19,7 @@ import matthbo.mods.darkworld.init.ModRecipes;
 import matthbo.mods.darkworld.proxy.IProxy;
 import matthbo.mods.darkworld.reference.Refs;
 import matthbo.mods.darkworld.utility.LogHelper;
+import matthbo.mods.darkworld.world.DarkWorldGenerator;
 import matthbo.mods.darkworld.world.OverworldGenerator;
 import matthbo.mods.darkworld.world.WorldProviderDarkWorld;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -40,6 +41,8 @@ public class DarkWorld {
 	public static IProxy proxy;
 	
 	public static ConfigHandler Config = new ConfigHandler();
+	
+	//public static DarkWorldGenerator DWGen = new DarkWorldGenerator();
 	
 	//TODO make a config that let's you choose if you want to spawn in the DW or not (default false)
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
@@ -66,6 +69,7 @@ public class DarkWorld {
 	public static void init(FMLInitializationEvent event){
 		ModRecipes.initCrafting();
 		ModRecipes.initSmelting();
+		
 		ModBiomes.init();
 		ModDimensions.init();
 		ModAchievements.init();

@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.reference.EnumDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -14,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockDarkWorld extends Block{
@@ -46,27 +48,34 @@ public class BlockDarkWorld extends Block{
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
     
+    //public Enum darkDesert = EnumHelper.addEnum(EnumPlantType.class, "DarkDesert");
+    
     @Override
     public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
     	Block plant = plantable.getPlant(world, x, y + 1, z);
         EnumPlantType plantType = plantable.getPlantType(world, x, y + 1, z);
+        
+        
 
         if (plant == ModBlocks.darkCactus && this == ModBlocks.darkCactus)
         {
             return true;
         }
 
-        if (plant == Blocks.reeds && this == Blocks.reeds)
+        /*if (plant == Blocks.reeds && this == Blocks.reeds)
         {
             return true;
-        }
+        }*/
 
-        if (plantable instanceof BlockBush && canPlaceBlockOn(this))
+        /*if (plantable instanceof BlockBush && canPlaceBlockOn(this))
         {
             return true;
-        }
+        }*/
+        
+        if(plantType == EnumDarkWorld.DarkDesert) return this == ModBlocks.darkSand;
+        if(plantType == EnumDarkWorld.DarkPlains) return this == ModBlocks.darkGrass || this == ModBlocks.darkDirt;// || this == Blocks.farmland;
 
-        switch (plantType)
+        /*switch (plantType)
         {
             case Desert: return this == ModBlocks.darkSand;
             case Nether: return this == Blocks.soul_sand;
@@ -81,7 +90,7 @@ public class BlockDarkWorld extends Block{
                                     world.getBlock(x,     y, z - 1).getMaterial() == Material.water ||
                                     world.getBlock(x,     y, z + 1).getMaterial() == Material.water);
                 return isBeach && hasWater;
-        }
+        }*/
 
         return false;
     }

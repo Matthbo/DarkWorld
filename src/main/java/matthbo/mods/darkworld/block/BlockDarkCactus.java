@@ -1,9 +1,10 @@
-package matthbo.mods.darkworld.init;
+package matthbo.mods.darkworld.block;
 
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import matthbo.mods.darkworld.reference.EnumDarkWorld;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
 import matthbo.mods.darkworld.utility.LogHelper;
 import net.minecraft.block.Block;
@@ -186,7 +187,8 @@ public class BlockDarkCactus extends BlockDarkWorld implements IPlantable {
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
-        return EnumPlantType.Desert;
+        //return EnumPlantType.Desert;
+    	return EnumDarkWorld.DarkDesert;
     }
 
     @Override

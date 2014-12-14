@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.block.BlockCompressedPeculiarDust;
 import matthbo.mods.darkworld.block.BlockDarkBrick;
+import matthbo.mods.darkworld.block.BlockDarkCactus;
 import matthbo.mods.darkworld.block.BlockDarkCoalOre;
 import matthbo.mods.darkworld.block.BlockDarkCobbleStone;
 import matthbo.mods.darkworld.block.BlockDarkDiamondOre;

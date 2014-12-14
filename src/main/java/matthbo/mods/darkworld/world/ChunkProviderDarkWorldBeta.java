@@ -21,6 +21,7 @@ import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.utility.LogHelper;
 import matthbo.mods.darkworld.world.gen.MapGenDarkWorldCaves;
 import matthbo.mods.darkworld.world.gen.MapGenDarkWorldRavine;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenLakes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;

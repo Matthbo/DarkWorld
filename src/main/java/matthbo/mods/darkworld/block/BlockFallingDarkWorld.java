@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.reference.EnumDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -57,17 +58,20 @@ public class BlockFallingDarkWorld extends BlockFalling {
             return true;
         }
 
-        if (plant == Blocks.reeds && this == Blocks.reeds)
+        /*if (plant == Blocks.reeds && this == Blocks.reeds)
         {
             return true;
-        }
+        }*/
 
-        if (plantable instanceof BlockBush && canPlaceBlockOn(this))
+        /*if (plantable instanceof BlockBush && canPlaceBlockOn(this))
         {
             return true;
-        }
+        }*/
+        
+        if(plantType == EnumDarkWorld.DarkDesert) return this == ModBlocks.darkSand;
+        if(plantType == EnumDarkWorld.DarkPlains) return this == ModBlocks.darkGrass || this == ModBlocks.darkDirt;// || this == Blocks.farmland;
 
-        switch (plantType)
+        /*switch (plantType)
         {
             case Desert: return this == ModBlocks.darkSand;
             case Nether: return this == Blocks.soul_sand;
@@ -82,7 +86,7 @@ public class BlockFallingDarkWorld extends BlockFalling {
                                     world.getBlock(x,     y, z - 1).getMaterial() == Material.water ||
                                     world.getBlock(x,     y, z + 1).getMaterial() == Material.water);
                 return isBeach && hasWater;
-        }
+        }*/
 
         return false;
     }

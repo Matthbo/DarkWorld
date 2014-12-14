@@ -25,7 +25,6 @@ public class ModDimensions {
 		
 		GM.registerWorldGenerator(new OverworldGenerator(), 0);
 		GM.registerWorldGenerator(new DarkWorldGenerator(), 0);
-		
 	}
 
 }

@@ -3,6 +3,7 @@ package matthbo.mods.darkworld.biome;
 import java.util.Random;
 
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.world.DarkWorldGenerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenDesertWells;
@@ -24,6 +25,7 @@ public class BiomeDarkDesert extends DarkBiomeGenBase{
         this.theBiomeDecorator.deadBushPerChunk = 2;
         this.theBiomeDecorator.reedsPerChunk = 50;
         this.theBiomeDecorator.cactiPerChunk = 10;
+        this.theDWGen.cactiPerChunk = 10;
         this.spawnableCreatureList.clear();
 	}
 	
