@@ -48,15 +48,12 @@ public class BlockFallingDarkWorld extends BlockFalling {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
     
-    @Override
+    /*@Override
     public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
     	Block plant = plantable.getPlant(world, x, y + 1, z);
         EnumPlantType plantType = plantable.getPlantType(world, x, y + 1, z);
 
-        if (plant == ModBlocks.darkCactus && this == ModBlocks.darkCactus)
-        {
-            return true;
-        }
+        
 
         /*if (plant == Blocks.reeds && this == Blocks.reeds)
         {
@@ -68,8 +65,8 @@ public class BlockFallingDarkWorld extends BlockFalling {
             return true;
         }*/
         
-        if(plantType == EnumDarkWorld.DarkDesert) return this == ModBlocks.darkSand;
-        if(plantType == EnumDarkWorld.DarkPlains) return this == ModBlocks.darkGrass || this == ModBlocks.darkDirt;// || this == Blocks.farmland;
+        //if(plantType == EnumDarkWorld.DarkDesertPlant) return this == ModBlocks.darkSand;
+        //if(plantType == EnumDarkWorld.DarkPlainsPlant) return this == ModBlocks.darkGrass || this == ModBlocks.darkDirt;// || this == Blocks.farmland;
 
         /*switch (plantType)
         {
@@ -88,8 +85,8 @@ public class BlockFallingDarkWorld extends BlockFalling {
                 return isBeach && hasWater;
         }*/
 
-        return false;
-    }
+        //return false;
+    //}
     
     protected boolean canPlaceBlockOn(Block p_149854_1_)
     {

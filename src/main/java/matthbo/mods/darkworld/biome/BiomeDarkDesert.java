@@ -24,8 +24,7 @@ public class BiomeDarkDesert extends DarkBiomeGenBase{
         this.theBiomeDecorator.treesPerChunk = -999;
         this.theBiomeDecorator.deadBushPerChunk = 2;
         this.theBiomeDecorator.reedsPerChunk = 50;
-        this.theBiomeDecorator.cactiPerChunk = 10;
-        this.theDWGen.cactiPerChunk = 10;
+        //this.theBiomeDecorator.cactiPerChunk = 10; FIXED!
         this.spawnableCreatureList.clear();
 	}
 	

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Random;
 
 import matthbo.mods.darkworld.DarkWorld;
+import matthbo.mods.darkworld.handler.BiomeDecoratorHandler;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.world.DarkWorldGenerator;
@@ -16,14 +17,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class DarkBiomeGenBase extends BiomeGenBase{
 	
 	protected static int nextBiomeID;
-	public DarkWorldGenerator theDWGen = new DarkWorldGenerator();
 	
 	public DarkBiomeGenBase(int id) {
 		super(id);
 		
 		this.topBlock = ModBlocks.darkGrass;
 		this.fillerBlock = ModBlocks.darkDirt;
-		//this.theDWGen = new DarkWorldGenerator();
 	}
 	
 	@Override

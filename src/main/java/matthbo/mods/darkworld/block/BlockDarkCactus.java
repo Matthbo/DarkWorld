@@ -6,11 +6,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.reference.EnumDarkWorld;
 import matthbo.mods.darkworld.block.BlockDarkWorld;
+import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
@@ -144,28 +146,23 @@ public class BlockDarkCactus extends BlockDarkWorld implements IPlantable {
      */
     public boolean canBlockStay(World world, int x, int y, int z)
     {
-    	LogHelper.info("Checking!");
-        if (world.getBlock(x - 1, y, z).getMaterial().isSolid())
-        {
+    	if (world.getBlock(x - 1, y, z).getMaterial().isSolid()){
             return false;
         }
-        else if (world.getBlock(x + 1, y, z).getMaterial().isSolid())
-        {
+        else if (world.getBlock(x + 1, y, z).getMaterial().isSolid()){
             return false;
         }
-        else if (world.getBlock(x, y, z - 1).getMaterial().isSolid())
-        {
+        else if (world.getBlock(x, y, z - 1).getMaterial().isSolid()){
             return false;
         }
-        else if (world.getBlock(x, y, z + 1).getMaterial().isSolid())
-        {
+        else if (world.getBlock(x, y, z + 1).getMaterial().isSolid()){
             return false;
         }
-        else
-        {
-            Block block = world.getBlock(x, y - 1, z);
-            return block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
-        }
+    	else{
+    		Block block = world.getBlock(x, y -1, z);
+    		Block soil = ModBlocks.darkSand;
+    		return (block != Blocks.air && block == soil && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+    	}
     }
 
     /**
@@ -188,7 +185,7 @@ public class BlockDarkCactus extends BlockDarkWorld implements IPlantable {
     public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
         //return EnumPlantType.Desert;
-    	return EnumDarkWorld.DarkDesert;
+    	return EnumDarkWorld.DarkDesertPlant;
     }
 
     @Override

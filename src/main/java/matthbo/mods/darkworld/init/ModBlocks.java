@@ -89,7 +89,7 @@ public class ModBlocks {
 	public static final Block darkDiamondOre = new BlockDarkDiamondOre();
 	public static final Block darkRedstoneOre = new BlockDarkRedstoneOre(false);
 	public static final Block darkLitRedstoneOre = new BlockDarkRedstoneOre(true);
-	public static final Block darkCactus = new BlockDarkCactus();
+	public static final BlockDarkWorld darkCactus = new BlockDarkCactus();
 	public static final Block darkEmeraldOre = new BlockDarkEmeraldOre();
 	public static final Block darkFire = new BlockDarkFire();
 	

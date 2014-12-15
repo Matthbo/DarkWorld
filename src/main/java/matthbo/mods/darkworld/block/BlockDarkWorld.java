@@ -48,52 +48,7 @@ public class BlockDarkWorld extends Block{
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
     
-    //public Enum darkDesert = EnumHelper.addEnum(EnumPlantType.class, "DarkDesert");
     
-    @Override
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
-    	Block plant = plantable.getPlant(world, x, y + 1, z);
-        EnumPlantType plantType = plantable.getPlantType(world, x, y + 1, z);
-        
-        
-
-        if (plant == ModBlocks.darkCactus && this == ModBlocks.darkCactus)
-        {
-            return true;
-        }
-
-        /*if (plant == Blocks.reeds && this == Blocks.reeds)
-        {
-            return true;
-        }*/
-
-        /*if (plantable instanceof BlockBush && canPlaceBlockOn(this))
-        {
-            return true;
-        }*/
-        
-        if(plantType == EnumDarkWorld.DarkDesert) return this == ModBlocks.darkSand;
-        if(plantType == EnumDarkWorld.DarkPlains) return this == ModBlocks.darkGrass || this == ModBlocks.darkDirt;// || this == Blocks.farmland;
-
-        /*switch (plantType)
-        {
-            case Desert: return this == ModBlocks.darkSand;
-            case Nether: return this == Blocks.soul_sand;
-            case Crop:   return this == Blocks.farmland;
-            case Cave:   return isSideSolid(world, x, y, z, UP);
-            case Plains: return this == ModBlocks.darkGrass || this == ModBlocks.darkDirt;// || this == Blocks.farmland;
-            case Water:  return world.getBlock(x, y, z).getMaterial() == Material.water && world.getBlockMetadata(x, y, z) == 0;
-            case Beach:
-                boolean isBeach = this == ModBlocks.darkGrass || this == ModBlocks.darkDirt || this == ModBlocks.darkSand;
-                boolean hasWater = (world.getBlock(x - 1, y, z    ).getMaterial() == Material.water ||
-                                    world.getBlock(x + 1, y, z    ).getMaterial() == Material.water ||
-                                    world.getBlock(x,     y, z - 1).getMaterial() == Material.water ||
-                                    world.getBlock(x,     y, z + 1).getMaterial() == Material.water);
-                return isBeach && hasWater;
-        }*/
-
-        return false;
-    }
     
     protected boolean canPlaceBlockOn(Block p_149854_1_)
     {

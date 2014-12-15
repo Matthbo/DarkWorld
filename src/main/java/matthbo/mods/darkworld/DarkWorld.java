@@ -6,6 +6,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import matthbo.mods.darkworld.biome.BiomeDarkDesert;
 import matthbo.mods.darkworld.biome.DarkBiomeGenBase;
+import matthbo.mods.darkworld.handler.BiomeDecoratorHandler;
 import matthbo.mods.darkworld.handler.BucketHandler;
 import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.handler.EventHandler;
@@ -61,14 +62,16 @@ public class DarkWorld {
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		
+		ModRecipes.initCrafting();
+		ModRecipes.initSmelting();
+		
 		LogHelper.info("Pre Initialization Complete");
 		
 	}
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent event){
-		ModRecipes.initCrafting();
-		ModRecipes.initSmelting();
+		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecoratorHandler());
 		
 		ModBiomes.init();
 		ModDimensions.init();

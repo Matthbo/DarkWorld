@@ -17,6 +17,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
 
@@ -112,6 +114,16 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
         this.icons_b = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_top");
         this.icons_M = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_snowed");
         //this.icons_N = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_overlay");
+    }
+    
+    @Override
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
+    	Block plant = plantable.getPlant(world, x, y + 1, z);
+    	if (plant == ModBlocks.darkCactus)
+        {
+            return true;
+        }
+    	return false;
     }
 
     /*@SideOnly(Side.CLIENT)
