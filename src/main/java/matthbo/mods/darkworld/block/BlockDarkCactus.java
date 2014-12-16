@@ -146,6 +146,7 @@ public class BlockDarkCactus extends BlockDarkWorld implements IPlantable {
      */
     public boolean canBlockStay(World world, int x, int y, int z)
     {
+    	LogHelper.info("Checking!!!!! <-----------");
     	if (world.getBlock(x - 1, y, z).getMaterial().isSolid()){
             return false;
         }
@@ -161,7 +162,7 @@ public class BlockDarkCactus extends BlockDarkWorld implements IPlantable {
     	else{
     		Block block = world.getBlock(x, y -1, z);
     		Block soil = ModBlocks.darkSand;
-    		return (block != Blocks.air && block == soil && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+    		return (block != Blocks.air && (block == soil || block == this) && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
     	}
     }
 

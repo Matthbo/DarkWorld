@@ -45,7 +45,7 @@ public class DarkWorld {
 	
 	//public static DarkWorldGenerator DWGen = new DarkWorldGenerator();
 	
-	//TODO make a config that let's you choose if you want to spawn in the DW or not (default false)
+	//TODO make let deadbush generate in DW (or make one myself)
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
 	//TODO make a better chunkprovider
