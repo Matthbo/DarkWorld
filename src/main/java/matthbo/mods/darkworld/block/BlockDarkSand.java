@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.reference.MetaNames;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockDarkSand extends BlockFallingDarkWorld {
 	
@@ -57,6 +60,16 @@ public class BlockDarkSand extends BlockFallingDarkWorld {
 	public IIcon getIcon(int side, int meta){
 		return icons[meta];
 	}
+	
+	@Override
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
+    	Block plant = plantable.getPlant(world, x, y + 1, z);
+    	if (plant == ModBlocks.darkCactus)
+        {
+            return true;
+        }
+    	return false;
+    }
 	
 
 }

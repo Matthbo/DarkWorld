@@ -16,6 +16,7 @@ public class ConfigHandler {
 	public static final String CATEGORY_DEVELOPMENT = "dev";
 	
 	public static boolean dev = false;
+	public static boolean spawnInDW = false;
 	
 	public static void init(File configFile){
 		
@@ -28,6 +29,7 @@ public class ConfigHandler {
 	
 	private static void loadConfig(){
 		dev = config.getBoolean("DevMode", CATEGORY_DEVELOPMENT, false, "For devs ONLY!");
+		spawnInDW = config.getBoolean("SpawnInDarkWorld", config.CATEGORY_GENERAL, false, "Lets you spawn in the Dark World");
 		
 		if(dev == true) LogHelper.warn("Devmode is ON! if you are NOT a developer, turn devmode off in the config!");
 		
