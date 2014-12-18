@@ -146,7 +146,7 @@ public class BlockDarkCactus extends BlockDarkWorld implements IPlantable {
      */
     public boolean canBlockStay(World world, int x, int y, int z)
     {
-    	LogHelper.info("Checking!!!!! <-----------");
+    	//LogHelper.info("Checking!!!!! <-----------");
     	if (world.getBlock(x - 1, y, z).getMaterial().isSolid()){
             return false;
         }

@@ -5,6 +5,7 @@ import net.minecraft.block.BlockFire;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.DarkWorld;
+import matthbo.mods.darkworld.block.BlockBushDarkWorld;
 import matthbo.mods.darkworld.block.BlockCompressedPeculiarDust;
 import matthbo.mods.darkworld.block.BlockDarkBrick;
 import matthbo.mods.darkworld.block.BlockDarkCactus;
@@ -73,6 +74,7 @@ public class ModBlocks {
 	//public static final BlockDarkWorld darkSapling = new BlockDarkSapling();
 	public static final Block darkSand = new BlockDarkSand();
 	public static final Block darkGravel = new BlockDarkGravel();
+	//public static final BlockBushDarkWorld darkTallGrass= new BlockDarkTallGrass();
 	public static final Block darkGoldOre = new BlockDarkGoldOre();
 	public static final Block darkIronOre = new BlockDarkIronOre();
 	public static final Block darkCoalOre = new BlockDarkCoalOre();
