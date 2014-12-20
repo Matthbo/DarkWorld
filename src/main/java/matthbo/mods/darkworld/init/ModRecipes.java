@@ -38,6 +38,8 @@ public class ModRecipes {
 		GR.addSmelting(new ItemStack(ModBlocks.peculiarCobbleStone), new ItemStack(ModItems.peculiarDust, 2), 0.1F);
 		GR.addSmelting(new ItemStack(ModItems.peculiarDustBar), new ItemStack(ModItems.hardPeculiarDust), 0.2F);
 		
+		GR.addSmelting(new ItemStack(ModBlocks.darkCactus), new ItemStack(Items.dye, 1, 2), 0F);
+		
 	}
 
 }
