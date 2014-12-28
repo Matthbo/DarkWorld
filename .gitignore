@@ -1,6 +1,7 @@
 ## gradle
 /.gradle
 /build
+/eclipse
 /gradlew.bat
 /gradle-compile-mod.bat
 /gradle-install-update.bat
@@ -10,10 +11,6 @@
 /forge-1.7.10-10.13.0.*
 /CREDITS-fml.txt
 
-## eclipse
-/eclipse
-/.settings
-/.metadata
-/.classpath
-/.project
-/bin
+## idea
+/.idea
+/DarkWorld.iml
