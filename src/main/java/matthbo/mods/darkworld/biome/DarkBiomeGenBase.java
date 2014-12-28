@@ -34,7 +34,7 @@ public class DarkBiomeGenBase extends BiomeGenBase{
     {
         this.genBiomeTerrainDarkWorld(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
     }
-	
+
 	public void genBiomeTerrainDarkWorld(World p_150560_1_, Random p_150560_2_, Block[] p_150560_3_, byte[] p_150560_4_, int p_150560_5_, int p_150560_6_, double p_150560_7_)
     {
         boolean flag = true;

@@ -1,17 +1,13 @@
 package matthbo.mods.darkworld.world.gen.layer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import matthbo.mods.darkworld.biome.DarkBiomeGenBase;
-import matthbo.mods.darkworld.world.WorldChunkManagerDarkWorld;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import static matthbo.mods.darkworld.init.ModBiomes.*;
 
 public class GenLayerDarkWorldBiomes extends GenLayer {
 
-	protected DarkBiomeGenBase[] allowedBiomes = {darkDesert, darkPlains};
+	protected DarkBiomeGenBase[] allowedBiomes = {darkDesert, darkPlains, darkOcean};
 	
 	public GenLayerDarkWorldBiomes(long seed) {
 		super(seed);
