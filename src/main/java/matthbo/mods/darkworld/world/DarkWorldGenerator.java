@@ -19,17 +19,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class DarkWorldGenerator implements IWorldGenerator {
 
 	public final int DWID = ModDimensions.dimensionIDDarkWorld;
-	
-	public Random randomGenerator;
-	
-	public WorldGenerator cactusGen;
-	
-	public int cactiPerChunk;
-	
-	public DarkWorldGenerator() {
-		LogHelper.info("DWGen LOADING!!!!! <--------------");
-		//cactusGen = new DarkWorldGenCactus();
-	}
+
+	public DarkWorldGenerator() {}
 	
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {

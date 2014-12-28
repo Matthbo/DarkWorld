@@ -2,6 +2,8 @@ package matthbo.mods.darkworld.handler;
 
 import java.util.Random;
 
+import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTallGrass;
 import org.apache.logging.log4j.core.net.Priority;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
@@ -24,7 +26,8 @@ public class BiomeDecoratorHandler {
 	public BiomeDecorator theBiomeDecorator;
 	
 	public int cactiPerChunk = 10;
-	
+	public int grassPerChunk = 1;
+
 	public WorldGenerator cactusGen;// = new DarkWorldGenCactus();
 	
 	public Random randomGenerator;
@@ -37,10 +40,13 @@ public class BiomeDecoratorHandler {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onWorldDecoration(DecorateBiomeEvent.Decorate event){
 		BiomeGenBase biome = event.world.getWorldChunkManager().getBiomeGenAt(event.chunkX, event.chunkZ);
-		if((event.getResult() == Result.ALLOW || event.getResult() == Result.DEFAULT) && event.type == EventType.CACTUS && biome.isEqualTo(ModBiomes.darkDesert)){
-			//this.cactiPerChunk = theBiomeDecorator.cactiPerChunk;
-			LogHelper.info(this.cactiPerChunk);
-			genCacti(event.world, event.chunkX, event.chunkZ, randomGenerator);
+		if(event.getResult() == Result.ALLOW || event.getResult() == Result.DEFAULT){
+			if(event.type == EventType.GRASS){
+				genGrass(event.world, event.chunkX, event.chunkZ, randomGenerator);
+			}
+			else if(event.type == EventType.CACTUS && biome.isEqualTo(ModBiomes.darkDesert)) {
+				genCacti(event.world, event.chunkX, event.chunkZ, randomGenerator);
+			}
 		}
 	}
 	
@@ -52,6 +58,16 @@ public class BiomeDecoratorHandler {
             int i1 = nextInt(world.getHeightValue(k, l) * 2);
             this.cactusGen.generate(world, randomGenerator, k, i1, l);
         }
+	}
+
+	protected void genGrass(World world, int chunkX, int chunkZ, Random rand){
+		for (int j = 0; j < this.grassPerChunk; ++j)
+		{
+			int k = chunkX + rand.nextInt(16) + 8;
+			int l = chunkZ + rand.nextInt(16) + 8;
+			int i1 = nextInt(world.getHeightValue(k, l) * 2);
+			(new DarkWorldGenTallGrass(ModBlocks.darkTallGrass, 0)).generate(world, randomGenerator, k, i1, l);
+		}
 	}
 	
 	private int nextInt(int i) {

@@ -28,8 +28,8 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
     private IIcon icons_b;
     @SideOnly(Side.CLIENT)
     private IIcon icons_M;
-    @SideOnly(Side.CLIENT)
-    private IIcon icons_N;
+    //@SideOnly(Side.CLIENT)
+    //private IIcon icons_N;
 	
 	public BlockDarkGrass() {
 		super(Material.grass);
@@ -115,8 +115,13 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
         this.icons_M = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_snowed");
         //this.icons_N = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_side_overlay");
     }
-    
-    
+
+    @Override
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable){
+        Block plant = plantable.getPlant(world, x, y + 1, z);
+        if (plant == ModBlocks.darkTallGrass){return true;}
+        return false;
+    }
 
     /*@SideOnly(Side.CLIENT)
     public int getBlockColor()
@@ -189,7 +194,7 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
                 {
                     if (rand.nextInt(8) != 0)
                     {
-                        if (Blocks.tallgrass.canBlockStay(world, i1, j1, k1))
+                        if (Blocks.tallgrass.canBlockStay(world, i1, j1, k1))//TODO: something with darkTallGrass...
                         {
                             world.setBlock(i1, j1, k1, Blocks.tallgrass, 1, 3);
                         }

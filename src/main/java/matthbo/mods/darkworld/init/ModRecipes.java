@@ -18,6 +18,7 @@ public class ModRecipes {
 		GR.addRecipe(new ItemStack(ModBlocks.peculiarDustBlock), "ddd", "ddd", "ddd", 'd', new ItemStack(ModItems.peculiarDust));
 		GR.addRecipe(new ItemStack(ModItems.peculiarDustBar), "dd", 'd', new ItemStack(ModItems.peculiarDust));
 		GR.addRecipe(new ItemStack(ModItems.peculiarDustNSteel), "dn", 'd', new ItemStack(ModItems.hardPeculiarDust), 'n', new ItemStack(Items.flint));
+		GR.addRecipe(new ItemStack(Items.bread), "www", 'w', new ItemStack(ModItems.darkWheat));
 		
 		GR.addRecipe(new ItemStack(ModItems.peculiarPickaxe), "ddd", " s ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));
 		GR.addRecipe(new ItemStack(ModItems.peculiarSword), " d ", " d ", " s ", 'd', new ItemStack(ModItems.hardPeculiarDust), 's', new ItemStack(Items.stick));

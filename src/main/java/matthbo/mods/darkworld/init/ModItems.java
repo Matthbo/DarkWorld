@@ -1,5 +1,6 @@
 package matthbo.mods.darkworld.init;
 
+import matthbo.mods.darkworld.item.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -8,15 +9,6 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
-import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
-import matthbo.mods.darkworld.item.ItemBucketDarkWorld;
-import matthbo.mods.darkworld.item.ItemDarkWaterBucket;
-import matthbo.mods.darkworld.item.ItemDarkWorld;
-import matthbo.mods.darkworld.item.ItemHardPeculiarDust;
-import matthbo.mods.darkworld.item.ItemDarkLavaBucket;
-import matthbo.mods.darkworld.item.ItemPeculiarDust;
-import matthbo.mods.darkworld.item.ItemPeculiarDustBar;
-import matthbo.mods.darkworld.item.ItemPeculiarDustNSteel;
 import matthbo.mods.darkworld.item.armor.ItemArmorDarkWorld;
 import matthbo.mods.darkworld.item.armor.ItemPeculiarBoots;
 import matthbo.mods.darkworld.item.armor.ItemPeculiarChestplate;
@@ -42,6 +34,7 @@ public class ModItems {
 	public static final ItemDarkWorld peculiarDustBar = new ItemPeculiarDustBar();
 	public static final ItemDarkWorld hardPeculiarDust = new ItemHardPeculiarDust();
 	public static final ItemDarkWorld peculiarDustNSteel = new ItemPeculiarDustNSteel();
+	public static final ItemDarkWorld darkWheat = new ItemDarkWheat();
 	
 	//tools
 	public static final ItemToolDarkWorld peculiarPickaxe = new ItemPeculiarPickaxe();
@@ -62,6 +55,7 @@ public class ModItems {
 		GR.registerItem(peculiarDustBar, "peculiarDustBar");
 		GR.registerItem(hardPeculiarDust, "hardPeculiarDust");
 		GR.registerItem(peculiarDustNSteel, "peculiarDustNSteel");
+		GR.registerItem(darkWheat, "darkWheat");
 		
 		GR.registerItem(peculiarPickaxe, "peculiarPickaxe");
 		GR.registerItem(peculiarSword, "peculiarSword");

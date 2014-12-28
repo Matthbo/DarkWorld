@@ -1,22 +1,12 @@
 package matthbo.mods.darkworld.block;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
-import matthbo.mods.darkworld.init.ModBlocks;
-import matthbo.mods.darkworld.reference.EnumDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockDarkWorld extends Block{
 	
@@ -46,13 +36,6 @@ public class BlockDarkWorld extends Block{
     protected String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
-    }
-    
-    
-    
-    protected boolean canPlaceBlockOn(Block p_149854_1_)
-    {
-        return p_149854_1_ == ModBlocks.darkGrass || p_149854_1_ == ModBlocks.darkDirt;// || p_149854_1_ == Blocks.farmland;
     }
 
 }
