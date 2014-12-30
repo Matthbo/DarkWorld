@@ -7,7 +7,7 @@ import static matthbo.mods.darkworld.init.ModBiomes.*;
 
 public class GenLayerDarkWorldBiomes extends GenLayer {
 
-	protected DarkBiomeGenBase[] allowedBiomes = {darkDesert, darkPlains, darkOcean};
+	protected DarkBiomeGenBase[] allowedBiomes = {darkDesert, darkPlains, darkOcean, darkExtremeHills, darkForest, darkTaiga, darkSwampland};
 	
 	public GenLayerDarkWorldBiomes(long seed) {
 		super(seed);

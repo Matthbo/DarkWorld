@@ -15,9 +15,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class DarkBiomeGenBase extends BiomeGenBase{
-	
-	protected static int nextBiomeID;
-	
+
+
+    public static final DarkBiomeGenBase.Height height_MidHills = BiomeGenBase.height_MidHills;
+    public static final DarkBiomeGenBase.Height height_MidPlains = BiomeGenBase.height_MidPlains;
+
 	public DarkBiomeGenBase(int id) {
 		super(id);
 		

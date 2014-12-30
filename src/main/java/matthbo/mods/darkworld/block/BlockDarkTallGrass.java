@@ -38,9 +38,8 @@ public class BlockDarkTallGrass extends BlockBushDarkWorld implements IGrowable,
 
     //DOESN'T WORK!!
     public int quantityDropped(Random rand){
-        int i = rand.nextInt(2) - 1;
+        int i = rand.nextInt(3) - 2;
         if(i < 0) i = 0;
-        LogHelper.info("----------->>>>>>> " + i);
         return i;
     }
 
@@ -51,7 +50,6 @@ public class BlockDarkTallGrass extends BlockBushDarkWorld implements IGrowable,
     {
         int i = rand.nextInt(3) - 1;
         if(i < 0) i = 0;
-        LogHelper.info("----------->>>>>>> " + i);
         return i;
     }
 
