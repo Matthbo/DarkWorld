@@ -1,5 +1,6 @@
 package matthbo.mods.darkworld.biome;
 
+import matthbo.mods.darkworld.init.ModFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
@@ -65,9 +66,9 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
 
                 if (p_150573_3_[k1] == null || p_150573_3_[k1].getMaterial() != Material.air)
                 {
-                    if (j1 == 62 && p_150573_3_[k1] != Blocks.water)
+                    if (j1 == 62 && p_150573_3_[k1] != ModFluids.darkWaterBlock)
                     {
-                        p_150573_3_[k1] = Blocks.water;
+                        p_150573_3_[k1] = ModFluids.darkWaterBlock;
 
                         if (d1 < 0.12D)
                         {
