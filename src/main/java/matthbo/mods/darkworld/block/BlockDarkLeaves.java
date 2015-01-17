@@ -20,6 +20,9 @@ public class BlockDarkLeaves extends BlockLeavesDarkWorld {
         this.setBlockName("darkleaves");
     }
 
+    @Override
+    public boolean isOpaqueCube(){return false;} //TODO: fix normal <-> opaque textures and remove this line of code
+
     //TODO: let it drop a poisonous apple
     protected void func_150124_c(World p_150124_1_, int p_150124_2_, int p_150124_3_, int p_150124_4_, int p_150124_5_, int p_150124_6_)
     {

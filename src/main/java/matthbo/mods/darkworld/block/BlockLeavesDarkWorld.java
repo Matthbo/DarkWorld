@@ -49,6 +49,26 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 		return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
 	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBlockColor(){
+		//return 16777215;
+		return 16777215;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(int par1){
+		//return 16777215;
+		return 16777215;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess Block, int x, int y, int z){
+		return 16777215;
+	}
+
 	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
 	{
 		byte b0 = 1;
