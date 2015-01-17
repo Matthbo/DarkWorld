@@ -82,16 +82,9 @@ public class WorldProviderDarkWorld extends WorldProvider {
 	
 	public boolean canRespawnHere()
     {
-        return false;
+        return true;
     }
-	
-	/**
-	 * doesn't work either
-	 */
-	@SideOnly(Side.CLIENT)
-	public boolean renderStars() {
-		return true;
-	}
+
 	
 	@Override
 	public String getDimensionName() {
