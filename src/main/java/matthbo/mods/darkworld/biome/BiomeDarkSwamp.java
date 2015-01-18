@@ -1,6 +1,7 @@
 package matthbo.mods.darkworld.biome;
 
 import matthbo.mods.darkworld.init.ModFluids;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
@@ -38,10 +39,12 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
         //this.addFlower(Blocks.red_flower, 1, 10);
     }
 
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    //TODO: fix this
+    /*
+    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
         return this.worldGeneratorSwamp;
-    }
+    }*/
 
     //TODO: flower stuff
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)

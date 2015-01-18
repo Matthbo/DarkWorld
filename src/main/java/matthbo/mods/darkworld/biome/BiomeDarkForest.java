@@ -1,5 +1,6 @@
 package matthbo.mods.darkworld.biome;
 
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.MathHelper;
@@ -81,10 +82,11 @@ public class BiomeDarkForest extends DarkBiomeGenBase{
         }
     }
 
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    //TODO: fix this
+    /*public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(this.field_150632_aF == 3 && p_150567_1_.nextInt(3) > 0 ? field_150631_aE : (this.field_150632_aF != 2 && p_150567_1_.nextInt(5) != 0 ? this.worldGeneratorTrees : field_150630_aD));
-    }
+        return (DarkWorldGenAbstractTree)(this.field_150632_aF == 3 && p_150567_1_.nextInt(3) > 0 ? field_150631_aE : (this.field_150632_aF != 2 && p_150567_1_.nextInt(5) != 0 ? this.worldGeneratorTrees : field_150630_aD));
+    }*/
 
     //TODO: check what this is
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)

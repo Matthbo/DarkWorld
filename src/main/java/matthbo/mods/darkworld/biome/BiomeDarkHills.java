@@ -1,6 +1,7 @@
 package matthbo.mods.darkworld.biome;
 
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -36,10 +37,11 @@ public class BiomeDarkHills extends DarkBiomeGenBase {
         }
     }
 
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    //TODO: fix this
+    /*public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(p_150567_1_.nextInt(3) > 0 ? this.genTaiga2 : super.func_150567_a(p_150567_1_));
-    }
+        return (DarkWorldGenAbstractTree)(p_150567_1_.nextInt(3) > 0 ? this.genTaiga2 : super.func_150567_a(p_150567_1_));
+    }*/
 
     public void decorate(World world, Random rand, int par3, int par4)
     {

@@ -8,11 +8,15 @@ import matthbo.mods.darkworld.handler.BiomeDecoratorHandler;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.world.DarkWorldGenerator;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenBigTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class DarkBiomeGenBase extends BiomeGenBase{
 
@@ -20,11 +24,19 @@ public class DarkBiomeGenBase extends BiomeGenBase{
     public static final DarkBiomeGenBase.Height height_MidHills = BiomeGenBase.height_MidHills;
     public static final DarkBiomeGenBase.Height height_MidPlains = BiomeGenBase.height_MidPlains;
 
+    protected DarkWorldGenTrees darkWorldGenTrees;
+    protected DarkWorldGenBigTree darkWorldGenBigTree;
+
+    public static DarkBiomeGenBase darkBiomeGenBase;
+
 	public DarkBiomeGenBase(int id) {
 		super(id);
 		
 		this.topBlock = ModBlocks.darkGrass;
 		this.fillerBlock = ModBlocks.darkDirt;
+
+        this.darkWorldGenTrees = new DarkWorldGenTrees(false);
+        this.darkWorldGenBigTree = new DarkWorldGenBigTree(false);
 	}
 	
 	@Override
@@ -35,6 +47,11 @@ public class DarkBiomeGenBase extends BiomeGenBase{
 	public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
         this.genBiomeTerrainDarkWorld(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+    }
+
+    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    {
+        return (DarkWorldGenAbstractTree)(p_150567_1_.nextInt(10) == 0 ? this.darkWorldGenBigTree : this.darkWorldGenTrees);
     }
 
 	public void genBiomeTerrainDarkWorld(World p_150560_1_, Random p_150560_2_, Block[] p_150560_3_, byte[] p_150560_4_, int p_150560_5_, int p_150560_6_, double p_150560_7_)

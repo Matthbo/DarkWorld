@@ -1,6 +1,7 @@
 package matthbo.mods.darkworld.biome;/*parse("File Header.java")*/
 
 import matthbo.mods.darkworld.init.ModBlocks;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
@@ -36,10 +37,11 @@ public class BiomeDarkTaiga extends DarkBiomeGenBase{
         }
     }
 
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    //TODO: fix this
+    /*public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD));
-    }
+        return (DarkWorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD));
+    }*/
 
     //TODO: something with flowers
     public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)

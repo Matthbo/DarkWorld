@@ -119,7 +119,7 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
     @Override
     public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable){
         Block plant = plantable.getPlant(world, x, y + 1, z);
-        if (plant == ModBlocks.darkTallGrass){return true;}
+        if (plant == ModBlocks.darkTallGrass || plant == ModBlocks.darkSapling){return true;}
         return false;
     }
 

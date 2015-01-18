@@ -37,7 +37,7 @@ public class ModBlocks {
 	public static final Block darkStone = new BlockDarkStone();
 	public static final Block darkCobbleStone = new BlockDarkCobbleStone();
 	public static final Block darkPlanks = new BlockDarkPlanks();
-	//public static final BlockDarkWorld darkSapling = new BlockDarkSapling();
+	public static final BlockBushDarkWorld darkSapling = new BlockDarkSapling();
 	public static final Block darkSand = new BlockDarkSand();
 	public static final Block darkGravel = new BlockDarkGravel();
 	public static final BlockBushDarkWorld darkTallGrass = new BlockDarkTallGrass();
@@ -46,7 +46,7 @@ public class ModBlocks {
 	public static final Block darkCoalOre = new BlockDarkCoalOre();
 	public static final Block darkLog = new BlockDarkLog();
 	public static final Block darkLog2 = new BlockDarkLog2();
-	public static final BlockLeavesDarkWorld darkLeaves = new BlockDarkLeaves();//TODO: old/new logs?
+	public static final BlockLeavesDarkWorld darkLeaves = new BlockDarkLeaves();//TODO: old/new leaves? or just 1 kind of leave
 	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
 	public static final Block darkSponge = new BlockDarkSponge();
 	public static final Block darkSandStone = new BlockDarkSandStone();
@@ -77,6 +77,7 @@ public class ModBlocks {
 		GR.registerBlock(darkStone, "darkStone");
 		GR.registerBlock(darkCobbleStone, "darkCobbleStone");
 		GR.registerBlock(darkPlanks, ItemBlockDarkPlanks.class, "darkPlanks");
+		GR.registerBlock(darkSapling, "darkSapling");
 		GR.registerBlock(darkSand, ItemBlockDarkSand.class,"darkSand");
 		GR.registerBlock(darkGravel, "darkGravel");
 		GR.registerBlock(darkTallGrass, "darkTallGrass");
