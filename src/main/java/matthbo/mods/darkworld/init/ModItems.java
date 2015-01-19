@@ -4,7 +4,9 @@ import matthbo.mods.darkworld.item.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -35,6 +37,7 @@ public class ModItems {
 	public static final ItemDarkWorld hardPeculiarDust = new ItemHardPeculiarDust();
 	public static final ItemDarkWorld peculiarDustNSteel = new ItemPeculiarDustNSteel();
 	public static final ItemDarkWorld darkWheat = new ItemDarkWheat();
+	public static final Item darkApple = new ItemDarkFood(4, 0.3F, false).setPotionEffect(Potion.poison.id, 20, 0, 2F).setUnlocalizedName("darkapple");
 	
 	//tools
 	public static final ItemToolDarkWorld peculiarPickaxe = new ItemPeculiarPickaxe();
@@ -56,6 +59,7 @@ public class ModItems {
 		GR.registerItem(hardPeculiarDust, "hardPeculiarDust");
 		GR.registerItem(peculiarDustNSteel, "peculiarDustNSteel");
 		GR.registerItem(darkWheat, "darkWheat");
+		GR.registerItem(darkApple, "darkApple");
 		
 		GR.registerItem(peculiarPickaxe, "peculiarPickaxe");
 		GR.registerItem(peculiarSword, "peculiarSword");

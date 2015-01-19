@@ -6,6 +6,8 @@ import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLeavesBase;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -23,8 +25,7 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 
 	int[] field1;
 	@SideOnly(Side.CLIENT)
-	protected int graphics_level;
-	//protected IIcon[][] field_150129_M = new IIcon[2][];
+	protected IIcon[] field_150129_M = new IIcon[2];
 
 	public BlockLeavesDarkWorld(){
 		super();
@@ -69,12 +70,12 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 		return 16777215;
 	}
 
-	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+	public void breakBlock(World world, int x, int y, int z, Block block, int par6)
 	{
 		byte b0 = 1;
 		int i1 = b0 + 1;
 
-		if (p_149749_1_.checkChunksExist(p_149749_2_ - i1, p_149749_3_ - i1, p_149749_4_ - i1, p_149749_2_ + i1, p_149749_3_ + i1, p_149749_4_ + i1))
+		if (world.checkChunksExist(x - i1, y - i1, z - i1, x + i1, y + i1, z + i1))
 		{
 			for (int j1 = -b0; j1 <= b0; ++j1)
 			{
@@ -82,10 +83,10 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 				{
 					for (int l1 = -b0; l1 <= b0; ++l1)
 					{
-						Block block = p_149749_1_.getBlock(p_149749_2_ + j1, p_149749_3_ + k1, p_149749_4_ + l1);
-						if (block.isLeaves(p_149749_1_, p_149749_2_ + j1, p_149749_3_ + k1, p_149749_4_ + l1))
+						Block block1 = world.getBlock(x + j1, y + k1, z + l1);
+						if (block1.isLeaves(world, x + j1, y + k1, z + l1))
 						{
-							block.beginLeavesDecay(p_149749_1_, p_149749_2_ + j1, p_149749_3_ + k1, p_149749_4_ + l1);
+							block1.beginLeavesDecay(world, x + j1, y + k1, z + l1);
 						}
 					}
 				}
@@ -93,12 +94,12 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 		}
 	}
 
-	//TODO: check if this works
-	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+	//TODO: check if this works or wtf this actually is...
+	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		if (!p_149674_1_.isRemote)
+		if (!world.isRemote)
 		{
-			int l = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
+			int l = world.getBlockMetadata(x, y, z);
 
 			if ((l & 8) != 0 && (l & 4) == 0)
 			{
@@ -115,7 +116,7 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 
 				int l1;
 
-				if (p_149674_1_.checkChunksExist(p_149674_2_ - i1, p_149674_3_ - i1, p_149674_4_ - i1, p_149674_2_ + i1, p_149674_3_ + i1, p_149674_4_ + i1))
+				if (world.checkChunksExist(x - i1, y - i1, z - i1, x + i1, y + i1, z + i1))
 				{
 					int i2;
 					int j2;
@@ -126,11 +127,11 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 						{
 							for (j2 = -b0; j2 <= b0; ++j2)
 							{
-								Block block = p_149674_1_.getBlock(p_149674_2_ + l1, p_149674_3_ + i2, p_149674_4_ + j2);
+								Block block = world.getBlock(x + l1, y + i2, z + j2);
 
-								if (!block.canSustainLeaves(p_149674_1_, p_149674_2_ + l1, p_149674_3_ + i2, p_149674_4_ + j2))
+								if (!block.canSustainLeaves(world, x + l1, y + i2, z + j2))
 								{
-									if (block.isLeaves(p_149674_1_, p_149674_2_ + l1, p_149674_3_ + i2, p_149674_4_ + j2))
+									if (block.isLeaves(world, x + l1, y + i2, z + j2))
 									{
 										this.field1[(l1 + k1) * j1 + (i2 + k1) * b1 + j2 + k1] = -2;
 									}
@@ -197,54 +198,45 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 
 				if (l1 >= 0)
 				{
-					p_149674_1_.setBlockMetadataWithNotify(p_149674_2_, p_149674_3_, p_149674_4_, l & -9, 4);
+					world.setBlockMetadataWithNotify(x, y, z, l & -9, 4);
 				}
 				else
 				{
-					this.removeLeaves(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+					this.removeLeaves(world, x, y, z);
 				}
 			}
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
-		if (p_149734_1_.canLightningStrikeAt(p_149734_2_, p_149734_3_ + 1, p_149734_4_) && !World.doesBlockHaveSolidTopSurface(p_149734_1_, p_149734_2_, p_149734_3_ - 1, p_149734_4_) && p_149734_5_.nextInt(15) == 1)
+		if (world.canLightningStrikeAt(x, y + 1, z) && !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && rand.nextInt(15) == 1)
 		{
-			double d0 = (double)((float)p_149734_2_ + p_149734_5_.nextFloat());
-			double d1 = (double)p_149734_3_ - 0.05D;
-			double d2 = (double)((float)p_149734_4_ + p_149734_5_.nextFloat());
-			p_149734_1_.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			double d0 = (double)((float)x + rand.nextFloat());
+			double d1 = (double)y - 0.05D;
+			double d2 = (double)((float)z + rand.nextFloat());
+			world.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
 
-	private void removeLeaves(World p_150126_1_, int p_150126_2_, int p_150126_3_, int p_150126_4_)
+	private void removeLeaves(World world, int x, int y, int z)
 	{
-		this.dropBlockAsItem(p_150126_1_, p_150126_2_, p_150126_3_, p_150126_4_, p_150126_1_.getBlockMetadata(p_150126_2_, p_150126_3_, p_150126_4_), 0);
-		p_150126_1_.setBlockToAir(p_150126_2_, p_150126_3_, p_150126_4_);
+		this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+		world.setBlockToAir(x, y, z);
 	}
 
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
-	public int quantityDropped(Random p_149745_1_)
+	public int quantityDropped(Random rand)
 	{
-		return p_149745_1_.nextInt(20) == 0 ? 1 : 0;
+		return rand.nextInt(20) == 0 ? 1 : 0;
 	}
 
-	//TODO: custom sapling
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
 	{
 		return Item.getItemFromBlock(Blocks.sapling);
-	}
-
-	/**
-	 * Drops the block items with a specified chance of dropping the specified items
-	 */
-	public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
-	{
-		super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, 1.0f, p_149690_7_);
 	}
 
 	protected void func_150124_c(World p_150124_1_, int p_150124_2_, int p_150124_3_, int p_150124_4_, int p_150124_5_, int p_150124_6_) {}
@@ -255,22 +247,11 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 	}
 
 	/**
-	 * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
-	 * block and l is the block's subtype/damage.
-	 */
-	public void harvestBlock(World p_149636_1_, EntityPlayer p_149636_2_, int p_149636_3_, int p_149636_4_, int p_149636_5_, int p_149636_6_)
-	{
-		{
-			super.harvestBlock(p_149636_1_, p_149636_2_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_);
-		}
-	}
-
-	/**
 	 * Determines the damage on the item the block drops. Used in cloth and wood.
 	 */
-	public int damageDropped(int p_149692_1_)
+	public int damageDropped(int par1)
 	{
-		return p_149692_1_ & 3;
+		return par1 & 3;
 	}
 
 	/**
@@ -287,16 +268,6 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 	 */
 	@SideOnly(Side.CLIENT)
 	public abstract IIcon getIcon(int p_149691_1_, int p_149691_2_);
-
-	/**
-	 * Pass true to draw this block using fancy graphics, or false for fast graphics.
-	 */
-	@SideOnly(Side.CLIENT)
-	public void setGraphicsLevel(boolean p_150122_1_)
-	{
-		this.field_150121_P = p_150122_1_;
-		this.graphics_level = p_150122_1_ ? 0 : 1;
-	}
 
 	/**
 	 * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage

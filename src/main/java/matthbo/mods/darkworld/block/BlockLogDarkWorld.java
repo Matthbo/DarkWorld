@@ -45,9 +45,8 @@ public class BlockLogDarkWorld extends BlockRotatedPillar {
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
-	
-	//TODO do something with this later!
-	/*public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+
+	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
         byte b0 = 4;
         int i1 = b0 + 1;
@@ -69,7 +68,7 @@ public class BlockLogDarkWorld extends BlockRotatedPillar {
                 }
             }
         }
-    }*/
+    }
 	
 	@SideOnly(Side.CLIENT)
     protected IIcon getSideIcon(int par1)
@@ -82,13 +81,12 @@ public class BlockLogDarkWorld extends BlockRotatedPillar {
     {
         return this.TopIcons[par1 % this.TopIcons.length];
     }
-    
-    //TODO also something with this
-    /*@Override
+
+    @Override
     public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
     {
         return true;
-    }*/
+    }
     
     @Override
     public boolean isWood(IBlockAccess world, int x, int y, int z)

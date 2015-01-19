@@ -105,7 +105,8 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
     }
 
     public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable){
-        if(world.getBlock(x, y, z) == ModBlocks.darkGrass){
+        Block block = world.getBlock(x, y, z);
+        if(block == ModBlocks.darkGrass || block == ModBlocks.darkDirt){
             return true;
         }
         return false;
