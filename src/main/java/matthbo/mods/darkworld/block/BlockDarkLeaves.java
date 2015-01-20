@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModItems;
 import matthbo.mods.darkworld.reference.MetaNames;
-import matthbo.mods.darkworld.utility.LogHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
@@ -56,8 +55,7 @@ public class BlockDarkLeaves extends BlockLeavesDarkWorld {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int meta)
     {
-        boolean graphics = Minecraft.isFancyGraphicsEnabled();
-        return graphics ? field_150129_M[0] : field_150129_M[1];
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics? field_150129_M[0] : field_150129_M[1];
     }
 
     public String[] func_150125_e()

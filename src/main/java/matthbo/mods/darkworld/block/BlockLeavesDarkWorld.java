@@ -54,15 +54,14 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean isOpaqueCube(){/*return !Minecraft.isFancyGraphicsEnabled();*/ return false;}
+	public boolean isOpaqueCube(){return false;}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess block, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
 	{
 		Block block1 = block.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
-		return !Minecraft.isFancyGraphicsEnabled() && block1 == this ? false : shouldSideBeRenderedOriginal(block, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return !Minecraft.getMinecraft().gameSettings.fancyGraphics && block1 == this ? false : shouldSideBeRenderedOriginal(block, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@SideOnly(Side.CLIENT)
