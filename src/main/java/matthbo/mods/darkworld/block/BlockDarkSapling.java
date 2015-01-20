@@ -1,5 +1,7 @@
 package matthbo.mods.darkworld.block;
 
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenBigTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.init.Blocks;
@@ -46,11 +48,12 @@ public class BlockDarkSapling extends BlockBushDarkWorld implements IGrowable{
         }
     }
 
+    //TODO: make all tree gen stuff and edit this
     public void func_149878_d(World world, int x, int y, int z, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
         int l = world.getBlockMetadata(x, y, z) & 7;
-        Object object = rand.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true);
+        Object object = rand.nextInt(10) == 0 ? new DarkWorldGenBigTree(true) : new DarkWorldGenTrees(true);
         int i1 = 0;
         int j1 = 0;
         boolean flag = false;
@@ -107,7 +110,7 @@ public class BlockDarkSapling extends BlockBushDarkWorld implements IGrowable{
                 {
                     j1 = 0;
                     i1 = 0;
-                    object = new WorldGenTrees(true, 4 + rand.nextInt(7), 3, 3, false);
+                    object = new DarkWorldGenTrees(true, 4 + rand.nextInt(7), 3, 3, false);
                 }
 
                 break;
