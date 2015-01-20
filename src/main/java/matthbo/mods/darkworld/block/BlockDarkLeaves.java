@@ -22,13 +22,11 @@ public class BlockDarkLeaves extends BlockLeavesDarkWorld {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister){
         field_150129_M[0] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
         field_150129_M[1] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_opaque");
     }
-
-    @Override
-    public boolean isOpaqueCube(){return Minecraft.isFancyGraphicsEnabled() ? false : true;} //TODO: fix normal <-> opaque textures and remove this line of code
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {

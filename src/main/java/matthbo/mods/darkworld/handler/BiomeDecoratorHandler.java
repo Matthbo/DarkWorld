@@ -26,9 +26,6 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class BiomeDecoratorHandler {
-	public BiomeDecorator theBiomeDecorator;
-
-	public DarkBiomeGenBase darkBiomeGenBase;
 	
 	public int cactiPerChunk = 10;
 	public int grassPerChunk = 1;
@@ -46,7 +43,6 @@ public class BiomeDecoratorHandler {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onWorldDecoration(DecorateBiomeEvent.Decorate event){
 		BiomeGenBase biome = event.world.getWorldChunkManager().getBiomeGenAt(event.chunkX, event.chunkZ);
-		DarkBiomeGenBase darkBiomeGen = DarkBiomeGenBase.darkBiomeGenBase;
 		if(event.getResult() == Result.ALLOW || event.getResult() == Result.DEFAULT){
 			if(event.type == EventType.GRASS){
 				genGrass(event.world, event.chunkX, event.chunkZ, randomGenerator);

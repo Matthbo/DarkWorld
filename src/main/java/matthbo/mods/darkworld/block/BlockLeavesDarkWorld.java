@@ -8,8 +8,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +27,7 @@ import java.util.Random;
 public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShearable{
 
 	int[] field1;
-	@SideOnly(Side.CLIENT)
+	//@SideOnly(Side.CLIENT)
 	protected IIcon[] field_150129_M = new IIcon[2];
 
 	public BlockLeavesDarkWorld(){
@@ -48,6 +51,24 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 	protected String getUnwrappedUnlocalizedName(String unlocalizedName)
 	{
 		return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean isOpaqueCube(){/*return !Minecraft.isFancyGraphicsEnabled();*/ return false;}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockAccess block, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
+	{
+		Block block1 = block.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+		return !Minecraft.isFancyGraphicsEnabled() && block1 == this ? false : shouldSideBeRenderedOriginal(block, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRenderedOriginal(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
+	{
+		return p_149646_5_ == 0 && this.minY > 0.0D ? true : (p_149646_5_ == 1 && this.maxY < 1.0D ? true : (p_149646_5_ == 2 && this.minZ > 0.0D ? true : (p_149646_5_ == 3 && this.maxZ < 1.0D ? true : (p_149646_5_ == 4 && this.minX > 0.0D ? true : (p_149646_5_ == 5 && this.maxX < 1.0D ? true : !p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_).isOpaqueCube())))));
 	}
 
 	@Override
@@ -251,16 +272,8 @@ public abstract class BlockLeavesDarkWorld extends BlockLeaves implements IShear
 	 */
 	public int damageDropped(int par1)
 	{
-		return par1 & 3;
-	}
-
-	/**
-	 * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
-	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
-	 */
-	public boolean isOpaqueCube()
-	{
-		return !this.field_150121_P;
+		//return par1 & 3;
+		return 0;
 	}
 
 	/**
