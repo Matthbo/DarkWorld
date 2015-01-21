@@ -1,7 +1,5 @@
 package matthbo.mods.darkworld.reference;
 
-import net.minecraft.util.EnumChatFormatting;
-
 public class Refs {
 	
 	public static final String MOD_ID = "DarkWorld";

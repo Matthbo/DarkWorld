@@ -23,7 +23,7 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
         this.setHeight(height_PartiallySubmerged);
         this.setTemperatureRainfall(0.8F, 0.9F);
 
-        //this.theBiomeDecorator.treesPerChunk = 2;
+        this.theDecorationHandler.treesPerChunk = 2;
         //this.theBiomeDecorator.flowersPerChunk = 1;
         //this.theBiomeDecorator.deadBushPerChunk = 1;
         //this.theBiomeDecorator.mushroomsPerChunk = 8;
@@ -39,12 +39,10 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
         //this.addFlower(Blocks.red_flower, 1, 10);
     }
 
-    //TODO: fix this
-    /*
     public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return this.worldGeneratorSwamp;
-    }*/
+        return this.darkWorldGenSwamp;
+    }
 
     //TODO: flower stuff
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)

@@ -10,11 +10,13 @@ import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.world.DarkWorldGenerator;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenBigTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenSwamp;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
@@ -26,8 +28,9 @@ public class DarkBiomeGenBase extends BiomeGenBase{
 
     protected DarkWorldGenTrees darkWorldGenTrees;
     protected DarkWorldGenBigTree darkWorldGenBigTree;
+    protected DarkWorldGenSwamp darkWorldGenSwamp;
 
-    public static DarkBiomeGenBase darkBiomeGenBase;
+    public BiomeDecoratorHandler theDecorationHandler;
 
 	public DarkBiomeGenBase(int id) {
 		super(id);
@@ -35,8 +38,11 @@ public class DarkBiomeGenBase extends BiomeGenBase{
 		this.topBlock = ModBlocks.darkGrass;
 		this.fillerBlock = ModBlocks.darkDirt;
 
+        this.theDecorationHandler = new BiomeDecoratorHandler();
+
         this.darkWorldGenTrees = new DarkWorldGenTrees(false);
         this.darkWorldGenBigTree = new DarkWorldGenBigTree(false);
+        this.darkWorldGenSwamp = new DarkWorldGenSwamp();
 	}
 	
 	@Override

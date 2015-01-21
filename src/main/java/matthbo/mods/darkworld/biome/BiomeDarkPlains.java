@@ -23,7 +23,7 @@ public class BiomeDarkPlains extends DarkBiomeGenBase{
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 5, 2, 6));
         //this.topBlock = ModBlocks.darkGrass;
         //this.fillerBlock = ModBlocks.darkDirt;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.theDecorationHandler.treesPerChunk = -999;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.theBiomeDecorator.grassPerChunk = 10;
         this.flowers.clear();

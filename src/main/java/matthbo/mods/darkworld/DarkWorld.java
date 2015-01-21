@@ -36,7 +36,6 @@ public class DarkWorld {
 	
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
-	//TODO make a better chunkprovider
 	//TODO check for more broken shit
 	//I like trains and how the DW portal spits out particles in overworld but sucks them in in the DW
 	
@@ -59,9 +58,8 @@ public class DarkWorld {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent event){
-		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecoratorHandler());
-		
 		ModBiomes.init();
+		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecoratorHandler());
 		ModDimensions.init();
 		ModAchievements.init();
 		

@@ -21,7 +21,7 @@ public class BiomeDarkDesert extends DarkBiomeGenBase{
 		this.spawnableCreatureList.clear();
         this.topBlock = ModBlocks.darkSand;
         this.fillerBlock = ModBlocks.darkSand;
-        this.theBiomeDecorator.treesPerChunk = -999;
+        this.theDecorationHandler.treesPerChunk = -999;
         this.theBiomeDecorator.deadBushPerChunk = 2;
         this.theBiomeDecorator.reedsPerChunk = 50;
         //this.theBiomeDecorator.cactiPerChunk = 10; FIXED!

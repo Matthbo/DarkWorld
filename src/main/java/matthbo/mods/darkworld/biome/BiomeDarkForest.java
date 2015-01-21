@@ -1,6 +1,8 @@
 package matthbo.mods.darkworld.biome;
 
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenCanopyTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenForest;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.MathHelper;
@@ -17,21 +19,19 @@ import java.util.Random;
 
 public class BiomeDarkForest extends DarkBiomeGenBase{
 
-    //TODO: make trees spawn
-
     private int field_150632_aF;
-    protected static final WorldGenForest field_150629_aC = new WorldGenForest(false, true);
-    protected static final WorldGenForest field_150630_aD = new WorldGenForest(false, false);
-    protected static final WorldGenCanopyTree field_150631_aE = new WorldGenCanopyTree(false);
+    protected static final DarkWorldGenForest field_150629_aC = new DarkWorldGenForest(false, true);
+    protected static final DarkWorldGenForest field_150630_aD = new DarkWorldGenForest(false, false);
+    protected static final DarkWorldGenCanopyTree field_150631_aE = new DarkWorldGenCanopyTree(false);
 
     public BiomeDarkForest(int id, int par2) {
         super(id);
         this.field_150632_aF = par2;
-        //this.theBiomeDecorator.treesPerChunk = 10;
+        this.theDecorationHandler.treesPerChunk = 10;
         //this.theBiomeDecorator.grassPerChunk = 2;
 
         if(this.field_150632_aF == 1){
-            //this.theBiomeDecorator.treesPerChunk = 6;
+            this.theDecorationHandler.treesPerChunk = 6;
             //this.theBiomeDecorator.flowersPerChunk = 100;
             //this.theBiomeDecorator.grassPerChunk = 1;
         }
@@ -50,7 +50,7 @@ public class BiomeDarkForest extends DarkBiomeGenBase{
         }
 
         if(this.field_150632_aF == 3){
-            //this.theBiomeDecorator.treesPerChunk = -999;
+            this.theDecorationHandler.treesPerChunk = -999;
         }
 
         if(this.field_150632_aF == 1){
@@ -82,11 +82,10 @@ public class BiomeDarkForest extends DarkBiomeGenBase{
         }
     }
 
-    //TODO: fix this
-    /*public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (DarkWorldGenAbstractTree)(this.field_150632_aF == 3 && p_150567_1_.nextInt(3) > 0 ? field_150631_aE : (this.field_150632_aF != 2 && p_150567_1_.nextInt(5) != 0 ? this.worldGeneratorTrees : field_150630_aD));
-    }*/
+        return (DarkWorldGenAbstractTree)(this.field_150632_aF == 3 && p_150567_1_.nextInt(3) > 0 ? field_150631_aE : (this.field_150632_aF != 2 && p_150567_1_.nextInt(5) != 0 ? this.darkWorldGenTrees : field_150630_aD));
+    }
 
     //TODO: check what this is
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)

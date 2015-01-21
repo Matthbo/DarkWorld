@@ -2,6 +2,9 @@ package matthbo.mods.darkworld.biome;/*parse("File Header.java")*/
 
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenMegaPineTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTaiga1;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTaiga2;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
@@ -13,18 +16,18 @@ import java.util.Random;
 
 public class BiomeDarkTaiga extends DarkBiomeGenBase{
 
-    private static final WorldGenTaiga1 field_150639_aC = new WorldGenTaiga1();
-    private static final WorldGenTaiga2 field_150640_aD = new WorldGenTaiga2(false);
-    private static final WorldGenMegaPineTree field_150641_aE = new WorldGenMegaPineTree(false, false);
-    private static final WorldGenMegaPineTree field_150642_aF = new WorldGenMegaPineTree(false, true);
-    private static final WorldGenBlockBlob field_150643_aG = new WorldGenBlockBlob(Blocks.mossy_cobblestone, 0);
+    private static final DarkWorldGenTaiga1 field_150639_aC = new DarkWorldGenTaiga1();
+    private static final DarkWorldGenTaiga2 field_150640_aD = new DarkWorldGenTaiga2(false);
+    private static final DarkWorldGenMegaPineTree field_150641_aE = new DarkWorldGenMegaPineTree(false, false);
+    private static final DarkWorldGenMegaPineTree field_150642_aF = new DarkWorldGenMegaPineTree(false, true);
+    private static final WorldGenBlockBlob field_150643_aG = new WorldGenBlockBlob(Blocks.mossy_cobblestone, 0); //TODO: WTF... make DarkWorldGenBlockBlob if needed, wtf would ye....
     private int field_150644_aH;
 
     public BiomeDarkTaiga(int id, int par2) {
         super(id);
         this.field_150644_aH = par2;
         this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 8, 4, 4));
-        //this.theBiomeDecorator.treesPerChunk = 10;
+        this.theDecorationHandler.treesPerChunk = 10;
 
         if(par2 != 1 && par2 != 2){
             //this.theBiomeDecorator.grassPerChunk = 1;
@@ -37,11 +40,10 @@ public class BiomeDarkTaiga extends DarkBiomeGenBase{
         }
     }
 
-    //TODO: fix this
-    /*public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
         return (DarkWorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD));
-    }*/
+    }
 
     //TODO: something with flowers
     public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)

@@ -2,6 +2,7 @@ package matthbo.mods.darkworld.biome;
 
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
+import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTaiga2;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -16,7 +17,7 @@ import java.util.Random;
 public class BiomeDarkHills extends DarkBiomeGenBase {
 
     private WorldGenerator theWorldGenerator;
-    private WorldGenTaiga2 genTaiga2;
+    private DarkWorldGenTaiga2 genTaiga2;
     private int field_150635_aE;
     private int field_150636_aF;
     private int field_150637_aG;
@@ -25,23 +26,22 @@ public class BiomeDarkHills extends DarkBiomeGenBase {
     public BiomeDarkHills(int id, boolean par2) {
         super(id);
         this.theWorldGenerator = new WorldGenMinable(Blocks.monster_egg, 8);
-        this.genTaiga2 = new WorldGenTaiga2(false);
+        this.genTaiga2 = new DarkWorldGenTaiga2(false);
         this.field_150635_aE = 0;
         this.field_150636_aF = 1;
         this.field_150637_aG = 2;
         this.field_150638_aH = this.field_150635_aE;
 
         if(par2){
-            // set trees p chunk to 3
+            this.theDecorationHandler.treesPerChunk = 3;
             this.field_150638_aH = this.field_150636_aF;
         }
     }
 
-    //TODO: fix this
-    /*public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
         return (DarkWorldGenAbstractTree)(p_150567_1_.nextInt(3) > 0 ? this.genTaiga2 : super.func_150567_a(p_150567_1_));
-    }*/
+    }
 
     public void decorate(World world, Random rand, int par3, int par4)
     {
