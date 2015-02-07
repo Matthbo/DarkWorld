@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -14,11 +15,11 @@ public class FluidDarkLava extends FluidDarkWorld {
 
 	public FluidDarkLava(Fluid fluidName) {
 		super(fluidName, Material.lava);
-		this.setBlockName("darklava");
+		this.setUnlocalizedName("darklava");
 	}
 	
 	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity) {
 		if(entity instanceof EntityLivingBase){
 			EntityLivingBase living = (EntityLivingBase)entity;
 			

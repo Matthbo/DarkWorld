@@ -4,7 +4,7 @@ public class BlockTest extends BlockDarkWorld {
 	
 	public BlockTest(){
 		super();
-		this.setBlockName("test");
+		this.setUnlocalizedName("test");
 	}
 
 }

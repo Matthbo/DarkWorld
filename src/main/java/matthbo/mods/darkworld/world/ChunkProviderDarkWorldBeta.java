@@ -28,12 +28,12 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
@@ -51,40 +51,30 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-
+/*
 public class ChunkProviderDarkWorldBeta implements IChunkProvider{
 
-	 /** RNG. */
+
     private Random rand;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
     private NoiseGeneratorPerlin noiseGen4;
-    /** A NoiseGeneratorOctaves used in generating terrain */
     public NoiseGeneratorOctaves noiseGen5;
-    /** A NoiseGeneratorOctaves used in generating terrain */
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
-    /** Reference to the World object. */
     private World worldObj;
-    /** are map structures going to be generated (e.g. strongholds) */
     private final boolean mapFeaturesEnabled;
     private WorldType worldType;
     private final double[] double1;
     private final float[] parabolicField;
     private double[] stoneNoise = new double[256];
     private MapGenBase caveGenerator = new MapGenDarkWorldCaves();
-    /** Holds Stronghold Generator */
     //private MapGenStronghold strongholdGenerator = new MapGenStronghold();
-    /** Holds Village Generator */
     private MapGenVillage villageGenerator = new MapGenVillage();
-    /** Holds Mineshaft Generator */
     private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
     private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
-    /** Holds ravine generator */
     private MapGenBase ravineGenerator = new MapGenDarkWorldRavine();
-    /** The biomes that are used to generate the chunk */
     private BiomeGenBase[] biomesForGeneration;
     double[] double2;
     double[] double3;
@@ -92,14 +82,7 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
     double[] double5;
     int[][] field = new int[32][32];
 
-    {
-        caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, CAVE);
-        //strongholdGenerator = (MapGenStronghold) TerrainGen.getModdedMapGen(strongholdGenerator, STRONGHOLD);
-        villageGenerator = (MapGenVillage) TerrainGen.getModdedMapGen(villageGenerator, VILLAGE);
-        mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, MINESHAFT);
-        scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
-        ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);
-    }
+
 
     public ChunkProviderDarkWorldBeta(World p_i2006_1_, long p_i2006_2_, boolean p_i2006_4_)
     {
@@ -126,6 +109,15 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
             }
         }
 
+        {
+            caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, CAVE);
+            //strongholdGenerator = (MapGenStronghold) TerrainGen.getModdedMapGen(strongholdGenerator, STRONGHOLD);
+            villageGenerator = (MapGenVillage) TerrainGen.getModdedMapGen(villageGenerator, VILLAGE);
+            mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, MINESHAFT);
+            scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
+            ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);
+        }
+
         NoiseGenerator[] noiseGens = {noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6, mobSpawnerNoise};
         noiseGens = TerrainGen.getModdedNoiseGenerators(p_i2006_1_, this.rand, noiseGens);
         this.noiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
@@ -137,7 +129,7 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
         this.mobSpawnerNoise = (NoiseGeneratorOctaves)noiseGens[6];
     }
 
-    public void func_147424_a(int p_147424_1_, int p_147424_2_, Block[] p_147424_3_)
+    public void setBlocksInChunk(int p_147424_1_, int p_147424_2_, ChunkPrimer p_180518_3_)
     {
         byte b0 = 63;
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, p_147424_1_ * 4 - 2, p_147424_2_ * 4 - 2, 10, 10);
@@ -232,19 +224,11 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
             }
         }
     }
-
-    /**
-     * loads or generates the chunk at the chunk location specified
-     */
     public Chunk loadChunk(int p_73158_1_, int p_73158_2_)
     {
         return this.provideChunk(p_73158_1_, p_73158_2_);
     }
 
-    /**
-     * Will return back a chunk, if it doesn't exist and its not a MP client it will generates all the blocks for the
-     * specified chunk from the map seed and chunk seed
-     */
     public Chunk provideChunk(int p_73154_1_, int p_73154_2_)
     {
         this.rand.setSeed((long)p_73154_1_ * 341873128712L + (long)p_73154_2_ * 132897987541L);
@@ -397,18 +381,10 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
             }
         }
     }
-
-    /**
-     * Checks to see if a chunk exists at x, y
-     */
     public boolean chunkExists(int p_73149_1_, int p_73149_2_)
     {
         return true;
     }
-
-    /**
-     * Populates chunk with ores etc etc
-     */
     public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_)
     {
         BlockFalling.fallInstantly = true;
@@ -496,49 +472,28 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
 
         BlockFalling.fallInstantly = false;
     }
-
-    /**
-     * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
-     * Return true if all chunks have been saved.
-     */
     public boolean saveChunks(boolean p_73151_1_, IProgressUpdate p_73151_2_)
     {
         return true;
     }
 
-    /**
-     * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
-     * unimplemented.
-     */
     public void saveExtraData() {}
 
-    /**
-     * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
-     */
     public boolean unloadQueuedChunks()
     {
         return false;
     }
 
-    /**
-     * Returns if the IChunkProvider supports saving.
-     */
     public boolean canSave()
     {
         return true;
     }
 
-    /**
-     * Converts the instance data to a readable string.
-     */
     public String makeString()
     {
         return "RandomLevelSource";
     }
 
-    /**
-     * Returns a list of creatures of the specified type that can spawn at the given location.
-     */
     public List getPossibleCreatures(EnumCreatureType p_73155_1_, int p_73155_2_, int p_73155_3_, int p_73155_4_)
     {
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(p_73155_2_, p_73155_4_);
@@ -567,4 +522,4 @@ public class ChunkProviderDarkWorldBeta implements IChunkProvider{
         }
     }
 	
-}
+}*/

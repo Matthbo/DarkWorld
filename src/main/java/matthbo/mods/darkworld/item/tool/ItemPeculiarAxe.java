@@ -11,10 +11,10 @@ public class ItemPeculiarAxe extends ItemToolDarkWorld {
 		super(3.0F, ToolMaterial.STONE, ItemToolDarkWorld.axe);
 		this.setUnlocalizedName("peculiaraxe");
 	}
-	
-	public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
-    {
-        return p_150893_2_.getMaterial() != Material.wood && p_150893_2_.getMaterial() != Material.plants && p_150893_2_.getMaterial() != Material.vine ? super.func_150893_a(p_150893_1_, p_150893_2_) : this.efficiencyOnProperMaterial;
-    }
+
+	public float getStrVsBlock(ItemStack stack, Block block)
+	{
+		return block.getMaterial() != Material.wood && block.getMaterial() != Material.plants && block.getMaterial() != Material.vine ? super.getStrVsBlock(stack, block) : this.efficiencyOnProperMaterial;
+	}
 
 }

@@ -1,12 +1,11 @@
 package matthbo.mods.darkworld.world.gen.feature;
 
+import matthbo.mods.darkworld.block.BlockDarkPlanks;
 import matthbo.mods.darkworld.block.BlockDarkSapling;
 import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
@@ -17,41 +16,42 @@ public class DarkWorldGenTaiga2 extends DarkWorldGenAbstractTree {
         super(par1);
     }
 
-    public boolean generate(World world, Random rand, int x, int y, int z)
+    public boolean generate(World worldIn, Random rand, BlockPos pos)
     {
-        int l = rand.nextInt(4) + 6;
-        int i1 = 1 + rand.nextInt(2);
-        int j1 = l - i1;
-        int k1 = 2 + rand.nextInt(2);
+        int i = rand.nextInt(4) + 6;
+        int j = 1 + rand.nextInt(2);
+        int k = i - j;
+        int l = 2 + rand.nextInt(2);
         boolean flag = true;
 
-        if (y >= 1 && y + l + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256)
         {
-            int i2;
-            int l3;
+            int j1;
+            int i3;
 
-            for (int l1 = y; l1 <= y + 1 + l && flag; ++l1)
+            for (int i1 = pos.getY(); i1 <= pos.getY() + 1 + i && flag; ++i1)
             {
                 boolean flag1 = true;
 
-                if (l1 - y < i1)
+                if (i1 - pos.getY() < j)
                 {
-                    l3 = 0;
+                    i3 = 0;
                 }
                 else
                 {
-                    l3 = k1;
+                    i3 = l;
                 }
 
-                for (i2 = x - l3; i2 <= x + l3 && flag; ++i2)
+                for (j1 = pos.getX() - i3; j1 <= pos.getX() + i3 && flag; ++j1)
                 {
-                    for (int j2 = z - l3; j2 <= z + l3 && flag; ++j2)
+                    for (int k1 = pos.getZ() - i3; k1 <= pos.getZ() + i3 && flag; ++k1)
                     {
-                        if (l1 >= 0 && l1 < 256)
+                        if (i1 >= 0 && i1 < 256)
                         {
-                            Block block = world.getBlock(i2, l1, j2);
+                            BlockPos off = new BlockPos(j1, i1, k1);
+                            Block block = worldIn.getBlockState(off).getBlock();
 
-                            if (!block.isAir(world, i2, l1, j2) && !block.isLeaves(world, i2, l1, j2))
+                            if (!block.isAir(worldIn, off) && !block.isLeaves(worldIn, off))
                             {
                                 flag = false;
                             }
@@ -70,63 +70,70 @@ public class DarkWorldGenTaiga2 extends DarkWorldGenAbstractTree {
             }
             else
             {
-                Block block1 = world.getBlock(x, y - 1, z);
+                BlockPos down = pos.down();
+                Block block1 = worldIn.getBlockState(down).getBlock();
+                boolean isSoil = block1.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, (BlockDarkSapling)ModBlocks.darkSapling);
 
-                boolean isSoil = block1.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockDarkSapling) ModBlocks.darkSapling);
-                if (isSoil && y < 256 - l - 1)
+                if (isSoil && pos.getY() < 256 - i - 1)
                 {
-                    block1.onPlantGrow(world, x, y - 1, z, x, y, z);
-                    l3 = rand.nextInt(2);
-                    i2 = 1;
+                    block1.onPlantGrow(worldIn, down, pos);
+                    i3 = rand.nextInt(2);
+                    j1 = 1;
                     byte b0 = 0;
-                    int k2;
-                    int i4;
+                    int l1;
+                    int j3;
 
-                    for (i4 = 0; i4 <= j1; ++i4)
+                    for (j3 = 0; j3 <= k; ++j3)
                     {
-                        k2 = y + l - i4;
+                        l1 = pos.getY() + i - j3;
 
-                        for (int l2 = x - l3; l2 <= x + l3; ++l2)
+                        for (int i2 = pos.getX() - i3; i2 <= pos.getX() + i3; ++i2)
                         {
-                            int i3 = l2 - x;
+                            int j2 = i2 - pos.getX();
 
-                            for (int j3 = z - l3; j3 <= z + l3; ++j3)
+                            for (int k2 = pos.getZ() - i3; k2 <= pos.getZ() + i3; ++k2)
                             {
-                                int k3 = j3 - z;
+                                int l2 = k2 - pos.getZ();
 
-                                if ((Math.abs(i3) != l3 || Math.abs(k3) != l3 || l3 <= 0) && world.getBlock(l2, k2, j3).canBeReplacedByLeaves(world, l2, k2, j3))
+                                if (Math.abs(j2) != i3 || Math.abs(l2) != i3 || i3 <= 0)
                                 {
-                                    this.setBlockAndNotifyAdequately(world, l2, k2, j3, ModBlocks.darkLeaves, 1);
+                                    BlockPos blockpos1 = new BlockPos(i2, l1, k2);
+
+                                    if (worldIn.getBlockState(blockpos1).getBlock().canBeReplacedByLeaves(worldIn, blockpos1))
+                                    {
+                                        this.func_175905_a(worldIn, blockpos1, ModBlocks.darkLeaves, BlockDarkPlanks.EnumType.DARKSPRUCE.getMetadata());
+                                    }
                                 }
                             }
                         }
 
-                        if (l3 >= i2)
+                        if (i3 >= j1)
                         {
-                            l3 = b0;
+                            i3 = b0;
                             b0 = 1;
-                            ++i2;
+                            ++j1;
 
-                            if (i2 > k1)
+                            if (j1 > l)
                             {
-                                i2 = k1;
+                                j1 = l;
                             }
                         }
                         else
                         {
-                            ++l3;
+                            ++i3;
                         }
                     }
 
-                    i4 = rand.nextInt(3);
+                    j3 = rand.nextInt(3);
 
-                    for (k2 = 0; k2 < l - i4; ++k2)
+                    for (l1 = 0; l1 < i - j3; ++l1)
                     {
-                        Block block2 = world.getBlock(x, y + k2, z);
+                        BlockPos upN = pos.up(l1);
+                        Block block2 = worldIn.getBlockState(upN).getBlock();
 
-                        if (block2.isAir(world, x, y + k2, z) || block2.isLeaves(world, x, y + k2, z))
+                        if (block2.isAir(worldIn, upN) || block2.isLeaves(worldIn, upN))
                         {
-                            this.setBlockAndNotifyAdequately(world, x, y + k2, z, ModBlocks.darkLog, 1);
+                            this.func_175905_a(worldIn, pos.up(l1), ModBlocks.darkLog, BlockDarkPlanks.EnumType.DARKSPRUCE.getMetadata());
                         }
                     }
 

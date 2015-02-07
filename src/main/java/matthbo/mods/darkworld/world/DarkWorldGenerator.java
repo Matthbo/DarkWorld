@@ -2,19 +2,15 @@ package matthbo.mods.darkworld.world;
 
 import java.util.Random;
 
-import matthbo.mods.darkworld.block.BlockDarkWorld;
-import matthbo.mods.darkworld.handler.ConfigHandler;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModDimensions;
-import matthbo.mods.darkworld.utility.LogHelper;
-import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenCactus;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.pattern.BlockHelper;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class DarkWorldGenerator implements IWorldGenerator {
 
@@ -29,7 +25,7 @@ public class DarkWorldGenerator implements IWorldGenerator {
 		chunkX *= 16;
 		chunkZ *= 16;
 		
-		if(world.provider.dimensionId == DWID){
+		if(world.provider.getDimensionId() == DWID){
 			genStandardOre1(world, ModBlocks.darkDirt, 20, 32, chunkX, 0, 256, chunkZ, rand);
 			genStandardOre1(world, ModBlocks.darkGravel, 10, 32, chunkX, 0, 256, chunkZ, rand);
 			
@@ -52,7 +48,7 @@ public class DarkWorldGenerator implements IWorldGenerator {
             int y = rand.nextInt(chunkY - chunkYSpecial) + chunkYSpecial;
             int z = chunkZ + rand.nextInt(16);
            
-            (new WorldGenMinable(block, BPV, ModBlocks.darkStone)).generate(world, rand, x, y, z);
+            (new WorldGenMinable(block.getDefaultState(), BPV, BlockHelper.forBlock(ModBlocks.darkStone))).generate(world, rand, new BlockPos(x,y,z));
         }
     }
 	
@@ -64,7 +60,7 @@ public class DarkWorldGenerator implements IWorldGenerator {
             int y = rand.nextInt(chunkY) + rand.nextInt(chunkY) + (chunkYSpecial - chunkY);
             int z = chunkZ + rand.nextInt(16);
            
-            (new WorldGenMinable(block, BPV, ModBlocks.darkStone)).generate(world, rand, x, y, z);
+            (new WorldGenMinable(block.getDefaultState(), BPV, BlockHelper.forBlock(ModBlocks.darkStone))).generate(world, rand, new BlockPos(x,y,z));
         }
     }
 

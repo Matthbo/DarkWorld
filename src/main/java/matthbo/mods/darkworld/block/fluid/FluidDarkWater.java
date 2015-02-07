@@ -1,6 +1,5 @@
 package matthbo.mods.darkworld.block.fluid;
 
-import matthbo.mods.darkworld.init.ModFluids;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
@@ -15,10 +15,10 @@ public class FluidDarkWater extends FluidDarkWorld {
 
 	public FluidDarkWater(Fluid fluidName) {
 		super(fluidName, Material.water);
-		this.setBlockName("darkwater");
+		this.setUnlocalizedName("darkwater");
 	}
 	
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity){
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity){
 		
 		if(entity instanceof EntityLivingBase){
 			EntityLivingBase living = (EntityLivingBase)entity;

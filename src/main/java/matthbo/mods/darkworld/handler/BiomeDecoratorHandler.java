@@ -6,12 +6,13 @@ import matthbo.mods.darkworld.biome.DarkBiomeGenBase;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenAbstractTree;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTallGrass;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import org.apache.logging.log4j.core.net.Priority;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import matthbo.mods.darkworld.init.ModBiomes;
 import matthbo.mods.darkworld.reference.EnumDarkWorld;
 import matthbo.mods.darkworld.utility.LogHelper;
@@ -42,16 +43,16 @@ public class BiomeDecoratorHandler {
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onWorldDecoration(DecorateBiomeEvent.Decorate event){
-		BiomeGenBase biome = event.world.getWorldChunkManager().getBiomeGenAt(event.chunkX, event.chunkZ);
+		BiomeGenBase biome = event.world.getWorldChunkManager().func_180300_a(new BlockPos(event.pos.getX(), 0, event.pos.getZ()), ModBiomes.darkOcean);
 		if(event.getResult() == Result.ALLOW || event.getResult() == Result.DEFAULT){
 			if(event.type == EventType.GRASS){
-				genGrass(event.world, event.chunkX, event.chunkZ, randomGenerator);
+				genGrass(event.world, event.pos.getX(), event.pos.getZ(), randomGenerator);
 			}
 			else if(event.type == EventType.CACTUS && biome.isEqualTo(ModBiomes.darkDesert)) {
-				genCacti(event.world, event.chunkX, event.chunkZ, randomGenerator);
+				genCacti(event.world, event.pos.getX(), event.pos.getZ(), randomGenerator);
 			}
 			else if(event.type == EventType.TREE){
-				genTrees(event.world, event.chunkX, event.chunkZ, randomGenerator, biome);
+				genTrees(event.world, event.pos.getX(), event.pos.getZ(), randomGenerator, biome);
 			}
 		}
 	}
@@ -61,8 +62,9 @@ public class BiomeDecoratorHandler {
         {
             int k = chunkX + rand.nextInt(16) + 8;
             int l = chunkZ + rand.nextInt(16) + 8;
-            int i = nextInt(world.getHeightValue(k, l) * 2);
-            this.cactusGen.generate(world, randomGenerator, k, i, l);
+            int i = nextInt(world.getHorizon(new BlockPos(k, 0 ,l)).getY() * 2);
+            LogHelper.info(i);
+            this.cactusGen.generate(world, randomGenerator, new BlockPos(k, i, l));
         }
 	}
 
@@ -71,8 +73,8 @@ public class BiomeDecoratorHandler {
 		{
 			int k = chunkX + rand.nextInt(16) + 8;
 			int l = chunkZ + rand.nextInt(16) + 8;
-			int i = nextInt(world.getHeightValue(k, l) * 2);
-			(new DarkWorldGenTallGrass(ModBlocks.darkTallGrass, 0)).generate(world, randomGenerator, k, i, l);
+            int i = nextInt(world.getHorizon(new BlockPos(k, 0 ,l)).getY() * 2);
+			(new DarkWorldGenTallGrass()).generate(world, randomGenerator, new BlockPos(k, i, l));
 		}
 	}
 
@@ -80,12 +82,12 @@ public class BiomeDecoratorHandler {
 		for (int j = 0; j < this.treesPerChunk; ++j){
 			int k = chunkX + rand.nextInt(16) + 8;
 			int l = chunkZ + rand.nextInt(16) + 8;
-			int i = nextInt(world.getHeightValue(k, l) * 2);
-			WorldGenAbstractTree darkworldgenabstracttree = biome.func_150567_a(this.randomGenerator);
-			darkworldgenabstracttree.setScale(1.0D, 1.0D, 1.0D);
+            int i = nextInt(world.getHorizon(new BlockPos(k, 0 ,l)).getY() * 2);
+			WorldGenAbstractTree darkworldgenabstracttree = biome.genBigTreeChance(this.randomGenerator);
+			darkworldgenabstracttree.func_175904_e();
 
-			if(darkworldgenabstracttree.generate(world, this.randomGenerator, k, i, l)){
-				darkworldgenabstracttree.func_150524_b(world, this.randomGenerator, k, i, l);
+			if(darkworldgenabstracttree.generate(world, this.randomGenerator, new BlockPos(k, i, l))){
+				darkworldgenabstracttree.func_180711_a(world, this.randomGenerator, new BlockPos(k, i, l));
 			}
 		}
 	}

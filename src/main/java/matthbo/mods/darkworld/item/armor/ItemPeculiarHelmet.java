@@ -1,6 +1,5 @@
 package matthbo.mods.darkworld.item.armor;
 
-import net.minecraft.item.Item;
 
 public class ItemPeculiarHelmet extends ItemArmorDarkWorld {
 

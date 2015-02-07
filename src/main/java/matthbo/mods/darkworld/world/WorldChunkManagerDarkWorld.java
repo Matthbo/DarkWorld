@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.DarkWorld;
 import matthbo.mods.darkworld.biome.DarkBiomeGenBase;
 import matthbo.mods.darkworld.init.ModBiomes;
@@ -15,7 +16,6 @@ import static matthbo.mods.darkworld.init.ModBiomes.*;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeCache;
@@ -63,14 +63,6 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
     public List getBiomesToSpawnIn()
     {
         return this.darkWorldBiomesToSpawnIn;
-    }
-
-    /**
-     * Returns the BiomeGenBase related to the x, z position on the world.
-     */
-    public BiomeGenBase getBiomeGenAt(int p_76935_1_, int p_76935_2_)
-    {
-        return this.darkWorldBiomeCache.getBiomeGenAt(p_76935_1_, p_76935_2_);
     }
 
     /**
@@ -244,7 +236,7 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
         }
     }
 
-    public ChunkPosition findBiomePosition(int p_150795_1_, int p_150795_2_, int p_150795_3_, List p_150795_4_, Random p_150795_5_)
+    public BlockPos findBiomePosition(int p_150795_1_, int p_150795_2_, int p_150795_3_, List p_150795_4_, Random p_150795_5_)
     {
         IntCache.resetIntCache();
         int l = p_150795_1_ - p_150795_3_ >> 2;
@@ -254,7 +246,7 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
         int l1 = j1 - l + 1;
         int i2 = k1 - i1 + 1;
         int[] aint = this.genDarkWorldBiomes.getInts(l, i1, l1, i2);
-        ChunkPosition chunkposition = null;
+        BlockPos chunkposition = null;
         int j2 = 0;
 
         for (int k2 = 0; k2 < l1 * i2; ++k2)
@@ -265,7 +257,7 @@ public class WorldChunkManagerDarkWorld extends WorldChunkManager {
 
             if (p_150795_4_.contains(biomegenbase) && (chunkposition == null || p_150795_5_.nextInt(j2 + 1) == 0))
             {
-                chunkposition = new ChunkPosition(l2, 0, i3);
+                chunkposition = new BlockPos(l2, 0, i3);
                 ++j2;
             }
         }

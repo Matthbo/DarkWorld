@@ -1,26 +1,24 @@
 package matthbo.mods.darkworld.block;
 
-import java.util.Random;
+import java.util.Iterator;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockLogDarkWorld extends BlockRotatedPillar {
-	
-	@SideOnly(Side.CLIENT)
-	protected IIcon[] SideIcons;
-	@SideOnly(Side.CLIENT)
-	protected IIcon[] TopIcons;
-	
+
+    public static final PropertyEnum LOG_AXIS = PropertyEnum.create("axis", BlockLogDarkWorld.EnumAxis.class);
+
 	public BlockLogDarkWorld(){
 		super(Material.wood);
 		this.setHardness(2F);
@@ -34,64 +32,124 @@ public class BlockLogDarkWorld extends BlockRotatedPillar {
         return String.format("tile.%s%s", Refs.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        blockIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
-    }
-
     protected String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+	public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         byte b0 = 4;
-        int i1 = b0 + 1;
+        int i = b0 + 1;
 
-        if (p_149749_1_.checkChunksExist(p_149749_2_ - i1, p_149749_3_ - i1, p_149749_4_ - i1, p_149749_2_ + i1, p_149749_3_ + i1, p_149749_4_ + i1))
+        if (world.isAreaLoaded(pos.add(-i, -i, -i), pos.add(i, i, i)))
         {
-            for (int j1 = -b0; j1 <= b0; ++j1)
+            Iterator iterator = BlockPos.getAllInBox(pos.add(-b0, -b0, -b0), pos.add(b0, b0, b0)).iterator();
+
+            while (iterator.hasNext())
             {
-                for (int k1 = -b0; k1 <= b0; ++k1)
+                BlockPos blockpos1 = (BlockPos)iterator.next();
+                IBlockState iblockstate1 = world.getBlockState(blockpos1);
+
+                if (iblockstate1.getBlock().isLeaves(world, blockpos1))
                 {
-                    for (int l1 = -b0; l1 <= b0; ++l1)
-                    {
-                        Block block = p_149749_1_.getBlock(p_149749_2_ + j1, p_149749_3_ + k1, p_149749_4_ + l1);
-                        if (block.isLeaves(p_149749_1_, p_149749_2_ + j1, p_149749_3_ + k1, p_149749_4_ + l1))
-                        {
-                            block.beginLeavesDecay(p_149749_1_, p_149749_2_ + j1, p_149749_3_ + k1, p_149749_4_ + l1);
-                        }
-                    }
+                    iblockstate1.getBlock().beginLeavesDecay(world, blockpos1);
                 }
             }
         }
     }
-	
-	@SideOnly(Side.CLIENT)
-    protected IIcon getSideIcon(int par1)
-    {
-        return this.SideIcons[par1 % this.SideIcons.length];
-    }
 
-    @SideOnly(Side.CLIENT)
-    protected IIcon getTopIcon(int par1)
-    {
-        return this.TopIcons[par1 % this.TopIcons.length];
+    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
+        return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
     }
 
     @Override
-    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
+    public boolean canSustainLeaves(IBlockAccess world, BlockPos pos)
     {
         return true;
     }
     
     @Override
-    public boolean isWood(IBlockAccess world, int x, int y, int z)
+    public boolean isWood(IBlockAccess world, BlockPos pos)
     {
         return true;
+    }
+
+    public static enum EnumAxis implements IStringSerializable
+    {
+        X("x"),
+        Y("y"),
+        Z("z"),
+        NONE("none");
+        private final String name;
+
+        private static final String __OBFID = "CL_00002100";
+
+        private EnumAxis(String name)
+        {
+            this.name = name;
+        }
+
+        public String toString()
+        {
+            return this.name;
+        }
+
+        public static BlockLogDarkWorld.EnumAxis fromFacingAxis(EnumFacing.Axis axis)
+        {
+            switch (BlockLogDarkWorld.SwitchAxis.AXIS_LOOKUP[axis.ordinal()])
+            {
+                case 1:
+                    return X;
+                case 2:
+                    return Y;
+                case 3:
+                    return Z;
+                default:
+                    return NONE;
+            }
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+    }
+
+    static final class SwitchAxis
+    {
+        static final int[] AXIS_LOOKUP = new int[EnumFacing.Axis.values().length];
+        private static final String __OBFID = "CL_00002101";
+
+        static
+        {
+            try
+            {
+                AXIS_LOOKUP[EnumFacing.Axis.X.ordinal()] = 1;
+            }
+            catch (NoSuchFieldError var3)
+            {
+                ;
+            }
+
+            try
+            {
+                AXIS_LOOKUP[EnumFacing.Axis.Y.ordinal()] = 2;
+            }
+            catch (NoSuchFieldError var2)
+            {
+                ;
+            }
+
+            try
+            {
+                AXIS_LOOKUP[EnumFacing.Axis.Z.ordinal()] = 3;
+            }
+            catch (NoSuchFieldError var1)
+            {
+                ;
+            }
+        }
     }
 	
 }

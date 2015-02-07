@@ -1,16 +1,13 @@
 package matthbo.mods.darkworld.init;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import matthbo.mods.darkworld.block.fluid.FluidDarkLava;
 import matthbo.mods.darkworld.block.fluid.FluidDarkWater;
 import matthbo.mods.darkworld.block.fluid.FluidDarkWorld;
 import matthbo.mods.darkworld.handler.BucketHandler;
-import matthbo.mods.darkworld.handler.EventHandler;
 import matthbo.mods.darkworld.item.ItemBucketDarkWorld;
 import matthbo.mods.darkworld.item.ItemDarkLavaBucket;
 import matthbo.mods.darkworld.item.ItemDarkWaterBucket;
-import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;

@@ -4,7 +4,7 @@ import matthbo.mods.darkworld.reference.Refs;
 
 import org.apache.logging.log4j.Level;
 
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class LogHelper {
 	

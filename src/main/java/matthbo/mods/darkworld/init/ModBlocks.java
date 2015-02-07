@@ -2,21 +2,10 @@ package matthbo.mods.darkworld.init;
 
 import matthbo.mods.darkworld.block.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFire;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
-import matthbo.mods.darkworld.DarkWorld;
-import matthbo.mods.darkworld.block.fluid.FluidDarkLava;
-import matthbo.mods.darkworld.block.fluid.FluidDarkWater;
-import matthbo.mods.darkworld.block.fluid.FluidDarkWorld;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
-import matthbo.mods.darkworld.item.ItemBlockDarkLog;
-import matthbo.mods.darkworld.item.ItemBlockDarkLog2;
-import matthbo.mods.darkworld.item.ItemBlockDarkPlanks;
-import matthbo.mods.darkworld.item.ItemBlockDarkSand;
-import matthbo.mods.darkworld.item.ItemBlockDarkSandStone;
 import matthbo.mods.darkworld.reference.Refs;
-import matthbo.mods.darkworld.utility.LogHelper;
 
 @ObjectHolder(Refs.MOD_ID)
 public class ModBlocks {
@@ -47,7 +36,6 @@ public class ModBlocks {
 	public static final Block darkLog = new BlockDarkLog();
 	public static final Block darkLog2 = new BlockDarkLog2();
 	public static final BlockLeavesDarkWorld darkLeaves = new BlockDarkLeaves();//TODO: old/new leaves? or just 1 kind of leave
-	//public static final BlockDarkLeaves darkLeaves2 = new BlockDarkLeaves2();
 	public static final Block darkSponge = new BlockDarkSponge();
 	public static final Block darkSandStone = new BlockDarkSandStone();
 	public static final Block darkLapisOre = new BlockDarkLapisOre();
@@ -57,7 +45,7 @@ public class ModBlocks {
 	public static final Block darkDiamondOre = new BlockDarkDiamondOre();
 	public static final Block darkRedstoneOre = new BlockDarkRedstoneOre(false);
 	public static final Block darkLitRedstoneOre = new BlockDarkRedstoneOre(true);
-	public static final BlockDarkWorld darkCactus = new BlockDarkCactus();
+	public static final BlockDarkCactus darkCactus = new BlockDarkCactus();
 	public static final Block darkEmeraldOre = new BlockDarkEmeraldOre();
 	public static final Block darkFire = new BlockDarkFire();
 	
@@ -65,40 +53,40 @@ public class ModBlocks {
 	public static void init(){
 		darkRedstoneOre.setCreativeTab(CreativeTabDarkWorld.DARKWORLD_TAB);
 		darkLitRedstoneOre.setLightLevel(0.625F);
-		
-		GR.registerBlock(peculiarStone, "peculiarStone");
-		GR.registerBlock(peculiarCobbleStone, "peculiarCobbleStone");
-		GR.registerBlock(peculiarDustBlock, "peculiarDustBlock");
-		GR.registerBlock(compressedPeculiarDust, "compressedPeculiarDust");
-		GR.registerBlock(darkworldPortal, "darkworldPortal");
-		
-		GR.registerBlock(darkGrass, "darkGrass");
-		GR.registerBlock(darkDirt, "darkDirt");
-		GR.registerBlock(darkStone, "darkStone");
-		GR.registerBlock(darkCobbleStone, "darkCobbleStone");
-		GR.registerBlock(darkPlanks, ItemBlockDarkPlanks.class, "darkPlanks");
-		GR.registerBlock(darkSapling, "darkSapling");
-		GR.registerBlock(darkSand, ItemBlockDarkSand.class,"darkSand");
-		GR.registerBlock(darkGravel, "darkGravel");
-		GR.registerBlock(darkTallGrass, "darkTallGrass");
-		GR.registerBlock(darkGoldOre, "darkGoldOre");
-		GR.registerBlock(darkIronOre, "darkIronOre");
-		GR.registerBlock(darkCoalOre, "darkCoalOre");
-		GR.registerBlock(darkLog, ItemBlockDarkLog.class,"darkLog");
-		GR.registerBlock(darkLog2, ItemBlockDarkLog2.class,"darkLog2");
-		GR.registerBlock(darkLeaves, "darkLeaves");
-		GR.registerBlock(darkSponge, "darkSponge");
-		GR.registerBlock(darkSandStone, ItemBlockDarkSandStone.class, "darkSandStone");
-		GR.registerBlock(darkLapisOre, "darkLapisOre");
-		GR.registerBlock(darkBrick, "darkBrick");
-		GR.registerBlock(darkMossyCobble, "darkMossyCobble");
-		GR.registerBlock(darkObsidian, "darkObsidian");
-		GR.registerBlock(darkDiamondOre, "darkDiamondOre");
-		GR.registerBlock(darkRedstoneOre, "darkRedstoneOre");
-		GR.registerBlock(darkLitRedstoneOre, "darkLitRedstoneOre");
-		GR.registerBlock(darkCactus, "darkCactus");
-		GR.registerBlock(darkEmeraldOre, "darkEmeraldOre");
-		GR.registerBlock(darkFire, "darkFire");
+
+        GameRegistry.registerBlock(peculiarStone, "peculiarStone");
+        GameRegistry.registerBlock(peculiarCobbleStone, "peculiarCobbleStone");
+        GameRegistry.registerBlock(peculiarDustBlock, "peculiarDustBlock");
+        GameRegistry.registerBlock(compressedPeculiarDust, "compressedPeculiarDust");
+        GameRegistry.registerBlock(darkworldPortal, "darkworldPortal");
+
+        GameRegistry.registerBlock(darkGrass, "darkGrass");
+        GameRegistry.registerBlock(darkDirt, "darkDirt");
+        GameRegistry.registerBlock(darkStone, "darkStone");
+        GameRegistry.registerBlock(darkCobbleStone, "darkCobbleStone");
+        GameRegistry.registerBlock(darkPlanks, "darkPlanks");
+        GameRegistry.registerBlock(darkSapling, "darkSapling");
+        GameRegistry.registerBlock(darkSand, "darkSand");
+        GameRegistry.registerBlock(darkGravel, "darkGravel");
+        GameRegistry.registerBlock(darkTallGrass, "darkTallGrass");
+        GameRegistry.registerBlock(darkGoldOre, "darkGoldOre");
+        GameRegistry.registerBlock(darkIronOre, "darkIronOre");
+        GameRegistry.registerBlock(darkCoalOre, "darkCoalOre");
+        GameRegistry.registerBlock(darkLog, "darkLog");
+        GameRegistry.registerBlock(darkLog2, "darkLog2");
+        GameRegistry.registerBlock(darkLeaves, "darkLeaves");
+        GameRegistry.registerBlock(darkSponge, "darkSponge");
+        GameRegistry.registerBlock(darkSandStone, "darkSandStone");
+        GameRegistry.registerBlock(darkLapisOre, "darkLapisOre");
+        GameRegistry.registerBlock(darkBrick, "darkBrick");
+        GameRegistry.registerBlock(darkMossyCobble, "darkMossyCobble");
+        GameRegistry.registerBlock(darkObsidian, "darkObsidian");
+        GameRegistry.registerBlock(darkDiamondOre, "darkDiamondOre");
+        GameRegistry.registerBlock(darkRedstoneOre, "darkRedstoneOre");
+        GameRegistry.registerBlock(darkLitRedstoneOre, "darkLitRedstoneOre");
+        GameRegistry.registerBlock(darkCactus, "darkCactus");
+        GameRegistry.registerBlock(darkEmeraldOre, "darkEmeraldOre");
+        GameRegistry.registerBlock(darkFire, "darkFire");
 	}
 
 }

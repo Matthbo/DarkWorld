@@ -3,7 +3,6 @@ package matthbo.mods.darkworld.world;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModFluids;
 import matthbo.mods.darkworld.init.ModItems;
@@ -13,7 +12,6 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -34,7 +32,7 @@ import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-
+/*
 public class ChunkProviderDarkWorldAlpha implements IChunkProvider {
 	
 	private Random rand;
@@ -121,14 +119,14 @@ public class ChunkProviderDarkWorldAlpha implements IChunkProvider {
 		this.generateTerrain(i, j, byteArray);
 		this.biomesForGen = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(biomesForGen, i * 16, j * 16, 16, 16);
 		this.replaceBlocksforBiome(i, j, byteArray, this.biomesForGen);
-		this.caveGen.func_151539_a(this, worldObj, i, j, byteArray);
-		this.ravineGen.func_151539_a(this, worldObj, i, j, byteArray);
+		//this.caveGen.func_151539_a(this, worldObj, i, j, byteArray);
+		//this.ravineGen.func_151539_a(this, worldObj, i, j, byteArray);
 		
 		if(this.mapFeaturesEnabled){
-			this.mineshaftGen.func_151539_a(this, worldObj, i, j, byteArray);
-			this.villageGen.func_151539_a(this, worldObj, i, j, byteArray);
-			this.strongholdGen.func_151539_a(this, worldObj, i, j, byteArray);
-			this.scatterFeatureGen.func_151539_a(this, worldObj, i, j, byteArray);
+			//this.mineshaftGen.func_151539_a(this, worldObj, i, j, byteArray);
+			//this.villageGen.func_151539_a(this, worldObj, i, j, byteArray);
+			//this.strongholdGen.func_151539_a(this, worldObj, i, j, byteArray);
+			//this.scatterFeatureGen.func_151539_a(this, worldObj, i, j, byteArray);
 		}
 		
 		Chunk chunk = new Chunk(this.worldObj, byteArray, i, j);
@@ -541,4 +539,4 @@ public class ChunkProviderDarkWorldAlpha implements IChunkProvider {
 	@Override
 	public void saveExtraData() {}
 
-}
+}*/

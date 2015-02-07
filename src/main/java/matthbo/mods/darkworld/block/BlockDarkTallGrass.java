@@ -2,12 +2,16 @@ package matthbo.mods.darkworld.block;
 
 import matthbo.mods.darkworld.init.ModItems;
 import matthbo.mods.darkworld.utility.LogHelper;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -19,19 +23,24 @@ public class BlockDarkTallGrass extends BlockBushDarkWorld implements IGrowable,
 
     public BlockDarkTallGrass(){
         super(Material.vine);
-        this.setBlockName("darktallgrass");
+        this.setUnlocalizedName("darktallgrass");
         this.setStepSound(soundTypeGrass);
 
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
     }
 
-    public boolean canBlockStay(World world, int x, int y, int z)
+    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return super.canBlockStay(world, x, y, z);
+        return false;
     }
 
-    public Item getItemDropped(int par1, Random rand, int par3)
+    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    {
+        return super.canBlockStay(world, pos, state);
+    }
+
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return ModItems.darkWheat;
     }
@@ -57,37 +66,23 @@ public class BlockDarkTallGrass extends BlockBushDarkWorld implements IGrowable,
      * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
      * block and l is the block's subtype/damage.
      */
-    public void harvestBlock(World world, EntityPlayer player, int i, int j, int k, int l)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
     {
-        super.harvestBlock(world, player, i, j, k, l);
+        super.harvestBlock(world, player, pos, state, te);
     }
 
-    public boolean func_149851_a(World world, int x, int y, int z, boolean par5)
+    public int getDamageValue(World worldIn, BlockPos pos)
     {
-        int l = world.getBlockMetadata(x, y, z);
-        return l != 0;
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        return iblockstate.getBlock().getMetaFromState(iblockstate);
     }
 
-    public boolean func_149852_a(World world, Random rand, int x, int y, int z)
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
     {
         return true;
     }
 
-    public void func_149853_b(World world, Random rand, int x, int y, int z)
-    {
-        int l = world.getBlockMetadata(x, y, z);
-        byte b0 = 2;
-
-        if (l == 2)
-        {
-            b0 = 3;
-        }
-
-        if (Blocks.double_plant.canPlaceBlockAt(world, x, y, z))
-        {
-            Blocks.double_plant.func_149889_c(world, x, y, z, b0, 2);
-        }
-    }
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {}
 
     /*@Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune)
@@ -99,17 +94,13 @@ public class BlockDarkTallGrass extends BlockBushDarkWorld implements IGrowable,
         return ret;
     }*/
 
-    @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
-    {
-        return true;
-    }
+    @Override public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos){ return true; }
 
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z)));
+        ret.add(new ItemStack(this, 1, 0));
         return ret;
     }
 }

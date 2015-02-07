@@ -2,7 +2,7 @@ package matthbo.mods.darkworld.utility;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
+/*
 public class NBTHelper {
 
 	 public static boolean hasTag(ItemStack itemStack, String keyName)
@@ -17,13 +17,6 @@ public class NBTHelper {
 	            itemStack.stackTagCompound.removeTag(keyName);
 	        }
 	    }
-
-	    /**
-	     * Initializes the NBT Tag Compound for the given ItemStack if it is null
-	     *
-	     * @param itemStack
-	     *         The ItemStack for which its NBT Tag Compound is being checked for initialization
-	     */
 	    private static void initNBTTagCompound(ItemStack itemStack)
 	    {
 	        if (itemStack.stackTagCompound == null)
@@ -192,4 +185,4 @@ public class NBTHelper {
 	        itemStack.stackTagCompound.setDouble(keyName, keyValue);
 	    }
 	
-}
+}*/

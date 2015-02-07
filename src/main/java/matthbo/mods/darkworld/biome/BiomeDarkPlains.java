@@ -1,14 +1,7 @@
 package matthbo.mods.darkworld.biome;
 
-import java.util.Random;
-
-import matthbo.mods.darkworld.init.ModBlocks;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenPlains;
 
 public class BiomeDarkPlains extends DarkBiomeGenBase{
 
@@ -26,15 +19,6 @@ public class BiomeDarkPlains extends DarkBiomeGenBase{
         this.theDecorationHandler.treesPerChunk = -999;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.theBiomeDecorator.grassPerChunk = 10;
-        this.flowers.clear();
-        this.addFlower(Blocks.red_flower,    4,  3);
-        this.addFlower(Blocks.red_flower,    5,  3);
-        this.addFlower(Blocks.red_flower,    6,  3);
-        this.addFlower(Blocks.red_flower,    7,  3);
-        this.addFlower(Blocks.red_flower,    0, 20);
-        this.addFlower(Blocks.red_flower,    3, 20);
-        this.addFlower(Blocks.red_flower,    8, 20);
-        this.addFlower(Blocks.yellow_flower, 0, 30);
     }
 
     /*public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)

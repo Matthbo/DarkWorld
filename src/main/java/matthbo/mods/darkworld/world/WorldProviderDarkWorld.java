@@ -1,21 +1,10 @@
 package matthbo.mods.darkworld.world;
 
-import java.awt.Color;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import matthbo.mods.darkworld.DarkWorld;
-import matthbo.mods.darkworld.init.ModBiomes;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.init.ModDimensions;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenEnd;
-import net.minecraft.world.biome.WorldChunkManager;
-import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderHell;
 import net.minecraftforge.common.DimensionManager;
 
 public class WorldProviderDarkWorld extends WorldProvider {
@@ -23,17 +12,17 @@ public class WorldProviderDarkWorld extends WorldProvider {
 	public void registerWorldChunkManager() {
 		//this.worldChunkMgr = new WorldChunkManagerHell(ModBiomes.darkPlains, 0.6F);
 		//this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.desert, 0.6F);
-		this.worldChunkMgr = new WorldChunkManagerDarkWorld(worldObj.getSeed(), terrainType);
+		this.worldChunkMgr = new WorldChunkManagerDarkWorld(worldObj);
 		this.dimensionId = ModDimensions.dimensionIDDarkWorld;
 		
-	};
-	
-	public IChunkProvider createChunkGenerator(){
-		return new ChunkProviderDarkWorldBeta(this.worldObj, this.worldObj.getSeed(), true);
-		//return new ChunkProviderHell(ModDimensions.dimensionIDDarkWorld, 0.6);
 	}
 	
-	public static WorldProvider getProviderForDimension(int id)
+	public IChunkProvider createChunkGenerator(){
+		return new ChunkProviderDarkWorldCharlie(this.worldObj, this.worldObj.getSeed(), true, this.worldObj.getWorldInfo().getGeneratorOptions());
+		//return new ChunkProviderHell(ModDimensions.dimensionIDDarkWorld, 0.6);
+	}
+
+    public static WorldProvider getProviderForDimension(int id)
 	{
 		return DimensionManager.createProviderFor(ModDimensions.dimensionIDDarkWorld);
 	}
@@ -90,5 +79,10 @@ public class WorldProviderDarkWorld extends WorldProvider {
 	public String getDimensionName() {
 		return "Dark World";
 	}
+
+    @Override
+    public String getInternalNameSuffix() {
+        return "_darkworld";
+    }
 
 }

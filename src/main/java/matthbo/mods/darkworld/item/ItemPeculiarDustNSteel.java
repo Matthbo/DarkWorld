@@ -3,6 +3,8 @@ package matthbo.mods.darkworld.item;
 import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class ItemPeculiarDustNSteel extends ItemDarkWorld {
@@ -13,26 +15,24 @@ public class ItemPeculiarDustNSteel extends ItemDarkWorld {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(35);
 	}
-	
-	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10){
-		switch(side){
-		case 0: y--;
-		case 1: y++;
-		case 2: z--;
-		case 3: z++;
-		case 4: x--;
-		case 5: x++;
-		}
-		
-		if(!player.canPlayerEdit(x, y, z, side, itemStack)){
+
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	{
+		pos = pos.offset(side);
+
+		if (!player.canPlayerEdit(pos, side, stack))
+		{
 			return false;
-		}else{
-			if(world.isAirBlock(x, y, z)){
-				world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "fire.ignite", 1F, itemRand.nextFloat()*0.4F + 0.8F);
-				world.setBlock(x, y, z, ModBlocks.darkFire);
+		}
+		else
+		{
+			if (world.isAirBlock(pos))
+			{
+				world.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+				world.setBlockState(pos, ModBlocks.darkFire.getDefaultState());
 			}
-			
-			itemStack.damageItem(1, player);
+
+			stack.damageItem(1, player);
 			return true;
 		}
 	}

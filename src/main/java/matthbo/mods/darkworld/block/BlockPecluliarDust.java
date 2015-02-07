@@ -7,7 +7,7 @@ public class BlockPecluliarDust extends BlockFallingDarkWorld {
 	
 	public BlockPecluliarDust(){
 		super(Material.sand);
-		this.setBlockName("peculiardustblock");
+		this.setUnlocalizedName("peculiardustblock");
 		this.setStepSound(soundTypeSand);
 		this.setHardness(0.5F);
 	}

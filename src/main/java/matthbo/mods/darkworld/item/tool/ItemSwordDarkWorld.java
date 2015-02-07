@@ -2,11 +2,11 @@ package matthbo.mods.darkworld.item.tool;
 
 import com.google.common.collect.Multimap;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -43,16 +43,6 @@ public class ItemSwordDarkWorld extends Item{
 		return String.format("item.%s%s", Refs.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
 	}
 	
-	public String getIconName(){
-		return String.format("item.%s%s", Refs.MOD_ID.toLowerCase() + ":" + "tools/", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister){
-		itemIcon = iconRegister.registerIcon(this.getIconName().substring(this.getIconName().indexOf(".") + 1));
-	}
-	
 	protected String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
@@ -62,7 +52,7 @@ public class ItemSwordDarkWorld extends Item{
 		return this.material.getDamageVsEntity();
 	}
 	
-	public float func_150893_a(ItemStack itemStack, Block block)
+	public float getStrVsBlock(ItemStack itemStack, Block block)
     {
         if (block == Blocks.web)
         {
@@ -84,12 +74,12 @@ public class ItemSwordDarkWorld extends Item{
         itemStack.damageItem(1, otherEntity);
         return true;
     }
-    
-    public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, int x, int y, int z, EntityLivingBase entity)
+
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, BlockPos pos, EntityLivingBase playerIn)
     {
-        if ((double)block.getBlockHardness(world, x, y, z) != 0.0D)
+        if ((double)blockIn.getBlockHardness(worldIn, pos) != 0.0D)
         {
-            itemStack.damageItem(2, entity);
+            stack.damageItem(2, playerIn);
         }
 
         return true;
@@ -103,7 +93,7 @@ public class ItemSwordDarkWorld extends Item{
     
     public EnumAction getItemUseAction(ItemStack p_77661_1_)
     {
-        return EnumAction.block;
+        return EnumAction.BLOCK;
     }
     
     public int getMaxItemUseDuration(ItemStack p_77626_1_)
@@ -117,7 +107,7 @@ public class ItemSwordDarkWorld extends Item{
         return itemStack;
     }
     
-    public boolean func_150897_b(Block block)
+    public boolean canHarvestBlock(Block block)
     {
         return block == Blocks.web;
     }
@@ -131,16 +121,18 @@ public class ItemSwordDarkWorld extends Item{
     {
         return this.material.toString();
     }
-    
-    public boolean getIsRepairable(ItemStack itemStack, ItemStack itemStack2)
+
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        return this.material.func_150995_f() == itemStack2.getItem() ? true : super.getIsRepairable(itemStack, itemStack2);
+        ItemStack mat = this.material.getRepairItemStack();
+        if (mat != null && net.minecraftforge.oredict.OreDictionary.itemMatches(mat, repair, false)) return true;
+        return super.getIsRepairable(toRepair, repair);
     }
     
     public Multimap getItemAttributeModifiers()
     {
         Multimap multimap = super.getItemAttributeModifiers();
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)this.damageOrSomething, 0));
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double)this.damageOrSomething, 0));
         return multimap;
     }
 

@@ -4,10 +4,11 @@ import matthbo.mods.darkworld.block.BlockDarkSapling;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModFluids;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
@@ -18,51 +19,52 @@ public class DarkWorldGenSwamp extends DarkWorldGenAbstractTree {
         super(false);
     }
 
-    public boolean generate(World world, Random rand, int x, int y, int z)
+    public boolean generate(World worldIn, Random rand, BlockPos pos)
     {
-        int l;
+        int i;
 
-        for (l = rand.nextInt(4) + 5; world.getBlock(x, y - 1, z).getMaterial() == Material.water; --y)
+        for (i = rand.nextInt(4) + 5; worldIn.getBlockState(pos.down()).getBlock().getMaterial() == Material.water; pos = pos.down())
         {
             ;
         }
 
         boolean flag = true;
 
-        if (y >= 1 && y + l + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256)
         {
-            int j1;
-            int k1;
+            int k;
+            int l;
 
-            for (int i1 = y; i1 <= y + 1 + l; ++i1)
+            for (int j = pos.getY(); j <= pos.getY() + 1 + i; ++j)
             {
                 byte b0 = 1;
 
-                if (i1 == y)
+                if (j == pos.getY())
                 {
                     b0 = 0;
                 }
 
-                if (i1 >= y + 1 + l - 2)
+                if (j >= pos.getY() + 1 + i - 2)
                 {
                     b0 = 3;
                 }
 
-                for (j1 = x - b0; j1 <= x + b0 && flag; ++j1)
+                for (k = pos.getX() - b0; k <= pos.getX() + b0 && flag; ++k)
                 {
-                    for (k1 = z - b0; k1 <= z + b0 && flag; ++k1)
+                    for (l = pos.getZ() - b0; l <= pos.getZ() + b0 && flag; ++l)
                     {
-                        if (i1 >= 0 && i1 < 256)
+                        if (j >= 0 && j < 256)
                         {
-                            Block block = world.getBlock(j1, i1, k1);
+                            BlockPos pos1 = new BlockPos(k, j, l);
+                            Block block = worldIn.getBlockState(pos1).getBlock();
 
-                            if (!(block.isAir(world, j1, i1, k1) || block.isLeaves(world, j1, i1, k1)))
+                            if (!block.isAir(worldIn, pos1) && !block.isLeaves(worldIn, pos1))
                             {
                                 if (block != ModFluids.darkWaterBlock)
                                 {
                                     flag = false;
                                 }
-                                else if (i1 > y)
+                                else if (j > pos1.getY())
                                 {
                                     flag = false;
                                 }
@@ -82,76 +84,91 @@ public class DarkWorldGenSwamp extends DarkWorldGenAbstractTree {
             }
             else
             {
-                Block block1 = world.getBlock(x, y - 1, z);
+                BlockPos down = pos.down();
+                Block block1 = worldIn.getBlockState(down).getBlock();
+                boolean isSoil = block1.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, ((BlockDarkSapling) ModBlocks.darkSapling));
 
-                boolean isSoil = block1.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockDarkSapling) ModBlocks.darkSapling);
-                if (isSoil && y < 256 - l - 1)
+                if (isSoil && pos.getY() < 256 - i - 1)
                 {
-                    block1.onPlantGrow(world, x, y - 1, z, x, y, z);
+                    block1.onPlantGrow(worldIn, down, pos);
+                    int i1;
+                    BlockPos blockpos1;
                     int l1;
-                    int k2;
-                    int l2;
+                    int i2;
 
-                    for (k2 = y - 3 + l; k2 <= y + l; ++k2)
+                    for (l1 = pos.getY() - 3 + i; l1 <= pos.getY() + i; ++l1)
                     {
-                        j1 = k2 - (y + l);
-                        k1 = 2 - j1 / 2;
+                        k = l1 - (pos.getY() + i);
+                        l = 2 - k / 2;
 
-                        for (l2 = x - k1; l2 <= x + k1; ++l2)
+                        for (i2 = pos.getX() - l; i2 <= pos.getX() + l; ++i2)
                         {
-                            l1 = l2 - x;
+                            i1 = i2 - pos.getX();
 
-                            for (int i2 = z - k1; i2 <= z + k1; ++i2)
+                            for (int j1 = pos.getZ() - l; j1 <= pos.getZ() + l; ++j1)
                             {
-                                int j2 = i2 - z;
+                                int k1 = j1 - pos.getZ();
 
-                                if ((Math.abs(l1) != k1 || Math.abs(j2) != k1 || rand.nextInt(2) != 0 && j1 != 0) && world.getBlock(l2, k2, i2).canBeReplacedByLeaves(world, l2, k2, i2))
+                                if (Math.abs(i1) != l || Math.abs(k1) != l || rand.nextInt(2) != 0 && k != 0)
                                 {
-                                    this.func_150515_a(world, l2, k2, i2, ModBlocks.darkLeaves);
+                                    blockpos1 = new BlockPos(i2, l1, j1);
+
+                                    if (worldIn.getBlockState(blockpos1).getBlock().canBeReplacedByLeaves(worldIn, blockpos1))
+                                    {
+                                        this.func_175906_a(worldIn, blockpos1, ModBlocks.darkLeaves);
+                                    }
                                 }
                             }
                         }
                     }
 
-                    for (k2 = 0; k2 < l; ++k2)
+                    for (l1 = 0; l1 < i; ++l1)
                     {
-                        Block block2 = world.getBlock(x, y + k2, z);
+                        BlockPos upN = pos.up(l1);
+                        Block block2 = worldIn.getBlockState(upN).getBlock();
 
-                        if (block2.isAir(world, x, y + k2, z) || block2.isLeaves(world, x, y + k2, z) || block2 == ModFluids.darkWaterBlock)
+                        if (block2.isAir(worldIn, upN) || block2.isLeaves(worldIn, upN) || block2 == ModFluids.darkWaterBlock)
                         {
-                            this.func_150515_a(world, x, y + k2, z, ModBlocks.darkLog);
+                            this.func_175906_a(worldIn, pos.up(l1), ModBlocks.darkLog);
                         }
                     }
 
-                    for (k2 = y - 3 + l; k2 <= y + l; ++k2)
+                    for (l1 = pos.getY() - 3 + i; l1 <= pos.getY() + i; ++l1)
                     {
-                        j1 = k2 - (y + l);
-                        k1 = 2 - j1 / 2;
+                        k = l1 - (pos.getY() + i);
+                        l = 2 - k / 2;
 
-                        for (l2 = x - k1; l2 <= x + k1; ++l2)
+                        for (i2 = pos.getX() - l; i2 <= pos.getX() + l; ++i2)
                         {
-                            for (l1 = z - k1; l1 <= z + k1; ++l1)
+                            for (i1 = pos.getZ() - l; i1 <= pos.getZ() + l; ++i1)
                             {
-                                if (world.getBlock(l2, k2, l1).isLeaves(world, l2, k2, l1))
+                                BlockPos blockpos4 = new BlockPos(i2, l1, i1);
+
+                                if (worldIn.getBlockState(blockpos4).getBlock().isLeaves(worldIn, blockpos4))
                                 {
-                                    if (rand.nextInt(4) == 0 && world.getBlock(l2 - 1, k2, l1).isAir(world, l2 - 1, k2, l1))
+                                    BlockPos blockpos5 = blockpos4.west();
+                                    blockpos1 = blockpos4.east();
+                                    BlockPos blockpos2 = blockpos4.north();
+                                    BlockPos blockpos3 = blockpos4.south();
+
+                                    if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos5).getBlock().isAir(worldIn, blockpos5))
                                     {
-                                        this.generateVines(world, l2 - 1, k2, l1, 8);
+                                        this.func_175922_a(worldIn, blockpos5, BlockVine.EAST_FLAG);
                                     }
 
-                                    if (rand.nextInt(4) == 0 && world.getBlock(l2 + 1, k2, l1).isAir(world, l2 + 1, k2, l1))
+                                    if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos1).getBlock().isAir(worldIn, blockpos1))
                                     {
-                                        this.generateVines(world, l2 + 1, k2, l1, 2);
+                                        this.func_175922_a(worldIn, blockpos1, BlockVine.WEST_FLAG);
                                     }
 
-                                    if (rand.nextInt(4) == 0 && world.getBlock(l2, k2, l1 - 1).isAir(world, l2, k2, l1 - 1))
+                                    if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos2).getBlock().isAir(worldIn, blockpos2))
                                     {
-                                        this.generateVines(world, l2, k2, l1 - 1, 1);
+                                        this.func_175922_a(worldIn, blockpos2, BlockVine.SOUTH_FLAG);
                                     }
 
-                                    if (rand.nextInt(4) == 0 && world.getBlock(l2, k2, l1 + 1).isAir(world, l2, k2, l1 + 1))
+                                    if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos3).getBlock().isAir(worldIn, blockpos3))
                                     {
-                                        this.generateVines(world, l2, k2, l1 + 1, 4);
+                                        this.func_175922_a(worldIn, blockpos3, BlockVine.NORTH_FLAG);
                                     }
                                 }
                             }
@@ -172,25 +189,15 @@ public class DarkWorldGenSwamp extends DarkWorldGenAbstractTree {
         }
     }
 
-    /**
-     * Generates vines at the given position until it hits a block.
-     */
-    private void generateVines(World world, int x, int y, int z, int par5)
+    private void func_175922_a(World worldIn, BlockPos pos, int par3)
     {
-        this.setBlockAndNotifyAdequately(world, x, y, z, Blocks.vine, par5);
-        int i1 = 4;
+        this.func_175905_a(worldIn, pos, Blocks.vine, par3);
+        int j = 4;
 
-        while (true)
+        for (pos = pos.down(); worldIn.getBlockState(pos).getBlock().isAir(worldIn, pos) && j > 0; --j)
         {
-            --y;
-
-            if (!(world.getBlock(x, y, z).isAir(world, x, y, z)) || i1 <= 0)
-            {
-                return;
-            }
-
-            this.setBlockAndNotifyAdequately(world, x, y, z, Blocks.vine, par5);
-            --i1;
+            this.func_175905_a(worldIn, pos, Blocks.vine, par3);
+            pos = pos.down();
         }
     }
 

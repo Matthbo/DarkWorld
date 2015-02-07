@@ -1,12 +1,11 @@
 package matthbo.mods.darkworld.world.gen.feature;
 
+import matthbo.mods.darkworld.block.BlockDarkPlanks;
 import matthbo.mods.darkworld.block.BlockDarkSapling;
 import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
@@ -17,42 +16,40 @@ public class DarkWorldGenTaiga1 extends DarkWorldGenAbstractTree {
         super(false);
     }
 
-    public boolean generate(World world, Random rand, int x, int y, int z)
+    public boolean generate(World worldIn, Random rand, BlockPos pos)
     {
-        int l = rand.nextInt(5) + 7;
-        int i1 = l - rand.nextInt(2) - 3;
-        int j1 = l - i1;
-        int k1 = 1 + rand.nextInt(j1 + 1);
+        int i = rand.nextInt(5) + 7;
+        int j = i - rand.nextInt(2) - 3;
+        int k = i - j;
+        int l = 1 + rand.nextInt(k + 1);
         boolean flag = true;
 
-        if (y >= 1 && y + l + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + i + 1 <= 256)
         {
-            int i2;
-            int j2;
-            int i3;
+            int j1;
+            int k1;
+            int k2;
 
-            for (int l1 = y; l1 <= y + 1 + l && flag; ++l1)
+            for (int i1 = pos.getY(); i1 <= pos.getY() + 1 + i && flag; ++i1)
             {
                 boolean flag1 = true;
 
-                if (l1 - y < i1)
+                if (i1 - pos.getY() < j)
                 {
-                    i3 = 0;
+                    k2 = 0;
                 }
                 else
                 {
-                    i3 = k1;
+                    k2 = l;
                 }
 
-                for (i2 = x - i3; i2 <= x + i3 && flag; ++i2)
+                for (j1 = pos.getX() - k2; j1 <= pos.getX() + k2 && flag; ++j1)
                 {
-                    for (j2 = z - i3; j2 <= z + i3 && flag; ++j2)
+                    for (k1 = pos.getZ() - k2; k1 <= pos.getZ() + k2 && flag; ++k1)
                     {
-                        if (l1 >= 0 && l1 < 256)
+                        if (i1 >= 0 && i1 < 256)
                         {
-                            Block block = world.getBlock(i2, l1, j2);
-
-                            if (!this.isReplaceable(world, i2, l1, j2))
+                            if (!this.isReplaceable(worldIn, new BlockPos(j1, i1, k1)))
                             {
                                 flag = false;
                             }
@@ -71,48 +68,55 @@ public class DarkWorldGenTaiga1 extends DarkWorldGenAbstractTree {
             }
             else
             {
-                Block block1 = world.getBlock(x, y - 1, z);
+                BlockPos down = pos.down();
+                Block block = worldIn.getBlockState(down).getBlock();
+                boolean isSoil = block.canSustainPlant(worldIn, down, net.minecraft.util.EnumFacing.UP, (BlockDarkSapling)ModBlocks.darkSapling);
 
-                boolean isSoil = block1.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockDarkSapling) ModBlocks.darkSapling);
-                if (isSoil && y < 256 - l - 1)
+                if (isSoil && pos.getY() < 256 - i - 1)
                 {
-                    block1.onPlantGrow(world, x, y - 1, z, x, y, z);
-                    i3 = 0;
+                    block.onPlantGrow(worldIn, down, pos);
+                    k2 = 0;
 
-                    for (i2 = y + l; i2 >= y + i1; --i2)
+                    for (j1 = pos.getY() + i; j1 >= pos.getY() + j; --j1)
                     {
-                        for (j2 = x - i3; j2 <= x + i3; ++j2)
+                        for (k1 = pos.getX() - k2; k1 <= pos.getX() + k2; ++k1)
                         {
-                            int j3 = j2 - x;
+                            int l1 = k1 - pos.getX();
 
-                            for (int k2 = z - i3; k2 <= z + i3; ++k2)
+                            for (int i2 = pos.getZ() - k2; i2 <= pos.getZ() + k2; ++i2)
                             {
-                                int l2 = k2 - z;
+                                int j2 = i2 - pos.getZ();
 
-                                if ((Math.abs(j3) != i3 || Math.abs(l2) != i3 || i3 <= 0) && world.getBlock(j2, i2, k2).canBeReplacedByLeaves(world, j2, i2, k2))
+                                if (Math.abs(l1) != k2 || Math.abs(j2) != k2 || k2 <= 0)
                                 {
-                                    this.setBlockAndNotifyAdequately(world, j2, i2, k2, ModBlocks.darkLeaves, 1);
+                                    BlockPos blockpos1 = new BlockPos(k1, j1, i2);
+
+                                    if (worldIn.getBlockState(blockpos1).getBlock().canBeReplacedByLeaves(worldIn, blockpos1))
+                                    {
+                                        this.func_175905_a(worldIn, blockpos1, ModBlocks.darkLeaves, BlockDarkPlanks.EnumType.DARKSPRUCE.getMetadata());
+                                    }
                                 }
                             }
                         }
 
-                        if (i3 >= 1 && i2 == y + i1 + 1)
+                        if (k2 >= 1 && j1 == pos.getY() + j + 1)
                         {
-                            --i3;
+                            --k2;
                         }
-                        else if (i3 < k1)
+                        else if (k2 < l)
                         {
-                            ++i3;
+                            ++k2;
                         }
                     }
 
-                    for (i2 = 0; i2 < l - 1; ++i2)
+                    for (j1 = 0; j1 < i - 1; ++j1)
                     {
-                        Block block2 = world.getBlock(x, y + i2, z);
+                        BlockPos upN = pos.up(j1);
+                        Block block1 = worldIn.getBlockState(upN).getBlock();
 
-                        if (block2.isAir(world, x, y + i2, z) || block2.isLeaves(world, x, y + i2, z))
+                        if (block1.isAir(worldIn, upN) || block1.isLeaves(worldIn, upN))
                         {
-                            this.setBlockAndNotifyAdequately(world, x, y + i2, z, ModBlocks.darkLog, 1);
+                            this.func_175905_a(worldIn, pos.up(j1), ModBlocks.darkLog, BlockDarkPlanks.EnumType.DARKSPRUCE.getMetadata());
                         }
                     }
 

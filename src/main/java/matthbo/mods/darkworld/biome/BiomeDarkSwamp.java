@@ -7,8 +7,10 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
@@ -19,7 +21,7 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
         super(id);
         this.setColor(522674);
         this.setBiomeName("Swampland");
-        this.func_76733_a(9154376);
+        this.setFillerBlockMetadata(9154376);
         this.setHeight(height_PartiallySubmerged);
         this.setTemperatureRainfall(0.8F, 0.9F);
 
@@ -35,45 +37,40 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
         //this.theBiomeDecorator.grassPerChunk = 5;
         //this.waterColorMultiplier = 14745518;
         this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 1, 1, 1));
-        //this.flowers.clear();
-        //this.addFlower(Blocks.red_flower, 1, 10);
     }
 
-    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    public DarkWorldGenAbstractTree genBigTreeChance(Random p_150567_1_)
     {
         return this.darkWorldGenSwamp;
     }
 
     //TODO: flower stuff
-    public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
+    public BlockFlower.EnumFlowerType pickRandomFlower(Random p_180623_1_, BlockPos p_180623_2_)
     {
-        return BlockFlower.field_149859_a[1];
+        return BlockFlower.EnumFlowerType.BLUE_ORCHID;
     }
 
     //TODO: check plant stuff
-    public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int x, int z, double par6)
     {
-        double d1 = plantNoise.func_151601_a((double)p_150573_5_ * 0.25D, (double)p_150573_6_ * 0.25D);
+        double d1 = field_180281_af.func_151601_a((double)x * 0.25D, (double)z * 0.25D);
 
         if (d1 > 0.0D)
         {
-            int k = p_150573_5_ & 15;
-            int l = p_150573_6_ & 15;
-            int i1 = p_150573_3_.length / 256;
+            int k = x & 15;
+            int l = z & 15;
 
-            for (int j1 = 255; j1 >= 0; --j1)
+            for (int i1 = 255; i1 >= 0; --i1)
             {
-                int k1 = (l * 16 + k) * i1 + j1;
-
-                if (p_150573_3_[k1] == null || p_150573_3_[k1].getMaterial() != Material.air)
+                if (chunkPrimer.getBlockState(l, i1, k).getBlock().getMaterial() != Material.air)
                 {
-                    if (j1 == 62 && p_150573_3_[k1] != ModFluids.darkWaterBlock)
+                    if (i1 == 62 && chunkPrimer.getBlockState(l, i1, k).getBlock() != ModFluids.darkWaterBlock)
                     {
-                        p_150573_3_[k1] = ModFluids.darkWaterBlock;
+                        chunkPrimer.setBlockState(l, i1, k, ModFluids.darkWaterBlock.getDefaultState());
 
                         if (d1 < 0.12D)
                         {
-                            p_150573_3_[k1 + 1] = Blocks.waterlily;
+                            chunkPrimer.setBlockState(l, i1 + 1, k, Blocks.waterlily.getDefaultState());
                         }
                     }
 
@@ -82,6 +79,6 @@ public class BiomeDarkSwamp extends DarkBiomeGenBase {
             }
         }
 
-        this.genBiomeTerrainDarkWorld(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        this.genBiomeTerrainDarkWorld(world, rand, chunkPrimer, x, z, par6);
     }
 }

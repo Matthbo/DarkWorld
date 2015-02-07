@@ -3,10 +3,8 @@ package matthbo.mods.darkworld.world.gen.feature;
 import matthbo.mods.darkworld.block.BlockDarkSapling;
 import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
@@ -41,40 +39,30 @@ public abstract class DarkWorldGenHugeTrees extends DarkWorldGenAbstractTree {
         return i;
     }
 
-    private boolean func_150536_b(World world, Random rand, int par3, int par4, int par5, int par6)
+    private boolean func_175926_c(World worldIn, BlockPos pos, int par3)
     {
         boolean flag = true;
 
-        if (par4 >= 1 && par4 + par6 + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + par3 + 1 <= 256)
         {
-            for (int i1 = par4; i1 <= par4 + 1 + par6; ++i1)
+            for (int j = 0; j <= 1 + par3; ++j)
             {
                 byte b0 = 2;
 
-                if (i1 == par4)
+                if (j == 0)
                 {
                     b0 = 1;
                 }
-
-                if (i1 >= par4 + 1 + par6 - 2)
+                else if (j >= 1 + par3 - 2)
                 {
                     b0 = 2;
                 }
 
-                for (int j1 = par3 - b0; j1 <= par3 + b0 && flag; ++j1)
+                for (int k = -b0; k <= b0 && flag; ++k)
                 {
-                    for (int k1 = par5 - b0; k1 <= par5 + b0 && flag; ++k1)
+                    for (int l = -b0; l <= b0 && flag; ++l)
                     {
-                        if (i1 >= 0 && i1 < 256)
-                        {
-                            Block block = world.getBlock(j1, i1, k1);
-
-                            if (!this.isReplaceable(world, j1, i1, k1))
-                            {
-                                flag = false;
-                            }
-                        }
-                        else
+                        if (pos.getY() + j < 0 || pos.getY() + j >= 256 || !this.isReplaceable(worldIn, pos.add(k, j, l)))
                         {
                             flag = false;
                         }
@@ -90,17 +78,18 @@ public abstract class DarkWorldGenHugeTrees extends DarkWorldGenAbstractTree {
         }
     }
 
-    private boolean func_150532_c(World world, Random p_150532_2_, int x, int y, int z)
+    private boolean func_175927_a(BlockPos pos, World world)
     {
-        Block block = world.getBlock(x, y - 1, z);
+        BlockPos blockpos1 = pos.down();
+        Block block = world.getBlockState(blockpos1).getBlock();
+        boolean isSoil = block.canSustainPlant(world, blockpos1, net.minecraft.util.EnumFacing.UP, ((BlockDarkSapling)ModBlocks.darkSapling));
 
-        boolean isSoil = block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockDarkSapling) ModBlocks.darkSapling);
-        if (isSoil && y >= 2)
+        if (isSoil && pos.getY() >= 2)
         {
-            onPlantGrow(world, x,     y - 1, z,     x, y, z);
-            onPlantGrow(world, x + 1, y - 1, z,     x, y, z);
-            onPlantGrow(world, x,     y - 1, z + 1, x, y, z);
-            onPlantGrow(world, x + 1, y - 1, z + 1, x, y, z);
+            this.onPlantGrow(world, blockpos1, pos);
+            this.onPlantGrow(world, blockpos1.east(), pos);
+            this.onPlantGrow(world, blockpos1.south(), pos);
+            this.onPlantGrow(world, blockpos1.south().east(), pos);
             return true;
         }
         else
@@ -109,67 +98,62 @@ public abstract class DarkWorldGenHugeTrees extends DarkWorldGenAbstractTree {
         }
     }
 
-    protected boolean func_150537_a(World world, Random rand, int x, int y, int z, int par6)
+    protected boolean func_175929_a(World worldIn, Random rand, BlockPos pos, int par4)
     {
-        return this.func_150536_b(world, rand, x, y, z, par6) && this.func_150532_c(world, rand, x, y, z);
+        return this.func_175926_c(worldIn, pos, par4) && this.func_175927_a(pos, worldIn);
     }
 
-    protected void func_150535_a(World world, int x, int y, int z, int par5, Random rand)
+    protected void func_175925_a(World worldIn, BlockPos pos, int par3)
     {
-        int i1 = par5 * par5;
+        int j = par3 * par3;
 
-        for (int j1 = x - par5; j1 <= x + par5 + 1; ++j1)
+        for (int k = -par3; k <= par3 + 1; ++k)
         {
-            int k1 = j1 - x;
-
-            for (int l1 = z - par5; l1 <= z + par5 + 1; ++l1)
+            for (int l = -par3; l <= par3 + 1; ++l)
             {
-                int i2 = l1 - z;
-                int j2 = k1 - 1;
-                int k2 = i2 - 1;
+                int i1 = k - 1;
+                int j1 = l - 1;
 
-                if (k1 * k1 + i2 * i2 <= i1 || j2 * j2 + k2 * k2 <= i1 || k1 * k1 + k2 * k2 <= i1 || j2 * j2 + i2 * i2 <= i1)
+                if (k * k + l * l <= j || i1 * i1 + j1 * j1 <= j || k * k + j1 * j1 <= j || i1 * i1 + l * l <= j)
                 {
-                    Block block = world.getBlock(j1, y, l1);
+                    BlockPos blockpos1 = pos.add(k, 0, l);
+                    net.minecraft.block.state.IBlockState state = worldIn.getBlockState(blockpos1);
 
-                    if (block.isAir(world, j1, y, l1) || block.isLeaves(world, j1, y, l1))
+                    if (state.getBlock().isAir(worldIn, blockpos1) || state.getBlock().isLeaves(worldIn, blockpos1))
                     {
-                        this.setBlockAndNotifyAdequately(world, j1, y, l1, ModBlocks.darkLeaves, 0);
+                        this.func_175905_a(worldIn, blockpos1, ModBlocks.darkLeaves, 0);
                     }
                 }
             }
         }
     }
 
-    protected void func_150534_b(World world, int x, int y, int z, int par6, Random rand)
+    protected void func_175928_b(World worldIn, BlockPos pos, int par3)
     {
-        int i1 = par6 * par6;
+        int j = par3 * par3;
 
-        for (int j1 = x - par6; j1 <= x + par6; ++j1)
+        for (int k = -par3; k <= par3; ++k)
         {
-            int k1 = j1 - x;
-
-            for (int l1 = z - par6; l1 <= z + par6; ++l1)
+            for (int l = -par3; l <= par3; ++l)
             {
-                int i2 = l1 - z;
-
-                if (k1 * k1 + i2 * i2 <= i1)
+                if (k * k + l * l <= j)
                 {
-                    Block block = world.getBlock(j1, y, l1);
+                    BlockPos blockpos1 = pos.add(k, 0, l);
+                    Block block = worldIn.getBlockState(blockpos1).getBlock();
 
-                    if (block.isAir(world, j1, y, l1) || block.isLeaves(world, j1, y, l1))
+                    if (block.isAir(worldIn, blockpos1) || block.isLeaves(worldIn, blockpos1))
                     {
-                        this.setBlockAndNotifyAdequately(world, j1, y, l1, ModBlocks.darkLeaves, 0);
+                        this.func_175905_a(worldIn, blockpos1, ModBlocks.darkLeaves, 0);
                     }
                 }
             }
         }
     }
 
-    //Just a helper macro ye fuck!
-    private void onPlantGrow(World world, int x, int y, int z, int sourceX, int sourceY, int sourceZ)
+    //Just a helper macro
+    private void onPlantGrow(World world, BlockPos pos, BlockPos source)
     {
-        world.getBlock(x, y, z).onPlantGrow(world, x, y, z, sourceX, sourceY, sourceZ);
+        world.getBlockState(pos).getBlock().onPlantGrow(world, pos, source);
     }
 
 }

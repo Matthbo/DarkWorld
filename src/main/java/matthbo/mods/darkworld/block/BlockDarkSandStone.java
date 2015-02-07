@@ -2,88 +2,122 @@ package matthbo.mods.darkworld.block;
 
 import java.util.List;
 
-import matthbo.mods.darkworld.reference.MetaNames;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.IStringSerializable;
 
 public class BlockDarkSandStone extends BlockDarkWorld {
-	
-	@SideOnly(Side.CLIENT)
-    private IIcon[] icons_M;
-    @SideOnly(Side.CLIENT)
-    private IIcon icons_N;
-    @SideOnly(Side.CLIENT)
-    private IIcon icons_O;
-	
+
+	public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockDarkSandStone.EnumType.class);
+
 	public BlockDarkSandStone(){
 		super();
-		this.setBlockName("darksandstone");
+		this.setUnlocalizedName("darksandstone");
 		this.setHardness(0.8F);
 		this.setStepSound(soundTypePiston);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockDarkSandStone.EnumType.DEFAULT));
 	}
-	
-	 @SideOnly(Side.CLIENT)
-	    public IIcon getIcon(int side, int meta)
-	    {
-	        if (side != 1 && (side != 0 || meta != 1 && meta != 2))
-	        {
-	            if (side == 0)
-	            {
-	                return this.icons_O;
-	            }
-	            else
-	            {
-	                if (meta < 0 || meta >= this.icons_M.length)
-	                {
-	                    meta = 0;
-	                }
 
-	                return this.icons_M[meta];
-	            }
-	        }
-	        else
-	        {
-	            return this.icons_N;
-	        }
-	    }
+	public int damageDropped(IBlockState state)
+	{
+		return ((BlockDarkSandStone.EnumType)state.getValue(TYPE)).getMetadata();
+	}
 
-	    /**
-	     * Determines the damage on the item the block drops. Used in cloth and wood.
-	     */
-	    public int damageDropped(int par1)
-	    {
-	        return par1;
-	    }
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+	{
+		BlockDarkSandStone.EnumType[] aenumtype = BlockDarkSandStone.EnumType.values();
+		int i = aenumtype.length;
 
-	    /**
-	     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-	     */
-	    @SideOnly(Side.CLIENT)
-	    public void getSubBlocks(Item item, CreativeTabs p_149666_2_, List list)
-	    {
-	    	for (int meta = 0; meta < MetaNames.blockDarkSandStone_b.length; meta++)
-	        {
-	            list.add(new ItemStack(item, 1, meta));
-	        }
-	    }
+		for (int j = 0; j < i; ++j)
+		{
+			BlockDarkSandStone.EnumType enumtype = aenumtype[j];
+			list.add(new ItemStack(itemIn, 1, enumtype.getMetadata()));
+		}
+	}
 
-	    @SideOnly(Side.CLIENT)
-	    public void registerBlockIcons(IIconRegister iconRegister)
-	    {
-	        this.icons_M = new IIcon[MetaNames.blockDarkSandStone_b.length];
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState().withProperty(TYPE, BlockDarkSandStone.EnumType.byMetadata(meta));
+	}
 
-	        for (int i = 0; i < this.icons_M.length; ++i)
-	        {
-	            this.icons_M[i] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_" + MetaNames.blockDarkSandStone_b[i]);
-	        }
+	public int getMetaFromState(IBlockState state)
+	{
+		return ((BlockDarkSandStone.EnumType)state.getValue(TYPE)).getMetadata();
+	}
 
-	        this.icons_N = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_top");
-	        this.icons_O = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_bottom");
-	    }
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, new IProperty[] {TYPE});
+	}
+
+	public static enum EnumType implements IStringSerializable
+	{
+		DEFAULT(0, "darksandstone", "default"),
+		CHISELED(1, "darkchiseled_sandstone", "chiseled"),
+		SMOOTH(2, "darksmooth_sandstone", "smooth");
+		private static final BlockDarkSandStone.EnumType[] META_LOOKUP = new BlockDarkSandStone.EnumType[values().length];
+		private final int metadata;
+		private final String name;
+		private final String unlocalizedName;
+
+		private static final String __OBFID = "CL_00002068";
+
+		private EnumType(int meta, String name, String unlocalizedName)
+		{
+			this.metadata = meta;
+			this.name = name;
+			this.unlocalizedName = unlocalizedName;
+		}
+
+		public int getMetadata()
+		{
+			return this.metadata;
+		}
+
+		public String toString()
+		{
+			return this.name;
+		}
+
+		public static BlockDarkSandStone.EnumType byMetadata(int meta)
+		{
+			if (meta < 0 || meta >= META_LOOKUP.length)
+			{
+				meta = 0;
+			}
+
+			return META_LOOKUP[meta];
+		}
+
+		public String getName()
+		{
+			return this.name;
+		}
+
+		public String getUnlocalizedName()
+		{
+			return this.unlocalizedName;
+		}
+
+		static
+		{
+			BlockDarkSandStone.EnumType[] var0 = values();
+			int var1 = var0.length;
+
+			for (int var2 = 0; var2 < var1; ++var2)
+			{
+				BlockDarkSandStone.EnumType var3 = var0[var2];
+				META_LOOKUP[var3.getMetadata()] = var3;
+			}
+		}
+	}
 
 }

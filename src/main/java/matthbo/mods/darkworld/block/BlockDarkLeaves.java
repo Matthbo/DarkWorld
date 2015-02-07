@@ -1,42 +1,36 @@
 package matthbo.mods.darkworld.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModItems;
-import matthbo.mods.darkworld.reference.MetaNames;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import java.util.List;
 import java.util.Random;
 
 public class BlockDarkLeaves extends BlockLeavesDarkWorld {
 
     public BlockDarkLeaves(){
         super();
-        this.setBlockName("darkleaves");
+        this.setUnlocalizedName("darkleaves");
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister){
-        field_150129_M[0] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
-        field_150129_M[1] = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "_opaque");
-    }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+
+    public Item getItemDropped(IBlockState state_, Random rand, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.darkSapling);
     }
 
-    protected void func_150124_c(World p_150124_1_, int p_150124_2_, int p_150124_3_, int p_150124_4_, int p_150124_5_, int p_150124_6_)
+    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
-        if ((p_150124_5_ & 3) == 0 && p_150124_1_.rand.nextInt(p_150124_6_) == 0)
+        if (worldIn.rand.nextInt(chance) == 0)
         {
-            this.dropBlockAsItem(p_150124_1_, p_150124_2_, p_150124_3_, p_150124_4_, new ItemStack(ModItems.darkApple, 1, 0));
+            spawnAsEntity(worldIn, pos, new ItemStack(ModItems.darkApple, 1, 0));
         }
     }
 
@@ -52,14 +46,16 @@ public class BlockDarkLeaves extends BlockLeavesDarkWorld {
         return j;
     }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int par1, int meta)
+    public BlockDarkPlanks.EnumType getDarkWoodType(int meta)
     {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics? field_150129_M[0] : field_150129_M[1];
+        return BlockDarkPlanks.EnumType.byMetadata((meta & 3) % 4);
     }
 
-    public String[] func_150125_e()
+    @Override
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return MetaNames.blockDarkLog;
+        IBlockState state = world.getBlockState(pos);
+        return new java.util.ArrayList(java.util.Arrays.asList(new ItemStack(this, 1, 0)));
     }
+
 }

@@ -6,7 +6,7 @@ public class BlockCompressedPeculiarDust extends BlockDarkWorld {
 	
 	public BlockCompressedPeculiarDust(){
 		super(Material.clay);
-		this.setBlockName("compressedpeculiardust");
+		this.setUnlocalizedName("compressedpeculiardust");
 	}
 
 }

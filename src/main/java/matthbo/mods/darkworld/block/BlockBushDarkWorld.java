@@ -1,27 +1,21 @@
 package matthbo.mods.darkworld.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
-
-import static net.minecraftforge.common.EnumPlantType.*;
-import static net.minecraftforge.common.EnumPlantType.Plains;
 
 public class BlockBushDarkWorld extends BlockBush implements IPlantable{
 	
@@ -41,21 +35,14 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
         return String.format("tile.%s%s", Refs.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        blockIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
-    }
-
     protected String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    public boolean canPlaceBlockAt(World world, int x, int y, int z)
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return super.canPlaceBlockAt(world, x, y, z) && this.canBlockStay(world, x, y, z);
+        return super.canPlaceBlockAt(world, pos) && this.canBlockStay(world, pos);
     }
 
     /**
@@ -70,42 +57,39 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor Block
      */
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block)
     {
-        super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_);
-        this.checkAndDropBlock(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+        super.onNeighborBlockChange(world, pos, state, block);
+        this.checkAndDropBlock(world, pos, state);
     }
 
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World world, int x, int y, int z, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state ,Random rand)
     {
-        this.checkAndDropBlock(world, x, y, z);
+        this.checkAndDropBlock(world, pos, state);
     }
 
     /**
      * checks if the block can stay, if not drop as item
      */
-    protected void checkAndDropBlock(World world, int x, int y, int z)
+    protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)
     {
-        if (!this.canBlockStay(world, x, y, z))
+        if (!this.canBlockStay(world, pos, state))
         {
-            this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, getBlockById(0), 0, 2);
+            this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+            world.setBlockState(pos, Blocks.air.getDefaultState(), 3);
         }
     }
 
-    /**
-     * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
-     */
-    public boolean canBlockStay(World world, int x, int y, int z)
+    public boolean canBlockStay(World world, BlockPos pos)
     {
-        return  this.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
+        return  this.canSustainPlant(world, pos.down(), EnumFacing.UP, this);
     }
 
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable){
-        Block block = world.getBlock(x, y, z);
+    public boolean canSustainPlant(IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable){
+        Block block = world.getBlockState(pos).getBlock();
         if(block == ModBlocks.darkGrass || block == ModBlocks.darkDirt){
             return true;
         }
@@ -116,7 +100,7 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
     {
         return null;
     }
@@ -133,7 +117,7 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
-    public boolean renderAsNormalBlock()
+    public boolean isFullCube()
     {
         return false;
     }
@@ -168,14 +152,10 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
     }*/
 
     @Override
-    public Block getPlant(IBlockAccess world, int x, int y, int z)
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
-        return this;
-    }
-
-    @Override
-    public int getPlantMetadata(IBlockAccess world, int x, int y, int z)
-    {
-        return world.getBlockMetadata(x, y, z);
+        IBlockState state = world.getBlockState(pos);
+        if(state.getBlock() != this) return getDefaultState();
+        return state;
     }
 }

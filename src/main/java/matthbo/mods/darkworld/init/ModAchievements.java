@@ -1,8 +1,6 @@
 package matthbo.mods.darkworld.init;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import matthbo.mods.darkworld.reference.Refs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
@@ -23,7 +21,7 @@ public class ModAchievements {
 		achSmeltPCobbleStone.registerStat();
 		achCraftPTools.registerStat();
 		achCraftPArmor.registerStat();
-		achEnterDarkWorld.registerStat().getSpecial();
+		achEnterDarkWorld.setSpecial().registerStat();
 		
 		AchievementPage.registerAchievementPage(achPageDarkWorld);
 		

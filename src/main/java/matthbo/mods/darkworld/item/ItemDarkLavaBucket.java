@@ -1,8 +1,6 @@
 package matthbo.mods.darkworld.item;
 
-import matthbo.mods.darkworld.init.ModFluids;
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 
 public class ItemDarkLavaBucket extends ItemBucketDarkWorld {
 

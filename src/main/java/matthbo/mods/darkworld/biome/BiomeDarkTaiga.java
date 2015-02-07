@@ -6,10 +6,13 @@ import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenMegaPineTree;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTaiga1;
 import matthbo.mods.darkworld.world.gen.feature.DarkWorldGenTaiga2;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.*;
 
 import java.util.Random;
@@ -40,66 +43,63 @@ public class BiomeDarkTaiga extends DarkBiomeGenBase{
         }
     }
 
-    public DarkWorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    public DarkWorldGenAbstractTree genBigTreeChance(Random p_150567_1_)
     {
         return (DarkWorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD));
     }
 
     //TODO: something with flowers
-    public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)
+    public void decorate(World worldIn, Random p_180624_2_, BlockPos p_180624_3_)
     {
+        int i;
+        int j;
         int k;
         int l;
-        int i1;
-        int j1;
 
         if (this.field_150644_aH == 1 || this.field_150644_aH == 2)
         {
-            k = p_76728_2_.nextInt(3);
+            i = p_180624_2_.nextInt(3);
 
-            for (l = 0; l < k; ++l)
+            for (j = 0; j < i; ++j)
             {
-                i1 = p_76728_3_ + p_76728_2_.nextInt(16) + 8;
-                j1 = p_76728_4_ + p_76728_2_.nextInt(16) + 8;
-                int k1 = p_76728_1_.getHeightValue(i1, j1);
-                field_150643_aG.generate(p_76728_1_, p_76728_2_, i1, k1, j1);
+                k = p_180624_2_.nextInt(16) + 8;
+                l = p_180624_2_.nextInt(16) + 8;
+                BlockPos blockpos1 = worldIn.getHorizon(p_180624_3_.add(k, 0, l));
+                field_150643_aG.generate(worldIn, p_180624_2_, blockpos1);
             }
         }
 
-        genTallFlowers.func_150548_a(3);
+        DOUBLE_PLANT_GENERATOR.func_180710_a(BlockDoublePlant.EnumPlantType.FERN);
 
-        for (k = 0; k < 7; ++k)
+        for (i = 0; i < 7; ++i)
         {
-            l = p_76728_3_ + p_76728_2_.nextInt(16) + 8;
-            i1 = p_76728_4_ + p_76728_2_.nextInt(16) + 8;
-            j1 = p_76728_2_.nextInt(p_76728_1_.getHeightValue(l, i1) + 32);
-            genTallFlowers.generate(p_76728_1_, p_76728_2_, l, j1, i1);
+            j = p_180624_2_.nextInt(16) + 8;
+            k = p_180624_2_.nextInt(16) + 8;
+            l = p_180624_2_.nextInt(worldIn.getHorizon(p_180624_3_.add(j, 0, k)).getY() + 32);
+            DOUBLE_PLANT_GENERATOR.generate(worldIn, p_180624_2_, p_180624_3_.add(j, l, k));
         }
 
-        super.decorate(p_76728_1_, p_76728_2_, p_76728_3_, p_76728_4_);
+        super.decorate(worldIn, p_180624_2_, p_180624_3_);
     }
 
-    public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int x, int z, double par6)
     {
         if (this.field_150644_aH == 1 || this.field_150644_aH == 2)
         {
-            this.topBlock = ModBlocks.darkGrass;
-            this.field_150604_aj = 0;
-            this.fillerBlock = ModBlocks.darkDirt;
+            this.topBlock = ModBlocks.darkGrass.getDefaultState();
+            this.fillerBlock = ModBlocks.darkDirt.getDefaultState();
 
-            if (p_150573_7_ > 1.75D)
+            if (par6 > 1.75D)
             {
-                this.topBlock = ModBlocks.darkDirt;
-                this.field_150604_aj = 1;
+                this.topBlock = ModBlocks.darkDirt.getDefaultState();
             }
-            else if (p_150573_7_ > -0.95D)
+            else if (par6 > -0.95D)
             {
-                this.topBlock = ModBlocks.darkDirt;
-                this.field_150604_aj = 2;
+                this.topBlock = ModBlocks.darkDirt.getDefaultState();
             }
         }
 
-        this.genBiomeTerrainDarkWorld(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        this.genBiomeTerrainDarkWorld(world, rand, chunkPrimer, x, z, par6);
     }
 
     //TODO: check this when all biomes are finished

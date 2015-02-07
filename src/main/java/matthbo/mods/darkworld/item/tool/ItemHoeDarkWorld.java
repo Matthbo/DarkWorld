@@ -1,21 +1,19 @@
 package matthbo.mods.darkworld.item.tool;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import matthbo.mods.darkworld.init.ModBlocks;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import matthbo.mods.darkworld.creativetab.CreativeTabDarkWorld;
 import matthbo.mods.darkworld.reference.Refs;
-import matthbo.mods.darkworld.utility.LogHelper;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 public class ItemHoeDarkWorld extends Item{
 	
@@ -37,64 +35,56 @@ public class ItemHoeDarkWorld extends Item{
 	public String getUnlocalizedName(ItemStack itemStack){
 		return String.format("item.%s%s", Refs.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
 	}
-    
-    public String getIconName(){
-		return String.format("item.%s%s", Refs.MOD_ID.toLowerCase() + ":" + "tools/", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister){
-		itemIcon = iconRegister.registerIcon(this.getIconName().substring(this.getIconName().indexOf(".") + 1));
-	}
 	
 	protected String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_)
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (!player.canPlayerEdit(x, y, z, p_77648_7_, itemStack))
+        if (!playerIn.canPlayerEdit(pos.offset(side), side, stack))
         {
             return false;
         }
         else
         {
-            UseHoeEvent event = new UseHoeEvent(player, itemStack, world, x, y, z);
-            if (MinecraftForge.EVENT_BUS.post(event))
+            int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, playerIn, worldIn, pos);
+            if (hook != 0) return hook > 0;
+
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
+
+            if (side != EnumFacing.DOWN && worldIn.isAirBlock(pos.up()))
             {
-                return false;
-            }
-
-            if (event.getResult() == Result.ALLOW)
-            {
-                itemStack.damageItem(1, player);
-                return true;
-            }
-
-            Block block = world.getBlock(x, y, z);
-
-            if (p_77648_7_ != 0 && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (block == Blocks.grass || block == Blocks.dirt))
-            {
-                Block block1 = Blocks.farmland;
-                world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
-
-                if (world.isRemote)
+                if (block == ModBlocks.darkGrass)
                 {
-                    return true;
+                    return this.useHoe(stack, playerIn, worldIn, pos, Blocks.farmland.getDefaultState());
                 }
-                else
+
+                if (block == ModBlocks.darkDirt)
                 {
-                    world.setBlock(x, y, z, block1);
-                    itemStack.damageItem(1, player);
-                    return true;
+                    this.useHoe(stack, playerIn, worldIn, pos, ModBlocks.darkDirt.getDefaultState());
                 }
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
+        }
+    }
+
+    protected boolean useHoe(ItemStack stack, EntityPlayer player, World worldIn, BlockPos target, IBlockState newState)
+    {
+        worldIn.playSoundEffect((double)((float)target.getX() + 0.5F), (double)((float)target.getY() + 0.5F), (double)((float)target.getZ() + 0.5F), newState.getBlock().stepSound.getStepSound(), (newState.getBlock().stepSound.getVolume() + 1.0F) / 2.0F, newState.getBlock().stepSound.getFrequency() * 0.8F);
+
+        if (worldIn.isRemote)
+        {
+            return true;
+        }
+        else
+        {
+            worldIn.setBlockState(target, newState);
+            stack.damageItem(1, player);
+            return true;
         }
     }
 
@@ -108,4 +98,5 @@ public class ItemHoeDarkWorld extends Item{
     {
         return this.toolMaterial.toString();
     }
+
 }

@@ -3,7 +3,9 @@ package matthbo.mods.darkworld.world.gen.feature;
 import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
@@ -19,11 +21,19 @@ public abstract class DarkWorldGenAbstractTree extends WorldGenAbstractTree {
     }
 
     @Override
-    public void func_150524_b(World world, Random rand, int x, int y, int z) {}
+    public void func_180711_a(World world, Random rand, BlockPos pos) {}
+
+    protected void func_175921_a(World worldIn, BlockPos pos)
+    {
+        if (worldIn.getBlockState(pos).getBlock() != ModBlocks.darkDirt)
+        {
+            this.func_175903_a(worldIn, pos, ModBlocks.darkDirt.getDefaultState());
+        }
+    }
 
     @Override
-    protected boolean isReplaceable(World world, int x, int y, int z){
-        Block block = world.getBlock(x, y, z);
-        return block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z) || block.isWood(world, x, y, z) || func_150523_a(block);
+    public boolean isReplaceable(World world, BlockPos pos){
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(world, pos) || state.getBlock().isLeaves(world, pos) || state.getBlock().isWood(world, pos) || func_150523_a(state.getBlock());
     }
 }

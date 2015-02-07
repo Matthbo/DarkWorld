@@ -3,6 +3,7 @@ package matthbo.mods.darkworld.block;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
@@ -10,19 +11,19 @@ public class BlockDarkGravel extends BlockFallingDarkWorld {
 	
 	public BlockDarkGravel(){
 		super(Material.sand);
-		this.setBlockName("darkgravel");
+		this.setUnlocalizedName("darkgravel");
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGravel);
 	}
-	
-	public Item getItemDropped(int par1, Random rand, int par3)
+
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        if (par3 > 3)
+        if (fortune > 3)
         {
-            par3 = 3;
+            fortune = 3;
         }
 
-        return rand.nextInt(10 - par3 * 3) == 0 ? Items.flint : Item.getItemFromBlock(this);
+        return rand.nextInt(10 - fortune * 3) == 0 ? Items.flint : Item.getItemFromBlock(this);
     }
 
 }

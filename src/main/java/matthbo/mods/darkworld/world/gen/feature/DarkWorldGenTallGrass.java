@@ -1,47 +1,49 @@
 package matthbo.mods.darkworld.world.gen.feature;
 
+import matthbo.mods.darkworld.init.ModBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class DarkWorldGenTallGrass {
+public class DarkWorldGenTallGrass extends WorldGenerator{
 
-    private Block field_a;
-    private int tallGrassMetadata;
+    private IBlockState field_a;
+    //private int tallGrassMetadata;
 
-    public DarkWorldGenTallGrass(Block block, int par2){
+    public DarkWorldGenTallGrass(){
         //super(block, par2);
-        this.field_a = block;
-        this.tallGrassMetadata = par2;
+        this.field_a = ModBlocks.darkTallGrass.getDefaultState();
+        //this.tallGrassMetadata = par2;
     }
 
-    public boolean generate(World world, Random rand, int x, int y, int z)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
         Block block;
 
         do
         {
-            block = world.getBlock(x, y, z);
-            if (!(block.isLeaves(world, x, y, z) || block.isAir(world, x, y, z)))
+            block = world.getBlockState(pos).getBlock();
+            if (!(block.isLeaves(world, pos) || !block.isAir(world, pos)))
             {
                 break;
             }
-            --y;
-        } while (y > 0);
+            pos = pos.down();
+        } while (pos.getY() > 0);
 
         //for (int l = 0; l < 128; ++l)
         for (int l = 0; l < 32; ++l)
         {
-            int i1 = x + rand.nextInt(8) - rand.nextInt(8);
-            int j1 = y + rand.nextInt(4) - rand.nextInt(4);
-            int k1 = z + rand.nextInt(8) - rand.nextInt(8);
+            BlockPos blockpos1 = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
             int r = rand.nextInt(2);
 
-            if (world.isAirBlock(i1, j1, k1) && this.field_a.canBlockStay(world, i1, j1, k1) && r == 1)
+            if (world.isAirBlock(blockpos1) && ModBlocks.darkTallGrass.canBlockStay(world, blockpos1, this.field_a) && r == 1)
             {
-                world.setBlock(i1, j1, k1, this.field_a, this.tallGrassMetadata, 2);
+                world.setBlockState(blockpos1, this.field_a, 2);
             }
         }
 

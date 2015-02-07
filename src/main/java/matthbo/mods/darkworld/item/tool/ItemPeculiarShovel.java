@@ -10,10 +10,10 @@ public class ItemPeculiarShovel extends ItemToolDarkWorld {
 		super(1.0F, ToolMaterial.STONE, ItemToolDarkWorld.shovel);
 		this.setUnlocalizedName("peculiarshovel");
 	}
-	
-	public boolean func_150897_b(Block p_150897_1_)
-    {
-        return p_150897_1_ == Blocks.snow_layer ? true : p_150897_1_ == Blocks.snow;
-    }
+
+	public boolean canHarvestBlock(Block blockIn)
+	{
+		return blockIn == Blocks.snow_layer ? true : blockIn == Blocks.snow;
+	}
 
 }

@@ -1,15 +1,12 @@
 package matthbo.mods.darkworld.client.particles;
 
-import org.lwjgl.opengl.GL11;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.entity.Entity;
 
 import matthbo.mods.darkworld.init.ModDimensions;
 import matthbo.mods.darkworld.reference.Refs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.particle.EntityPortalFX;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import static org.lwjgl.opengl.GL11.*;
@@ -37,7 +34,7 @@ public class EntityDWPortalFX extends EntityFX {
         this.noClip = true;
 	}
 	
-	public void renderParticle(Tessellator tesselator, float partialTicks, float par3, float par4, float par5, float par6, float par7){
+	public void func_180434_a(WorldRenderer tesselator, Entity entity, float partialTicks, float par3, float par4, float par5, float par6, float par7){
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		float f6 = ((float)this.particleAge + partialTicks) / (float)this.particleMaxAge;
         f6 = 1.0F - f6;
@@ -58,7 +55,7 @@ public class EntityDWPortalFX extends EntityFX {
 		tesselator.addVertexWithUV(x - par3 * scale + par6 * scale, y + par4 * scale, z - par5 * scale + par7 * scale, 1, 0);
 		tesselator.addVertexWithUV(x + par3 * scale + par6 * scale, y + par4 * scale, z + par5 * scale + par7 * scale, 1, 1);
 		tesselator.addVertexWithUV(x + par3 * scale - par6 * scale, y - par4 * scale, z + par5 * scale - par7 * scale, 0, 1);
-		tesselator.draw();
+		//tesselator.draw(); TODO: check this
 		glAlphaFunc(GL_GREATER, 0.1F);
 		glDisable(GL_BLEND);
 		glDepthMask(true);

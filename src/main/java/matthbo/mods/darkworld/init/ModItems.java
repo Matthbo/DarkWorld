@@ -1,16 +1,10 @@
 package matthbo.mods.darkworld.init;
 
 import matthbo.mods.darkworld.item.*;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import matthbo.mods.darkworld.item.armor.ItemArmorDarkWorld;
 import matthbo.mods.darkworld.item.armor.ItemPeculiarBoots;
 import matthbo.mods.darkworld.item.armor.ItemPeculiarChestplate;
