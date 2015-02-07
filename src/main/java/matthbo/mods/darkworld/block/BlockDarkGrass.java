@@ -16,13 +16,16 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
 
-    //public static final PropertyBool SNOWY = PropertyBool.create("snowy");
+    public static final PropertyBool SNOWY = PropertyBool.create("snowy");
 	
 	public BlockDarkGrass() {
 		super(Material.grass);
@@ -30,13 +33,13 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGrass);
 		this.setTickRandomly(true);
-        //this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
 	}
 
-    /*public IBlockState getActualState(IBlockState state, IBlockAccess block, BlockPos pos){
+    public IBlockState getActualState(IBlockState state, IBlockAccess block, BlockPos pos){
         Block block1 = block.getBlockState(pos.up()).getBlock();
         return state.withProperty(SNOWY, Boolean.valueOf(block1 == Blocks.snow || block1 == Blocks.snow_layer));
-    }*/
+    }
 
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
@@ -133,10 +136,20 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
             }
         }
     }
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.CUTOUT_MIPPED;
+    }
 
-    /*protected BlockState createBlockState()
+    public int getMetaFromState(IBlockState state)
+    {
+        return 0;
+    }
+
+    protected BlockState createBlockState()
     {
         return new BlockState(this, new IProperty[] {SNOWY});
-    }*/
+    }
 
 }

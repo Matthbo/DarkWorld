@@ -122,13 +122,6 @@ public class BlockBushDarkWorld extends BlockBush implements IPlantable{
         return false;
     }
 
-    /**
-     * The type of render function that is called for this block
-     */
-    public int getRenderType()
-    {
-        return 1;
-    }
 
     /*@Override
     public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
