@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-0.2"
+version = "1.8-0.3"
 group= "matthbo.mods.darkworld" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "DarkWorld"
 
 minecraft {
-    version = "1.7.10-10.13.2.1277"
+    version = "1.8-11.14.1.1306"
     runDir = "eclipse"
 }
 
