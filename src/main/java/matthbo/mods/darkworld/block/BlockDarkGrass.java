@@ -136,11 +136,11 @@ public class BlockDarkGrass extends BlockDarkWorld implements IGrowable {
             }
         }
     }
-    @SideOnly(Side.CLIENT)
+    /*@SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
         return EnumWorldBlockLayer.CUTOUT_MIPPED;
-    }
+    }*/
 
     public int getMetaFromState(IBlockState state)
     {

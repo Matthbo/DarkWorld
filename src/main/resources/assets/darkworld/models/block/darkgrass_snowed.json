@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "darkworld:blocks/darkdirt",
+        "bottom": "darkworld:blocks/darkdirt",
+        "top": "darkworld:blocks/darkgrass_top",
+        "side": "darkworld:blocks/darkgrass_side_snowed"
+    }
+}

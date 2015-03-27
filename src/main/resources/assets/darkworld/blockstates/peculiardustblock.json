@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "darkworld:peculiardustblock" },
+            { "model": "darkworld:peculiardustblock", "y": 90 },
+            { "model": "darkworld:peculiardustblock", "y": 180 },
+            { "model": "darkworld:peculiardustblock", "y": 270 }
+        ]
+    }
+}

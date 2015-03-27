@@ -7,4 +7,7 @@ public class ServerProxy extends CommonProxy {
         return true;
     }
 
+    public void textureFix(){}
+
+
 }

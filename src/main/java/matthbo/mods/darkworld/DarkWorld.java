@@ -33,7 +33,8 @@ public class DarkWorld {
 	public static IProxy proxy;
 	
 	public static ConfigHandler Config = new ConfigHandler();
-	
+
+    //TODO remake darkworldPortal ;(
 	//TODO make it so that vanilla tools don't do shit in the darkworld (will be very nice if it is easy to do)
 	//TODO make stuff added to the oreDictionary
 	//TODO check for more broken shit
@@ -58,6 +59,7 @@ public class DarkWorld {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent event){
+        proxy.textureFix();
 		ModBiomes.init();
 		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecoratorHandler());
 		ModDimensions.init();

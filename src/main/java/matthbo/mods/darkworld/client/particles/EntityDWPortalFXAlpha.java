@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class EntityDWPortalFX extends EntityFX {
+public class EntityDWPortalFXAlpha extends EntityFX {
 	
 	private static final ResourceLocation texture = new ResourceLocation(Refs.MOD_ID.toLowerCase(), "textures/particle/dwportal.png");
 	
@@ -21,7 +21,7 @@ public class EntityDWPortalFX extends EntityFX {
     private double portalPosY;
     private double portalPosZ;
 	
-	public EntityDWPortalFX(World world, double x, double y, double z, double velX, double velY, double velZ){
+	public EntityDWPortalFXAlpha(World world, double x, double y, double z, double velX, double velY, double velZ){
 		super(world, x, y, z, velX, velY, velZ);
 		this.motionX = velX;
         this.motionY = velY;
@@ -55,7 +55,7 @@ public class EntityDWPortalFX extends EntityFX {
 		tesselator.addVertexWithUV(x - par3 * scale + par6 * scale, y + par4 * scale, z - par5 * scale + par7 * scale, 1, 0);
 		tesselator.addVertexWithUV(x + par3 * scale + par6 * scale, y + par4 * scale, z + par5 * scale + par7 * scale, 1, 1);
 		tesselator.addVertexWithUV(x + par3 * scale - par6 * scale, y - par4 * scale, z + par5 * scale - par7 * scale, 0, 1);
-		//tesselator.draw(); TODO: check this
+		tesselator.finishDrawing();
 		glAlphaFunc(GL_GREATER, 0.1F);
 		glDisable(GL_BLEND);
 		glDepthMask(true);
@@ -115,7 +115,7 @@ public class EntityDWPortalFX extends EntityFX {
 
         if (this.particleAge++ >= this.particleMaxAge)
         {
-            this.setDead();
+            //this.setDead();
         }
     }
 	

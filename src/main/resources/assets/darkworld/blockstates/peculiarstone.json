@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "darkworld:peculiarstone" },
+            { "model": "darkworld:peculiarstone_mirrored" },
+            { "model": "darkworld:peculiarstone", "y": 180 },
+            { "model": "darkworld:peculiarstone_mirrored", "y": 180 }
+        ]
+    }
+}

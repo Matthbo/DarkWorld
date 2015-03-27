@@ -4,4 +4,6 @@ public interface IProxy {
 
 	public boolean fancyGraphics();
 
+    public void textureFix();
+
 }

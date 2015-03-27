@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "darkworld:compressedpeculiardust" },
+            { "model": "darkworld:compressedpeculiardust", "y": 90 },
+            { "model": "darkworld:compressedpeculiardust", "y": 180 },
+            { "model": "darkworld:compressedpeculiardust", "y": 270 }
+        ]
+    }
+}

@@ -2,17 +2,18 @@ package matthbo.mods.darkworld.block;
 
 import java.util.Random;
 
+import matthbo.mods.darkworld.client.particles.EntityDWPortalFXBeta;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import matthbo.mods.darkworld.client.particles.EntityDWPortalFX;
+import matthbo.mods.darkworld.client.particles.EntityDWPortalFXAlpha;
 import matthbo.mods.darkworld.init.ModAchievements;
 import matthbo.mods.darkworld.init.ModBlocks;
 import matthbo.mods.darkworld.init.ModDimensions;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -24,6 +25,7 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 	public BlockPortalDarkWord(){
 		super();
 		this.setUnlocalizedName("darkworldportal");
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
 	}
 	
 	@Override
@@ -142,19 +144,19 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
 	}
 
     //TODO: fix this
-	/*@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+	@SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
         if (rand.nextInt(100) == 0)
         {
-            world.playSound((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "portal.portal", 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+            world.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "portal.portal", 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for (int l = 0; l < 4; ++l)
         {
-            double d0 = (double)((float)x + rand.nextFloat());
-            double d1 = (double)((float)y + rand.nextFloat());
-            double d2 = (double)((float)z + rand.nextFloat());
+            double d0 = (double)((float)pos.getX() + rand.nextFloat());
+            double d1 = (double)((float)pos.getY() + rand.nextFloat());
+            double d2 = (double)((float)pos.getZ() + rand.nextFloat());
             double d3 = 0.0D;
             double d4 = 0.0D;
             double d5 = 0.0D;
@@ -163,19 +165,19 @@ public class BlockPortalDarkWord extends BlockPortalBaseDarkWorld {
             d4 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
             d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
 
-            if (world.getBlockState(new BlockPos(x - 1, y, z)) != this && world.getBlock(x + 1, y, z) != this)
+            if (world.getBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ())) != this && world.getBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ())) != this)
             {
-                d0 = (double)x + 0.5D + 0.25D * (double)i1;
+                d0 = (double)pos.getX() + 0.5D + 0.25D * (double)i1;
                 d3 = (double)(rand.nextFloat() * 2.0F * (float)i1);
             }
             else
             {
-                d2 = (double)z + 0.5D + 0.25D * (double)i1;
+                d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)i1;
                 d5 = (double)(rand.nextFloat() * 2.0F * (float)i1);
             }
 
             //world.spawnParticle("portal", d0, d1, d2, d3, d4, d5);
-            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityDWPortalFX(world, d0, d1, d2, d3, d4, d5));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityDWPortalFXBeta(world, d0, d1, d2, d3, d4, d5));
         }
-    }*/
+    }
 }
